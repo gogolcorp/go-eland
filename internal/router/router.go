@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/blyndusk/go-yave/internal/controllers"
+	"github.com/blyndusk/flamin-go/internal/controllers"
 	"github.com/gin-gonic/gin"
 )
 
