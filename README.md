@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/guava.png" width="256"><br/>
+  <img src="./assets/flamingo.png" width="500"><br/>
     <br/>
     <a href="https://github.com/blyndusk/flamin-go/releases">
       <img src="https://img.shields.io/github/v/release/blyndusk/flamin-go"/>
@@ -28,10 +28,6 @@
      <a href="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml">
       <img src="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml/badge.svg"/>
     </a>
-</p>
-
-<p align="center">
-  <a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template">How to use this repo as a template for your project</a>
 </p>
 
 ## I - Introduction
