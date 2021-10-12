@@ -26,13 +26,12 @@ type Task struct {
 }
 
 func foo() {
-
 	logrus.Info("test")
 }
 func main() {
 	tasks := []Task{
 		{
-			Name:        "apt packages",
+			Name:        "[1] apt packages",
 			Description: "manages apt packages, install and update them.",
 			SubLabels: []string{
 				"install",
@@ -52,7 +51,7 @@ func main() {
 			},
 		},
 		{
-			Name:        "snap packages",
+			Name:        "[2] snap packages",
 			Description: "manages snap packages, install and refresh them.",
 			SubLabels: []string{
 				"install",
@@ -71,30 +70,9 @@ func main() {
 				},
 			},
 		},
-
 		{
-			Name:        "bash dotfiles",
-			Description: "manages bash dotfiles, synchronizes them and update rc files.",
-			SubLabels: []string{
-				"sync",
-				"rc",
-			},
-			SubTasks: []SubTask{
-				{
-					Name:        "sync",
-					Description: "sync all bash dotfiles from the configuration files.",
-					exec:        foo,
-				},
-				{
-					Name:        "rc",
-					Description: "update the .bashrc or .zshrc file.",
-					exec:        foo,
-				},
-			},
-		},
-		{
-			Name:        "zsh-related stuff",
-			Description: "install Oh-My-Zsh, zsh-users plugins, and spaceshipt prompt.",
+			Name:        "[3] zsh-related stuff",
+			Description: "install Oh-My-Zsh, zsh plugins and spaceshipt prompt.",
 			SubLabels: []string{
 				"oh-my-zsh",
 				"zsh-users plugins",
@@ -116,6 +94,75 @@ func main() {
 					Description: "install spaceship-prompt for Zsh.",
 					exec:        foo,
 				},
+			},
+		},
+		{
+			Name:        "[4] bash dotfiles",
+			Description: "manages bash dotfiles, synchronizes them and update rc files.",
+			SubLabels: []string{
+				"sync",
+				"rc",
+			},
+			SubTasks: []SubTask{
+				{
+					Name:        "sync",
+					Description: "sync all bash dotfiles from the configuration files.",
+					exec:        foo,
+				},
+				{
+					Name:        "rc",
+					Description: "update the .bashrc or .zshrc file.",
+					exec:        foo,
+				},
+			},
+		},
+	
+		{
+			Name:        "[5] developer CLIs",
+			Description: "install Docker, Docker Compose, Kubectl and Helm.",
+			SubLabels: []string{
+				"docker",
+				"kubernetes",
+			},
+			SubTasks: []SubTask{
+				{
+					Name:        "docker",
+					Description: "install Docker and Docker Compose.",
+					exec:        foo,
+				},
+				{
+					Name:        "kubernetes",
+					Description: "install Kubectl and Helm.",
+					exec:        foo,
+				},
+			
+			},
+		},
+		{
+			Name:        "[6] vscode",
+			Description: "install VSCode extensions, theme and sync settings.",
+			SubLabels: []string{
+				"extensions",
+				"theme",
+				"settings",
+			},
+			SubTasks: []SubTask{
+				{
+					Name:        "extensions",
+					Description: "install all VSCode extensions from the configuration file.",
+					exec:        foo,
+				},
+				{
+					Name:        "theme",
+					Description: "install VSCode theme from the configuration file.",
+					exec:        foo,
+				},
+				{
+					Name:        "settings",
+					Description: "sync settings to VSCode from the configuration file.",
+					exec:        foo,
+				},
+			
 			},
 		},
 	}
