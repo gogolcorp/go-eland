@@ -7,60 +7,117 @@ import (
 	"strings"
 
 	"github.com/manifoldco/promptui"
+	"github.com/sirupsen/logrus"
 )
 
-type task struct {
+type SubTask struct {
 	Name        string
 	Description string
-	UnderTasks  []string
+	exec        func()
+}
+type ISubTask interface {
+	exec()
+}
+type Task struct {
+	Name        string
+	Description string
+	SubLabels   []string
+	SubTasks    []SubTask
 }
 
+func foo() {
+
+	logrus.Info("test")
+}
 func main() {
-	tasks := []task{
+	tasks := []Task{
 		{
 			Name:        "apt packages",
-			Description: "manages apt packages, installs and updates them",
-			UnderTasks: []string{
+			Description: "manages apt packages, install and update them.",
+			SubLabels: []string{
 				"install",
 				"update",
+			},
+			SubTasks: []SubTask{
+				{
+					Name:        "install",
+					Description: "install all apt packages from configuration.",
+					exec:        foo,
+				},
+				{
+					Name:        "update",
+					Description: "update all apt packages.",
+					exec:        foo,
+				},
 			},
 		},
 		{
 			Name:        "snap packages",
-			Description: "manages snap packages, installs and updates them",
-			UnderTasks: []string{
+			Description: "manages snap packages, install and refresh them.",
+			SubLabels: []string{
 				"install",
 				"update",
 			},
+			SubTasks: []SubTask{
+				{
+					Name:        "install",
+					Description: "install all snap packages from configuration.",
+					exec:        foo,
+				},
+				{
+					Name:        "refresh",
+					Description: "refresh all snap packages.",
+					exec:        foo,
+				},
+			},
 		},
+
 		{
 			Name:        "bash dotfiles",
-			Description: "manages bash dotfiles, manages apt packages, synchronizes them and updates rc files",
-			UnderTasks: []string{
-				"aliases",
-				"functions",
+			Description: "manages bash dotfiles, synchronizes them and update rc files.",
+			SubLabels: []string{
+				"sync",
+				"rc",
+			},
+			SubTasks: []SubTask{
+				{
+					Name:        "sync",
+					Description: "sync all bash dotfiles from the configuration files.",
+					exec:        foo,
+				},
+				{
+					Name:        "rc",
+					Description: "update the .bashrc or .zshrc file.",
+					exec:        foo,
+				},
 			},
 		},
 		{
-			Name:        "zsh-related",
-			Description: "install Oh-My-Zsh, zsh-users plugins, and spaceshipt prompt",
-			UnderTasks: []string{
+			Name:        "zsh-related stuff",
+			Description: "install Oh-My-Zsh, zsh-users plugins, and spaceshipt prompt.",
+			SubLabels: []string{
 				"oh-my-zsh",
-				"zsh-users",
+				"zsh-users plugins",
 				"spaceship-prompt",
 			},
+			SubTasks: []SubTask{
+				{
+					Name:        "oh-my-zsh",
+					Description: "install Oh-My-Zsh without user prompt.",
+					exec:        foo,
+				},
+				{
+					Name:        "zsh-users plugins",
+					Description: "install zsh plugins from the configuration file.",
+					exec:        foo,
+				},
+				{
+					Name:        "spacehip-prompt",
+					Description: "install spaceship-prompt for Zsh.",
+					exec:        foo,
+				},
+			},
 		},
-	}
-
-	templates := &promptui.SelectTemplates{
-		Help:     "{{ \"Toggle search: / key\" | faint }}",
-		Label:    "{{ . | yellow }}",
-		Selected: "> {{ .Name | green | bold }}",
-		Active:   "> {{ .Name | green | bold }} {{ .UnderTasks | white }}",
-		Inactive: "  {{ .Name | cyan }} {{ .UnderTasks | faint }}",
-		Details: `
------ {{ .Name | yellow | bold | underline }} {{"task" | underline | white }} ----
-{{ .Description | faint }}`,
 	}
 
 	searcher := func(input string, index int) bool {
@@ -70,22 +127,54 @@ func main() {
 
 		return strings.Contains(name, input)
 	}
-	fmt.Print("\033[H\033[2J")
+
+	templates := &promptui.SelectTemplates{
+		Help:     "{{ \"Toggle search: / key\" | faint }}",
+		Label:    "🦩 | {{ . | magenta | bold | underline }}",
+		Selected: "> {{ .Name | green | bold }}",
+		Active:   "> {{ .Name | yellow | bold }} {{ .SubLabels | white }}",
+		Inactive: "  {{ .Name | cyan }} {{ .SubLabels | faint }}",
+		Details: `
+🔥| {{ .Name | yellow | bold | underline }} {{"task" | underline | white }}:
+Goal: {{ .Description | faint }}`,
+	}
+
+	subTemplates := &promptui.SelectTemplates{
+		Label:    "🔥 | {{ . | blue | bold | underline }}",
+		Selected: "> {{ .Name | green | bold }}",
+		Active:   "> {{ .Name | yellow | bold }}",
+		Inactive: "  {{ .Name | cyan }}",
+		Details: `
+✨ | {{ .Name | yellow | bold | underline }} {{"task" | underline | white }}:
+Goal: {{ .Description | faint }}`,
+	}
 
 	prompt := promptui.Select{
-		Label:     "🦩| Hi, Flamin-go speaking. Choose a task:",
+		Label:     "Hi, Flamin-go speaking. Choose a task:",
 		Items:     tasks,
 		Templates: templates,
 		Size:      10,
 		Searcher:  searcher,
 	}
 
+	fmt.Print("\033[H\033[2J")
 	i, _, err := prompt.Run()
-
 	if err != nil {
 		fmt.Printf("Prompt failed %v\n", err)
 		return
 	}
 
-	fmt.Printf("You choose number %d: %s\n", i+1, tasks[i].Name)
+	subPrompt := promptui.Select{
+		HideHelp:  true,
+		Label:     "Choose an action:",
+		Items:     tasks[i].SubTasks,
+		Templates: subTemplates,
+		Size:      5,
+	}
+	j, _, err := subPrompt.Run()
+	if err != nil {
+		fmt.Printf("Prompt failed %v\n", err)
+		return
+	}
+	logrus.Info(j)
 }
