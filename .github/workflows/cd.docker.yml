@@ -31,9 +31,8 @@ jobs:
         with:
           push: true
           context: .
-          file: build/package/sample-api/Dockerfile
-          tags: ghcr.io/blyndusk/flamin-go_sample-api:latest
-          target: prod_build
+          file: build/package/flamin-goapi/Dockerfile
+          tags: ghcr.io/blyndusk/flamin-go:latest
 
         # output the logs
       - name: 4 - IMAGE DIGEST

@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+LABEL org.opencontainers.image.source = "https://github.com/blyndusk/flamin-go"
+
 # ----- SETUP -----
 
 # Enable Go modules
