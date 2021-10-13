@@ -7,8 +7,9 @@ import (
 	"strings"
 
 	"github.com/blyndusk/flamin-go/internal/core"
+	"github.com/blyndusk/flamin-go/pkg/helpers"
 	"github.com/manifoldco/promptui"
-	"github.com/sirupsen/logrus"
+	"github.com/ttacon/chalk"
 )
 
 func main() {
@@ -30,25 +31,37 @@ func main() {
 	}
 
 	i, _, err := taskPrompt.Run()
-	if err != nil {
-		logrus.Error("Prompt failed %v\n", err)
-		return
-	}
+	helpers.ExitOnError("taskPrompt failed:", err)
+	fmt.Print("----------------------\n")
 
+	task := core.Tasks[i]
 	actionPrompt := promptui.Select{
 		HideHelp:  true,
 		Label:     "Now, choose an action:",
-		Items:     core.Tasks[i].Actions,
+		Items:     task.Actions,
 		Templates: core.ActionTpl,
 		Size:      10,
 	}
-	fmt.Print("----------------------\n")
-
 
 	j, _, err := actionPrompt.Run()
-	if err != nil {
-		fmt.Printf("Prompt failed %v\n", err)
-		return
+	helpers.ExitOnError("actionPrompt failed:", err)
+	fmt.Print("----------------------\n")
+
+	action := task.Actions[j]
+	choice := chalk.Green.NewStyle().WithTextStyle(chalk.Bold).Style(action.Description)
+
+	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
+	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
+	fmt.Print("You're about to: ", choice, "\n")
+
+	prompt := promptui.Prompt{
+		Label:     "Continue",
+		Default:   "y",
+		IsConfirm: true,
 	}
-	logrus.Info(fmt.Sprintf("Task: %s - Action: %s", core.Tasks[i].Name, core.Tasks[i].Actions[j].Name))
+
+	result, err := prompt.Run()
+	if (result == "" || result == "Y" || result == "y") {
+		action.Exec()
+	}
 }
