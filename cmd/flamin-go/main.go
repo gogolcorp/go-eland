@@ -116,7 +116,7 @@ func main() {
 				},
 			},
 		},
-	
+
 		{
 			Name:        "[5] developer CLIs",
 			Description: "install Docker, Docker Compose, Kubectl and Helm.",
@@ -135,7 +135,6 @@ func main() {
 					Description: "install Kubectl and Helm.",
 					exec:        foo,
 				},
-			
 			},
 		},
 		{
@@ -162,7 +161,6 @@ func main() {
 					Description: "sync settings to VSCode from the configuration file.",
 					exec:        foo,
 				},
-			
 			},
 		},
 	}
