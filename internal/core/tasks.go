@@ -1,7 +1,5 @@
 package core
 
-import "github.com/sirupsen/logrus"
-
 type Task struct {
 	Name          string
 	Description   string
@@ -12,11 +10,7 @@ type Task struct {
 type Action struct {
 	Name        string
 	Description string
-	Exec        func()
-}
-
-func foo() {
-	logrus.Info("test")
+	Exec        string
 }
 
 var Tasks = []Task{
@@ -31,12 +25,12 @@ var Tasks = []Task{
 			{
 				Name:        "install",
 				Description: "install all apt packages from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "update",
 				Description: "update all apt packages from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},
@@ -51,12 +45,12 @@ var Tasks = []Task{
 			{
 				Name:        "install",
 				Description: "install all snap packages from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "refresh",
 				Description: "refresh all snap packages from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},
@@ -72,17 +66,17 @@ var Tasks = []Task{
 			{
 				Name:        "oh-my-zsh",
 				Description: "install Oh-My-Zsh famework",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "zsh-users plugins",
 				Description: "install zsh plugins from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "spaceship-prompt",
 				Description: "install spaceship-prompt for Zsh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},
@@ -97,12 +91,12 @@ var Tasks = []Task{
 			{
 				Name:        "sync",
 				Description: "sync all bash dotfiles from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "rc",
 				Description: "update the .bashrc or .zshrc file",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},
@@ -118,12 +112,12 @@ var Tasks = []Task{
 			{
 				Name:        "docker",
 				Description: "install Docker and Docker Compose",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "kubernetes",
 				Description: "install Kubectl and Helm",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},
@@ -139,17 +133,17 @@ var Tasks = []Task{
 			{
 				Name:        "extensions",
 				Description: "install all VSCode extensions from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "theme",
 				Description: "install VSCode theme from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 			{
 				Name:        "settings",
 				Description: "sync settings to VSCode from cfg.sh",
-				Exec:        foo,
+				Exec:        "apt/update",
 			},
 		},
 	},

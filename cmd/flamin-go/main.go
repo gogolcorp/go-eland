@@ -1,9 +1,9 @@
-//
-
 package main
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/blyndusk/flamin-go/internal/core"
@@ -11,6 +11,16 @@ import (
 	"github.com/manifoldco/promptui"
 	"github.com/ttacon/chalk"
 )
+
+func execAction(file string) {
+	pwd, _ := os.Getwd()
+
+	cmd, err := exec.Command("/bin/bash", fmt.Sprintf("%s/scripts/%s.sh", pwd, file)).Output()
+	fmt.Print(chalk.Green, "Starting...", chalk.Reset)
+	helpers.ExitOnError("sh", err)
+	output := string(cmd)
+	fmt.Print(output)
+}
 
 func main() {
 	fmt.Print("\033[H\033[2J")
@@ -49,7 +59,7 @@ func main() {
 
 	action := task.Actions[j]
 	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
-	
+
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
@@ -63,7 +73,7 @@ func main() {
 
 	result, err := confirmPrompt.Run()
 	helpers.ExitOnError("confirmPrompt failed:", err)
-	if (result == "" || result == "Y" || result == "y") {
-		action.Exec()
+	if result == "" || result == "Y" || result == "y" {
+		execAction(action.Exec)
 	}
 }
