@@ -48,19 +48,21 @@ func main() {
 	fmt.Print("----------------------\n")
 
 	action := task.Actions[j]
-	choice := chalk.Green.NewStyle().WithTextStyle(chalk.Bold).Style(action.Description)
-
+	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
+	
+	fmt.Print("\033[H\033[2J")
 	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
 	fmt.Print("You're about to: ", choice, "\n")
 
-	prompt := promptui.Prompt{
+	confirmPrompt := promptui.Prompt{
 		Label:     "Continue",
 		Default:   "y",
 		IsConfirm: true,
 	}
 
-	result, err := prompt.Run()
+	result, err := confirmPrompt.Run()
+	helpers.ExitOnError("confirmPrompt failed:", err)
 	if (result == "" || result == "Y" || result == "y") {
 		action.Exec()
 	}

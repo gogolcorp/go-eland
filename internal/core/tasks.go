@@ -30,12 +30,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all apt packages from configuration",
+				Description: "install all apt packages from cfg.sh",
 				Exec:        foo,
 			},
 			{
 				Name:        "update",
-				Description: "update all apt packages",
+				Description: "update all apt packages from cfg.sh",
 				Exec:        foo,
 			},
 		},
@@ -50,12 +50,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all snap packages from configuration",
+				Description: "install all snap packages from cfg.sh",
 				Exec:        foo,
 			},
 			{
 				Name:        "refresh",
-				Description: "refresh all snap packages",
+				Description: "refresh all snap packages from cfg.sh",
 				Exec:        foo,
 			},
 		},
@@ -71,12 +71,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "oh-my-zsh",
-				Description: "install Oh-My-Zsh without user prompt",
+				Description: "install Oh-My-Zsh famework",
 				Exec:        foo,
 			},
 			{
 				Name:        "zsh-users plugins",
-				Description: "install zsh plugins from the configuration file",
+				Description: "install zsh plugins from cfg.sh",
 				Exec:        foo,
 			},
 			{
@@ -96,7 +96,7 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "sync",
-				Description: "sync all bash dotfiles from the configuration files",
+				Description: "sync all bash dotfiles from cfg.sh",
 				Exec:        foo,
 			},
 			{
@@ -138,17 +138,17 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "extensions",
-				Description: "install all VSCode extensions from the configuration file",
+				Description: "install all VSCode extensions from cfg.sh",
 				Exec:        foo,
 			},
 			{
 				Name:        "theme",
-				Description: "install VSCode theme from the configuration file",
+				Description: "install VSCode theme from cfg.sh",
 				Exec:        foo,
 			},
 			{
 				Name:        "settings",
-				Description: "sync settings to VSCode from the configuration file",
+				Description: "sync settings to VSCode from cfg.sh",
 				Exec:        foo,
 			},
 		},
