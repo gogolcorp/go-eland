@@ -9,7 +9,7 @@ var TaskTpl = &promptui.SelectTemplates{
 	Active:   "🔴 {{ .Name | bgRed | black  }} {{ .ActionsLabels | red }}",
 	Inactive: "   {{ .Name | white }} {{ .ActionsLabels | faint }}",
 	Details: `
-💡 | {{ .Name | bgRed | black | underline }} {{"task" | white }}
+💡 | {{ .Name | bgRed | black }} {{"task" | white }}
     {{ "Goal" | underline }}: {{ .Description | italic | faint }}`,
 }
 
