@@ -4,7 +4,7 @@ help:
 setup-env: ## Copy sample files 
 	bash scripts/setup.sh
 
-start: ## Up the docker-compose without cache or orphans
+run: ## Up the docker-compose without cache or orphans
 	go run cmd/flamin-go/main.go
 
 stop: ## Down the docker-compose 
