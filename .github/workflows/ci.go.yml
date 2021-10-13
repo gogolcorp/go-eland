@@ -40,7 +40,7 @@ jobs:
       run: |
         gofmt -e -l -s -w .
     
-      # build the project (in the api/ folder L11)
+      # build the project 
     - name: 5 - BUILD
       run: |
         go build -v ./...

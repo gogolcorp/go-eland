@@ -31,7 +31,7 @@ jobs:
         with:
           push: true
           context: .
-          file: build/package/flamin-goapi/Dockerfile
+          file: build/package/flamin-go/Dockerfile
           tags: ghcr.io/blyndusk/flamin-go:latest
 
         # output the logs
