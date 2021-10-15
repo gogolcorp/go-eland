@@ -1,9 +1,11 @@
-//
-
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/blyndusk/flamin-go/internal/core"
@@ -12,7 +14,20 @@ import (
 	"github.com/ttacon/chalk"
 )
 
-func main() {
+func execAction(file string) {
+	pwd, _ := os.Getwd()
+	actionFile := fmt.Sprintf("%s/scripts/%s.sh", pwd, file)
+	cmd := exec.Command("/bin/bash", actionFile)
+
+	var stdoutBuf, stderrBuf bytes.Buffer
+	cmd.Stdout = io.MultiWriter(os.Stdout, &stdoutBuf)
+	cmd.Stderr = io.MultiWriter(os.Stderr, &stderrBuf)
+
+	err := cmd.Run()
+	helpers.ExitOnError("cmd.Run() failed with", err)
+	
+}
+func run() {
 	fmt.Print("\033[H\033[2J")
 
 	searcher := func(input string, index int) bool {
@@ -49,7 +64,7 @@ func main() {
 
 	action := task.Actions[j]
 	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
-	
+
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
@@ -63,7 +78,11 @@ func main() {
 
 	result, err := confirmPrompt.Run()
 	helpers.ExitOnError("confirmPrompt failed:", err)
-	if (result == "" || result == "Y" || result == "y") {
-		action.Exec()
+	if result == "" || result == "Y" || result == "y" {
+		execAction(action.Exec)
+		run()
 	}
+}
+func main() {
+	run()
 }
