@@ -25,7 +25,7 @@ var Tasks = []Task{
 			{
 				Name:        "install",
 				Description: "install all apt packages from cfg.sh",
-				Exec:        "apt/update",
+				Exec:        "apt/install",
 			},
 			{
 				Name:        "update",

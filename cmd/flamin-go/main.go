@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"strings"
@@ -14,15 +16,18 @@ import (
 
 func execAction(file string) {
 	pwd, _ := os.Getwd()
+	actionFile := fmt.Sprintf("%s/scripts/%s.sh", pwd, file)
+	cmd := exec.Command("/bin/bash", actionFile)
 
-	cmd, err := exec.Command("/bin/bash", fmt.Sprintf("%s/scripts/%s.sh", pwd, file)).Output()
-	fmt.Print(chalk.Green, "Starting...", chalk.Reset)
-	helpers.ExitOnError("sh", err)
-	output := string(cmd)
-	fmt.Print(output)
+	var stdoutBuf, stderrBuf bytes.Buffer
+	cmd.Stdout = io.MultiWriter(os.Stdout, &stdoutBuf)
+	cmd.Stderr = io.MultiWriter(os.Stderr, &stderrBuf)
+
+	err := cmd.Run()
+	helpers.ExitOnError("cmd.Run() failed with", err)
+	
 }
-
-func main() {
+func run() {
 	fmt.Print("\033[H\033[2J")
 
 	searcher := func(input string, index int) bool {
@@ -75,5 +80,9 @@ func main() {
 	helpers.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
 		execAction(action.Exec)
+		run()
 	}
+}
+func main() {
+	run()
 }

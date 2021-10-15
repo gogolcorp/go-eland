@@ -2,7 +2,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(firstword $(MAKEFILE_LIST)) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 setup-env: ## Copy sample files 
-	bash scripts/setup.sh
+	bash scripts/make/setup.sh
 
 run: ## Up the docker-compose without cache or orphans
 	go run cmd/flamin-go/main.go
