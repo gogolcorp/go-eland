@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export __APT=(
+export _APT=(
   "apt-transport-https"
   "ca-certificates"
 	"git"
@@ -14,4 +14,9 @@ export __APT=(
 	"xclip"
 	"zsh"
   "ppppp"
+)
+
+export _DOTFILES=(
+  "aliases"
+  "functions"
 )
