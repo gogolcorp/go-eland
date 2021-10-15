@@ -24,12 +24,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all apt packages from cfg.sh",
+				Description: "install all apt packages from config/cfg.sh",
 				Exec:        "apt/install",
 			},
 			{
 				Name:        "update",
-				Description: "update all apt packages from cfg.sh",
+				Description: "update all apt packages from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 		},
@@ -44,12 +44,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all snap packages from cfg.sh",
+				Description: "install all snap packages from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
 				Name:        "refresh",
-				Description: "refresh all snap packages from cfg.sh",
+				Description: "refresh all snap packages from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 		},
@@ -70,7 +70,7 @@ var Tasks = []Task{
 			},
 			{
 				Name:        "zsh-users plugins",
-				Description: "install zsh plugins from cfg.sh",
+				Description: "install zsh plugins from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
@@ -90,8 +90,8 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "sync",
-				Description: "sync all bash dotfiles from cfg.sh",
-				Exec:        "apt/update",
+				Description: "sync all bash dotfiles from config/cfg.sh",
+				Exec:        "dotfiles/sync",
 			},
 			{
 				Name:        "rc",
@@ -132,17 +132,17 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "extensions",
-				Description: "install all VSCode extensions from cfg.sh",
+				Description: "install all VSCode extensions from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
 				Name:        "theme",
-				Description: "install VSCode theme from cfg.sh",
+				Description: "install VSCode theme from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
 				Name:        "settings",
-				Description: "sync settings to VSCode from cfg.sh",
+				Description: "sync settings to VSCode from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 		},

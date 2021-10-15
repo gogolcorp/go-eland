@@ -25,7 +25,7 @@ func execAction(file string) {
 
 	err := cmd.Run()
 	helpers.ExitOnError("cmd.Run() failed with", err)
-	
+
 }
 func run() {
 	fmt.Print("\033[H\033[2J")
@@ -44,10 +44,8 @@ func run() {
 		Size:      10,
 		Searcher:  searcher,
 	}
-
 	i, _, err := taskPrompt.Run()
-	helpers.ExitOnError("taskPrompt failed:", err)
-	fmt.Print("----------------------\n")
+	helpers.ClosePrompt(err)
 
 	task := core.Tasks[i]
 	actionPrompt := promptui.Select{
@@ -57,10 +55,8 @@ func run() {
 		Templates: core.ActionTpl,
 		Size:      10,
 	}
-
 	j, _, err := actionPrompt.Run()
-	helpers.ExitOnError("actionPrompt failed:", err)
-	fmt.Print("----------------------\n")
+	helpers.ClosePrompt(err)
 
 	action := task.Actions[j]
 	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
