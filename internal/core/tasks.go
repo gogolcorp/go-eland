@@ -24,12 +24,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all apt packages from cfg.sh",
+				Description: "install all apt packages from config/cfg.sh",
 				Exec:        "apt/install",
 			},
 			{
 				Name:        "update",
-				Description: "update all apt packages from cfg.sh",
+				Description: "update all apt packages from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 		},
@@ -44,13 +44,13 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "install",
-				Description: "install all snap packages from cfg.sh",
-				Exec:        "apt/update",
+				Description: "install all snap packages from config/cfg.sh",
+				Exec:        "snap/update",
 			},
 			{
 				Name:        "refresh",
-				Description: "refresh all snap packages from cfg.sh",
-				Exec:        "apt/update",
+				Description: "refresh all snap packages from config/cfg.sh",
+				Exec:        "snap/update",
 			},
 		},
 	},
@@ -66,17 +66,17 @@ var Tasks = []Task{
 			{
 				Name:        "oh-my-zsh",
 				Description: "install Oh-My-Zsh famework",
-				Exec:        "apt/update",
+				Exec:        "zsh/omz",
 			},
 			{
 				Name:        "zsh-users plugins",
-				Description: "install zsh plugins from cfg.sh",
-				Exec:        "apt/update",
+				Description: "install zsh plugins from config/cfg.sh",
+				Exec:        "zsh/plugins",
 			},
 			{
 				Name:        "spaceship-prompt",
 				Description: "install spaceship-prompt for Zsh",
-				Exec:        "apt/update",
+				Exec:        "zsh/prompt",
 			},
 		},
 	},
@@ -90,13 +90,13 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "sync",
-				Description: "sync all bash dotfiles from cfg.sh",
-				Exec:        "apt/update",
+				Description: "sync all bash dotfiles from config/cfg.sh",
+				Exec:        "dotfiles/sync",
 			},
 			{
 				Name:        "rc",
 				Description: "update the .bashrc or .zshrc file",
-				Exec:        "apt/update",
+				Exec:        "dotfiles/rc",
 			},
 		},
 	},
@@ -112,12 +112,12 @@ var Tasks = []Task{
 			{
 				Name:        "docker",
 				Description: "install Docker and Docker Compose",
-				Exec:        "apt/update",
+				Exec:        "clis/docker",
 			},
 			{
 				Name:        "kubernetes",
 				Description: "install Kubectl and Helm",
-				Exec:        "apt/update",
+				Exec:        "cli/k8s",
 			},
 		},
 	},
@@ -132,17 +132,17 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "extensions",
-				Description: "install all VSCode extensions from cfg.sh",
+				Description: "install all VSCode extensions from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
 				Name:        "theme",
-				Description: "install VSCode theme from cfg.sh",
+				Description: "install VSCode theme from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 			{
 				Name:        "settings",
-				Description: "sync settings to VSCode from cfg.sh",
+				Description: "sync settings to VSCode from config/cfg.sh",
 				Exec:        "apt/update",
 			},
 		},
