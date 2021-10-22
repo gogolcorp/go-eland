@@ -9,11 +9,11 @@ fyellow "[-] starting..." ; sleep 1
 for i in "${_DOTFILES[@]}"
 do
   if [ -f ~/."$i" ]; then
-    fblue "[$] mv ~/.$i ~/.$i.old"
+    neg "[$] mv ~/.$i ~/.$i.old"
     mv ~/."$i" ~/."$i".old 
   fi
-  echo "cp config/$i.sh ~/.$i"
+  neg "[$] cp config/$i.sh ~/.$i"
   cp "$PWD"/config/"$i".sh ~/."$i" 
 done
 
-fgreen "[!] done !" ; sleep 1
+fgreen "[!] done !" ; sleep 2

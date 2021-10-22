@@ -45,12 +45,12 @@ var Tasks = []Task{
 			{
 				Name:        "install",
 				Description: "install all snap packages from config/cfg.sh",
-				Exec:        "apt/update",
+				Exec:        "snap/update",
 			},
 			{
 				Name:        "refresh",
 				Description: "refresh all snap packages from config/cfg.sh",
-				Exec:        "apt/update",
+				Exec:        "snap/update",
 			},
 		},
 	},
@@ -66,17 +66,17 @@ var Tasks = []Task{
 			{
 				Name:        "oh-my-zsh",
 				Description: "install Oh-My-Zsh famework",
-				Exec:        "apt/update",
+				Exec:        "zsh/omz",
 			},
 			{
 				Name:        "zsh-users plugins",
 				Description: "install zsh plugins from config/cfg.sh",
-				Exec:        "apt/update",
+				Exec:        "zsh/plugins",
 			},
 			{
 				Name:        "spaceship-prompt",
 				Description: "install spaceship-prompt for Zsh",
-				Exec:        "apt/update",
+				Exec:        "zsh/prompt",
 			},
 		},
 	},
@@ -96,7 +96,7 @@ var Tasks = []Task{
 			{
 				Name:        "rc",
 				Description: "update the .bashrc or .zshrc file",
-				Exec:        "apt/update",
+				Exec:        "dotfiles/rc",
 			},
 		},
 	},
@@ -112,12 +112,12 @@ var Tasks = []Task{
 			{
 				Name:        "docker",
 				Description: "install Docker and Docker Compose",
-				Exec:        "apt/update",
+				Exec:        "clis/docker",
 			},
 			{
 				Name:        "kubernetes",
 				Description: "install Kubectl and Helm",
-				Exec:        "apt/update",
+				Exec:        "cli/k8s",
 			},
 		},
 	},

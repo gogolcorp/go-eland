@@ -17,7 +17,7 @@ bblue()    { echo -e "\e[44m$1\e[0m"; }
 bmagenta() { echo -e "\e[45m$1\e[0m"; }
 bcyan()    { echo -e "\e[46m$1\e[0m"; }
 
-neg()      { echo -e "\e[1;97;107m$1\e[0m"; } 
+neg()      { echo -e "\e[1;30;107m$1\e[0m"; } 
 
 red()     { echo -e "\e[1;30;41m$1\e[0m"; }
 green()   { echo -e "\e[1;30;42m$1\e[0m"; }
