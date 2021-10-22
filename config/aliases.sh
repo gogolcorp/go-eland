@@ -12,6 +12,7 @@ alias rf="source ~/.zshrc"
 alias sn="snap"
 alias t="touch"
 
+# FUNCTIONS BIND
 alias igni="_ignition"
 alias mkd="_mkd"
 alias o="_open"
@@ -29,6 +30,16 @@ alias dll="cd ~/Downloads"
 alias desk="cd ~/Desktop"
 
 # APT
-alias upd="sudo apt update"
-alias upg="sudo apt upgrade"
-alias updg="sudo apt update ; sudo apt upgrade"
+alias upd="sudo apt update -y"
+alias upg="sudo apt upgrade -y"
+alias updg="sudo apt update -y ; sudo apt upgrade -y"
+
+# KUBECTL
+alias k="kubectl"
+alias wkg="watch kubectl get"
+
+alias kd="kubectl delete"
+alias ke="kubectl edit"
+alias kg="kubectl get"
+alias kl="kubectl logs"
+
