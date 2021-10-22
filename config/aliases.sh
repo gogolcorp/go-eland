@@ -8,6 +8,7 @@ alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
 alias e="exit"
+alias hs="history | grep"
 alias rf="source ~/.zshrc"
 alias sn="snap"
 alias t="touch"
@@ -92,3 +93,18 @@ alias yst="yarn start"
 alias ysr="yarn serve"
 alias yt="yarn test"
 alias yw="yarn watch"
+
+# DOCKER -----------------------------------------------------------------
+alias dk="docker"
+
+alias dkb="docker build -t"
+alias dki="docker images -a"
+alias dkps="docker ps -a"
+alias dkr="docker run --rm"
+
+# DOCKER COMPOSE ---------------------------------------------------------
+alias dkc="docker-compose"
+
+alias dkcu="docker-compose up"
+alias dkcub="docker-compose up --build"
+alias dkcuf="docker-compose up --build --remove-orphans --force-recreate"
