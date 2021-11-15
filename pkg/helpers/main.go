@@ -22,3 +22,7 @@ func ClosePrompt(err error) {
 	}
 	fmt.Print("----------------------\n")
 }
+
+func ClearPrompt() {
+	fmt.Print("\033[H\033[2J")
+}
