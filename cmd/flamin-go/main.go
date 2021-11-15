@@ -68,7 +68,7 @@ func run() {
 		Templates: core.TaskTpl,
 		Size:      10,
 		Searcher:  searcher(),
-		Stdout: &helpers.BellSkipper{},
+		Stdout:    &helpers.BellSkipper{},
 	}
 	i, _, err := taskPrompt.Run()
 	helpers.ClosePrompt(err)
@@ -80,7 +80,7 @@ func run() {
 		Items:     task.Actions,
 		Templates: core.ActionTpl,
 		Size:      10,
-		Stdout: &helpers.BellSkipper{},
+		Stdout:    &helpers.BellSkipper{},
 	}
 	j, _, err := actionPrompt.Run()
 	helpers.ClosePrompt(err)

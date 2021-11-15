@@ -27,10 +27,9 @@ func ClosePrompt(err error) {
 	fmt.Print("----------------------\n")
 }
 
-
 type BellSkipper struct{}
 
-func (bs * BellSkipper) Write(b []byte) (int, error) {
+func (bs *BellSkipper) Write(b []byte) (int, error) {
 	const charBell = 7
 	if len(b) == 1 && b[0] == charBell {
 		return 0, nil
