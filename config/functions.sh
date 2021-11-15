@@ -22,7 +22,8 @@ function _code() {
   fi
 }
 
-function _ignition() {
+# delete all Docker ressources
+function _docker_purge() {
   clear
   echo -e "\e[33m[#] ANNIHILATION IN 3 [#]\e[0m"
   sleep 1; clear
