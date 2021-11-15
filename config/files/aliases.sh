@@ -1,34 +1,34 @@
 #!/bin/bash
 
 # shellcheck source=/dev/null
-source ~/.functions
+source "$HOME/.functions"
 
-# MISC -------------------------------------------------------------------
+# MISC
 alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
 alias e="exit"
-alias hs="history | grep"
-alias rf="source ~/.zshrc"
+alias rf='source $HOME/.zshrc'
 alias sn="snap"
 alias t="touch"
 
 # FUNCTIONS BIND ---------------------------------------------------------
-alias igni="_ignition"
+alias dkpg="_docker_purge"
+alias kp="_kp"
 alias mkd="_mkd"
 alias o="_open"
 alias vs="_code"
 
-# NAVIGATION -------------------------------------------------------------
+# NAVIGATION
 alias ...= "cd ../.."
 alias ....= "cd ../../.."
 alias .....= "cd ../../../.."
 alias ......= "cd ../../../../.."
 
-# DIRECTORIES ------------------------------------------------------------
-alias docs="cd ~/Documents"
-alias dll="cd ~/Downloads"
-alias desk="cd ~/Desktop"
+# DIRECTORIES
+alias docs='cd $HOME/Documents'
+alias dll='cd $HOME/Downloads'
+alias desk='cd $HOME/Desktop'
 
 # APT --------------------------------------------------------------------
 alias upd="sudo apt update -y"
@@ -45,7 +45,8 @@ alias gsst="git status -s -b"
 alias k="kubectl"
 alias wkg="watch kubectl get"
 
-alias kd="kubectl delete"
+alias kk="kubectl delete"
+alias kd="kubectl describe"
 alias ke="kubectl edit"
 alias kg="kubectl get"
 alias kl="kubectl logs"

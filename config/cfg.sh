@@ -1,22 +1,19 @@
 #!/bin/bash
 
-export _APT=(
+export _apt_packages_=(
   "apt-transport-https"
   "ca-certificates"
 	"git"
 	"htop"
   "make"
-  "nodejs"
-	"shellcheck"
   "software-properties-common"
 	"tmux"
   "tree"
 	"xclip"
 	"zsh"
-  "ppppp"
 )
 
-export _DOTFILES=(
+export _dotfiles_=(
   "aliases"
   "functions"
 )
