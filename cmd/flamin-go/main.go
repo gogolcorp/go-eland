@@ -28,7 +28,7 @@ func execAction(file string) {
 
 }
 func run() {
-	fmt.Print("\033[H\033[2J")
+	helpers.ClearPrompt()
 
 	searcher := func(input string, index int) bool {
 		task := core.Tasks[index]
@@ -43,6 +43,7 @@ func run() {
 		Templates: core.TaskTpl,
 		Size:      10,
 		Searcher:  searcher,
+		Stdout: &helpers.BellSkipper{},
 	}
 	i, _, err := taskPrompt.Run()
 	helpers.ClosePrompt(err)
@@ -54,6 +55,7 @@ func run() {
 		Items:     task.Actions,
 		Templates: core.ActionTpl,
 		Size:      10,
+		Stdout: &helpers.BellSkipper{},
 	}
 	j, _, err := actionPrompt.Run()
 	helpers.ClosePrompt(err)
@@ -61,7 +63,7 @@ func run() {
 	action := task.Actions[j]
 	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
-	fmt.Print("\033[H\033[2J")
+	helpers.ClearPrompt()
 	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
 	fmt.Print("You're about to: ", choice, "\n")

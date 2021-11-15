@@ -12,13 +12,9 @@ alias rf="source ~/.zshrc"
 alias sn="snap"
 alias t="touch"
 
-<<<<<<< Updated upstream
-alias igni="_ignition"
-=======
 # FUNCTIONS BIND ---------------------------------------------------------
 alias dkpg="_docker_purge"
 alias kp="_kp"
->>>>>>> Stashed changes
 alias mkd="_mkd"
 alias o="_open"
 alias vs="_code"
@@ -34,12 +30,6 @@ alias docs="cd ~/Documents"
 alias dll="cd ~/Downloads"
 alias desk="cd ~/Desktop"
 
-<<<<<<< Updated upstream
-# APT
-alias upd="sudo apt update"
-alias upg="sudo apt upgrade"
-alias updg="sudo apt update ; sudo apt upgrade"
-=======
 # APT --------------------------------------------------------------------
 alias upd="sudo apt update -y"
 alias upg="sudo apt upgrade -y"
@@ -119,4 +109,3 @@ alias dkc="docker-compose"
 alias dkcu="docker-compose up"
 alias dkcub="docker-compose up --build"
 alias dkcuf="docker-compose up --build --remove-orphans --force-recreate"
->>>>>>> Stashed changes
