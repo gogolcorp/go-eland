@@ -24,6 +24,9 @@ function _code() {
 
 # delete all Docker ressources
 function _docker_purge() {
+  containers=$(docker ps -a -q)
+  images=$(docker images -q)
+
   clear
   echo -e "\e[33m[#] ANNIHILATION IN 3 [#]\e[0m"
   sleep 1; clear
@@ -34,13 +37,13 @@ function _docker_purge() {
   echo -e "\e[1;33;41m[!] I G N I T I O N [!]\e[0m"
   sleep 1; clear
   echo -e "\e[34m[1] STOPING CONTAINERS [1]\e[0m"
-  docker stop $(docker ps -a -q)
+  docker stop "$containers"
   sleep 1; clear
   echo -e "\e[34m[2] REMOVING CONTAINERS [2]\e[0m"
-  docker rm $(docker ps -a -q)
+  docker rm "$containers"
   sleep 1; clear
   echo -e "\e[34m[3] REMOVING IMAGES [3]\e[0m"
-  docker rmi $(docker images -q)
+  docker rmi "$images"
   sleep 1; clear
   echo -e "\e[34m[4] REMOVING VOLUMES [4]\e[0m"
   docker system prune --all --volumes --force

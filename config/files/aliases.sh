@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # shellcheck source=/dev/null
-source ~/.functions
+source "$HOME/.functions"
 
 # MISC
 alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
 alias e="exit"
-alias rf="source ~/.zshrc"
+alias rf='source $HOME/.zshrc'
 alias sn="snap"
 alias t="touch"
 
@@ -26,9 +26,9 @@ alias .....= "cd ../../../.."
 alias ......= "cd ../../../../.."
 
 # DIRECTORIES
-alias docs="cd ~/Documents"
-alias dll="cd ~/Downloads"
-alias desk="cd ~/Desktop"
+alias docs='cd $HOME/Documents'
+alias dll='cd $HOME/Downloads'
+alias desk='cd $HOME/Desktop'
 
 # APT --------------------------------------------------------------------
 alias upd="sudo apt update -y"
