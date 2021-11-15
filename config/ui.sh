@@ -7,7 +7,7 @@ ui_info()    { echo -e "\e[34m[?] $1;\e[0m";      }
 ui_cmd()     { echo -e "\e[1;30;107m[$] $1\e[0m"; } 
 
 ui_start() { ui_wip "starting the action"; sleep 1; }
-ui_done()  { ui_success "action done"; sleep 10;     }
+ui_done()  { ui_success "action done"; sleep 5;     }
 
 # clear ; echo "UI reference:"
 # ui_error "this isn't workin" 

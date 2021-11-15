@@ -16,7 +16,7 @@ import (
 
 func execAction(file string) {
 	pwd, _ := os.Getwd()
-	actionFile := fmt.Sprintf("%s/scripts/%s.sh", pwd, file)
+	actionFile := fmt.Sprintf("%s/exec/%s.sh", pwd, file)
 	cmd := exec.Command("/bin/bash", actionFile)
 
 	var stdoutBuf, stderrBuf bytes.Buffer
@@ -25,42 +25,19 @@ func execAction(file string) {
 
 	err := cmd.Run()
 	helpers.ExitOnError("cmd.Run() failed with", err)
-
 }
-func run() {
-	helpers.ClearPrompt()
 
+func searcher() func(input string, index int) bool {
 	searcher := func(input string, index int) bool {
 		task := core.Tasks[index]
 		name := strings.Replace(strings.ToLower(task.Name), " ", "", -1)
 		input = strings.Replace(strings.ToLower(input), " ", "", -1)
 		return strings.Contains(name, input)
 	}
+	return searcher
+}
 
-	taskPrompt := promptui.Select{
-		Label:     "Hi, Flamin-go speaking. Choose a task:",
-		Items:     core.Tasks,
-		Templates: core.TaskTpl,
-		Size:      10,
-		Searcher:  searcher,
-		Stdout: &helpers.BellSkipper{},
-	}
-	i, _, err := taskPrompt.Run()
-	helpers.ClosePrompt(err)
-
-	task := core.Tasks[i]
-	actionPrompt := promptui.Select{
-		HideHelp:  true,
-		Label:     "Now, choose an action:",
-		Items:     task.Actions,
-		Templates: core.ActionTpl,
-		Size:      10,
-		Stdout: &helpers.BellSkipper{},
-	}
-	j, _, err := actionPrompt.Run()
-	helpers.ClosePrompt(err)
-
-	action := task.Actions[j]
+func runConfirmPrompt(task core.Task, action core.Action) {
 	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
 	helpers.ClearPrompt()
@@ -81,6 +58,37 @@ func run() {
 		run()
 	}
 }
+
+func run() {
+	helpers.ClearPrompt()
+
+	taskPrompt := promptui.Select{
+		Label:     "Hi, Flamin-go speaking. Choose a task:",
+		Items:     core.Tasks,
+		Templates: core.TaskTpl,
+		Size:      10,
+		Searcher:  searcher(),
+		Stdout: &helpers.BellSkipper{},
+	}
+	i, _, err := taskPrompt.Run()
+	helpers.ClosePrompt(err)
+
+	task := core.Tasks[i]
+	actionPrompt := promptui.Select{
+		HideHelp:  true,
+		Label:     "Now, choose an action:",
+		Items:     task.Actions,
+		Templates: core.ActionTpl,
+		Size:      10,
+		Stdout: &helpers.BellSkipper{},
+	}
+	j, _, err := actionPrompt.Run()
+	helpers.ClosePrompt(err)
+
+	action := task.Actions[j]
+	runConfirmPrompt(task, action)
+}
+
 func main() {
 	run()
 }

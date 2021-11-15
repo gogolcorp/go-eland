@@ -1,33 +1,37 @@
 <p align="center">
-  <img src="./assets/flamingo.png" width="500"><br/>
-    <br/>
-    <a href="https://github.com/blyndusk/flamin-go/releases">
-      <img src="https://img.shields.io/github/v/release/blyndusk/flamin-go"/>
-    </a>
-    <a href="https://github.com/blyndusk/flamin-go/commits/main">
-      <img src="https://img.shields.io/github/release-date/blyndusk/flamin-go"/>
-    </a>
-    <a href="https://github.com/blyndusk/flamin-go/issues">
-      <img src="https://img.shields.io/github/issues/blyndusk/flamin-go"/>
-    </a>
-    <a href="https://github.com/blyndusk/flamin-go/pulls">
-      <img src="https://img.shields.io/github/issues-pr/blyndusk/flamin-go"/>
-    </a>
-    <a href="https://github.com/blyndusk/flamin-go/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/blyndusk/flamin-go"/>
-    </a>
+  <img src="./assets/flamingo.png" width="500">
+  <br />
+  <br />
+  <a href="https://goreportcard.com/report/github.com/blyndusk/flamin-go">
+    <img src="https://goreportcard.com/badge/github.com/blyndusk/flamin-go" />
+  </a>
+  <br />
+  <a href="https://github.com/blyndusk/flamin-go/releases">
+    <img src="https://img.shields.io/github/v/release/blyndusk/flamin-go" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/commits/main">
+    <img src="https://img.shields.io/github/release-date/blyndusk/flamin-go" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/issues">
+    <img src="https://img.shields.io/github/issues/blyndusk/flamin-go" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/pulls">
+    <img src="https://img.shields.io/github/issues-pr/blyndusk/flamin-go" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/blyndusk/flamin-go" />
+  </a>
 </p>
-
 <p align="center">
   <a href="https://github.com/blyndusk/flamin-go/actions/workflows/ci.go.yml">
-      <img src="https://github.com/blyndusk/flamin-go/actions/workflows/ci.go.yml/badge.svg"/>
-    </a>
-     <a href="https://github.com/blyndusk/flamin-go/actions/workflows/cd.docker.yml">
-      <img src="https://github.com/blyndusk/flamin-go/actions/workflows/cd.docker.yml/badge.svg"/>
-    </a>
-     <a href="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml">
-      <img src="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml/badge.svg"/>
-    </a>
+    <img src="https://github.com/blyndusk/flamin-go/actions/workflows/ci.go.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/actions/workflows/cd.docker.yml">
+    <img src="https://github.com/blyndusk/flamin-go/actions/workflows/cd.docker.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml">
+    <img src="https://github.com/blyndusk/flamin-go/actions/workflows/md.release.yml/badge.svg" />
+  </a>
 </p>
 
 ## I - Introduction
