@@ -12,9 +12,13 @@ ui_start
 
 for i in "${_omz_plugins_[@]}"
 do
-  ui_info "installing $i"
-  ui_cmd "$( exec_cmd "$i")"; exec_cmd "$i"
-  sed -i.old "s/^plugins=(.*/plugins=(\n  $i/g" foo.sh
+  exec=(sed -i.old "s/^plugins=(.*/plugins=(\n  $i/g" "$HOME"/.zshrc)
+
+  ui_info "installing $i plugin"
+  ui_cmd exec_cmd "$i"; exec_cmd "$i"
+
+  ui_info "write new plugin in ~/.zshrc"
+  ui_cmd "${exec[@]}" ; "${exec[@]}"
 done
 
 ui_done
