@@ -25,7 +25,7 @@ do
     ui_info "write new plugin in ~/.zshrc"
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   else
-    ui_info "$1 folder exists; skipping plugin"
+    ui_info "$i folder exists; skipping plugin"
   fi
 done
 
