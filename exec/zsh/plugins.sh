@@ -8,17 +8,25 @@ exec_cmd() {
   git clone https://github.com/zsh-users/"$1".git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/"$1"
 }
 
+
 ui_start
 
 for i in "${_omz_plugins_[@]}"
 do
-  exec=(sed -i.old "s/^plugins=(.*/plugins=(\n  $i/g" "$HOME"/.zshrc)
+  if [ ! -d ~/.oh-my-zsh/custom/plugins/"$1" ]; then
+    ui_info "$1 folder does not exist"
+    ui_wip "installing $1"
 
-  ui_info "installing $i plugin"
-  ui_cmd exec_cmd "$i"; exec_cmd "$i"
+    exec=(sed -i.old "s/^plugins=(.*/plugins=(\n  $i/g" "$HOME"/.zshrc)
 
-  ui_info "write new plugin in ~/.zshrc"
-  ui_cmd "${exec[@]}" ; "${exec[@]}"
+    ui_info "installing $i plugin"
+    ui_cmd exec_cmd "$i"; exec_cmd "$i"
+
+    ui_info "write new plugin in ~/.zshrc"
+    ui_cmd "${exec[@]}" ; "${exec[@]}"
+  else
+    ui_info "$1 folder exists; skipping plugin"
+  fi
 done
 
 ui_done
