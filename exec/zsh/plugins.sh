@@ -13,9 +13,9 @@ ui_start
 
 for i in "${_omz_plugins_[@]}"
 do
-  if [ ! -d ~/.oh-my-zsh/custom/plugins/"$1" ]; then
-    ui_info "$1 folder does not exist"
-    ui_wip "installing $1"
+  if [ ! -d ~/.oh-my-zsh/custom/plugins/"$i" ]; then
+    ui_info "$i folder does not exist"
+    ui_wip "installing $i"
 
     exec=(sed -i.old "s/^plugins=(.*/plugins=(\n  $i/g" "$HOME"/.zshrc)
 
