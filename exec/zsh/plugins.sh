@@ -10,6 +10,7 @@ exec_cmd() {
 
 
 ui_start
+sed -i.old "s/^plugins=(git).*/plugins=(\n  git\n  )$i/g" "$HOME"/.zshrc
 
 for i in "${_omz_plugins_[@]}"
 do
