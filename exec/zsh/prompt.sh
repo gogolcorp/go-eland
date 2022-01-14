@@ -4,8 +4,8 @@
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
 
-exec_a=(git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$HOME/.oh-my-zsh/themes/spaceship-prompt" --depth=1)
-exec_b=(ln -s "$HOME/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/themes/spaceship.zsh-theme")
+exec_a=(git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" --depth=1)
+exec_b=(ln -s "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/themes/spaceship.zsh-theme")
 exec_c=(sed -i.old "s/^ZSH_THEME=\".*/ZSH_THEME=\"spaceship\"/g" "$HOME"/.zshrc)
 
 ui_start
