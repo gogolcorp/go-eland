@@ -13,11 +13,11 @@ alias sn="snap"
 alias t="touch"
 
 # FUNCTIONS BIND ---------------------------------------------------------
-alias dkpg="_docker_purge"
-alias kp="_kp"
-alias mkd="_mkd"
-alias o="_open"
-alias vs="_code"
+alias dkpg="_docker_purge_"
+alias kp="_kill_process_"
+alias mkd="_mkdir_cd_"
+alias o="_open_fe_"
+alias vs="_open_vscode_"
 
 # NAVIGATION
 alias ...= "cd ../.."
@@ -59,6 +59,21 @@ alias tfd="terraform destroy"
 alias tfi="terraform init"
 alias tfp="terraform plan"
 
+# DOCKER -----------------------------------------------------------------
+alias dk="docker"
+
+alias dkb="docker build -t"
+alias dki="docker images -a"
+alias dkps="docker ps -a"
+alias dkr="docker run --rm"
+
+# DOCKER COMPOSE ---------------------------------------------------------
+alias dkc="docker-compose"
+
+alias dkcu="docker-compose up"
+alias dkcub="docker-compose up --build"
+alias dkcuf="docker-compose up --build --remove-orphans --force-recreate"
+
 # NPM --------------------------------------------------------------------
 alias n="npm"
 
@@ -94,18 +109,3 @@ alias yst="yarn start"
 alias ysr="yarn serve"
 alias yt="yarn test"
 alias yw="yarn watch"
-
-# DOCKER -----------------------------------------------------------------
-alias dk="docker"
-
-alias dkb="docker build -t"
-alias dki="docker images -a"
-alias dkps="docker ps -a"
-alias dkr="docker run --rm"
-
-# DOCKER COMPOSE ---------------------------------------------------------
-alias dkc="docker-compose"
-
-alias dkcu="docker-compose up"
-alias dkcub="docker-compose up --build"
-alias dkcuf="docker-compose up --build --remove-orphans --force-recreate"

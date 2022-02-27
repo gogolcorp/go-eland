@@ -6,16 +6,17 @@ source "$PWD"/config/cfg.sh
 
 ui_start
 
-for i in "${_dotfiles_[@]}"
+arr=_dotfiles_
+for i in "${arr[@]}"
 do
   file="$HOME/.$i"
-  exec_a="mv $HOME/.$i $HOME/.$i.old"
-  exec_b="cp $PWD/config/files/$i.sh $HOME/.$i"
+  exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)
+  exec_b=(cp "$PWD"/config/files/"$i".sh "$HOME"/."$i")
   if [ -f "$file" ]; then
     ui_info "$file already exists, creating old version"
-    ui_cmd "$exec_a"; $exec_a
+    ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
   fi
-  ui_cmd "$exec_b"; $exec_b
+  ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
 done
 
 ui_done

@@ -6,13 +6,13 @@ source "$PWD"/config/cfg.sh
 
 ui_start
 
-clear
-
 ui_info "apt packages:"
 
-for i in ${!_apt_packages_[@]}
+
+arr=_apt_packages_
+for i in "${arr[@]}"
 do
-  echo ${_apt_packages[$i]}
+  echo "${arr$i]}"
 done
 
 echo "UI reference:"
