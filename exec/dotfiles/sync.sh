@@ -6,8 +6,7 @@ source "$PWD"/config/cfg.sh
 
 ui_start
 
-arr=_dotfiles_
-for i in "${arr[@]}"
+for i in "${_dotfiles_[@]}"
 do
   file="$HOME/.$i"
   exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)

@@ -9,10 +9,9 @@ ui_start
 ui_info "apt packages:"
 
 
-arr=_apt_packages_
-for i in "${arr[@]}"
+for i in "${_apt_packages_[@]}"
 do
-  echo "${arr$i]}"
+  echo "${_apt_packages_$i]}"
 done
 
 echo "UI reference:"

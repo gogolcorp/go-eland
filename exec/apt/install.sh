@@ -4,10 +4,14 @@
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
 
-exec=(sudo apt install "${_apt_packages_[*]}" -y)
-
 ui_start
 
-ui_cmd "${exec[@]}" ; "${exec[@]}"
+for i in "${_apt_packages_[@]}"
+do
+  exec=(sudo apt install $i -y)
+
+  ui_info "installing $i package"
+  ui_cmd "${exec[@]}" ; "${exec[@]}"
+done
 
 ui_done
