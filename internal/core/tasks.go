@@ -69,13 +69,13 @@ var Tasks = []Task{
 				Exec:        "zsh/omz",
 			},
 			{
-				Name:        "zsh-users plugins",
+				Name:        "plugins",
 				Description: "install zsh plugins from config/cfg.sh",
 				Exec:        "zsh/plugins",
 			},
 			{
-				Name:        "spaceship-prompt",
-				Description: "install spaceship-prompt for Zsh",
+				Name:        "prompt",
+				Description: "install custom prompt for Zsh",
 				Exec:        "zsh/prompt",
 			},
 		},

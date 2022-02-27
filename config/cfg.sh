@@ -17,3 +17,8 @@ export _dotfiles_=(
   "aliases"
   "functions"
 )
+
+export _omz_plugins_=(
+  "zsh-syntax-highlighting"
+  "zsh-autosuggestions"
+)

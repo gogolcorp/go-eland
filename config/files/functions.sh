@@ -65,7 +65,7 @@ function _kp () {
   ps aux | grep "$1" > /dev/null
   mypid=$(pidof "$1")
   if [ "$mypid" != "" ]; then
-    kill -9 $(pidof "$1")
+    kill -9 "$(pidof "$1")"
     if [[ "$?" == "0" ]]; then
       echo "[$1] (PID: $mypid) killed."
     fi
