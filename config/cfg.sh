@@ -3,6 +3,7 @@
 export _apt_packages_=(
   "apt-transport-https"
   "ca-certificates"
+  "curl"
 	"git"
 	"htop"
   "make"
