@@ -89,6 +89,13 @@ func run() {
 	runConfirmPrompt(task, action)
 }
 
+func auth() {
+	cmd := exec.Command("sudo", "uptime")
+	err := cmd.Run()
+	helpers.ExitOnError("cmd.Run() failed with", err)
+}
+
 func main() {
+	auth()
 	run()
 }
