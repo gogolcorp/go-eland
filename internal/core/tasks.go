@@ -117,7 +117,7 @@ var Tasks = []Task{
 			{
 				Name:        "kubernetes",
 				Description: "install Kubectl and Helm",
-				Exec:        "cli/k8s",
+				Exec:        "clis/k8s",
 			},
 		},
 	},
