@@ -3,14 +3,15 @@
 export _apt_packages_=(
   "apt-transport-https"
   "ca-certificates"
-	"git"
-	"htop"
+  "curl"
+  "git"
+  "htop"
   "make"
   "software-properties-common"
-	"tmux"
+  "tmux"
   "tree"
-	"xclip"
-	"zsh"
+  "xclip"
+  "zsh"
 )
 
 export _dotfiles_=(

@@ -15,6 +15,26 @@ type Action struct {
 
 var Tasks = []Task{
 	{
+		Name:        "test",
+		Description: "test",
+		ActionsLabels: []string{
+			"test",
+			"finish-setup",
+		},
+		Actions: []Action{
+			{
+				Name:        "test",
+				Description: "test",
+				Exec:        "test",
+			},
+			{
+				Name:        "finish setup",
+				Description: "Finish the installation setup",
+				Exec:        "setup",
+			},
+		},
+	},
+	{
 		Name:        "apt packages",
 		Description: "manages apt packages, install and update them",
 		ActionsLabels: []string{
@@ -31,26 +51,6 @@ var Tasks = []Task{
 				Name:        "update",
 				Description: "update all apt packages from config/cfg.sh",
 				Exec:        "apt/update",
-			},
-		},
-	},
-	{
-		Name:        "snap packages",
-		Description: "manages snap packages, install and refresh them",
-		ActionsLabels: []string{
-			"install",
-			"update",
-		},
-		Actions: []Action{
-			{
-				Name:        "install",
-				Description: "install all snap packages from config/cfg.sh",
-				Exec:        "snap/update",
-			},
-			{
-				Name:        "refresh",
-				Description: "refresh all snap packages from config/cfg.sh",
-				Exec:        "snap/update",
 			},
 		},
 	},
@@ -144,6 +144,26 @@ var Tasks = []Task{
 				Name:        "settings",
 				Description: "sync settings to VSCode from config/cfg.sh",
 				Exec:        "apt/update",
+			},
+		},
+	},
+	{
+		Name:        "snap packages",
+		Description: "manages snap packages, install and refresh them",
+		ActionsLabels: []string{
+			"install",
+			"update",
+		},
+		Actions: []Action{
+			{
+				Name:        "install",
+				Description: "install all snap packages from config/cfg.sh",
+				Exec:        "snap/update",
+			},
+			{
+				Name:        "refresh",
+				Description: "refresh all snap packages from config/cfg.sh",
+				Exec:        "snap/update",
 			},
 		},
 	},

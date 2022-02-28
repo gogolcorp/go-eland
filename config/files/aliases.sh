@@ -68,11 +68,11 @@ alias dkps="docker ps -a"
 alias dkr="docker run --rm"
 
 # DOCKER COMPOSE ---------------------------------------------------------
-alias dkc="docker-compose"
+alias dkc="docker compose"
 
-alias dkcu="docker-compose up"
-alias dkcub="docker-compose up --build"
-alias dkcuf="docker-compose up --build --remove-orphans --force-recreate"
+alias dkcu="docker compose up"
+alias dkcub="docker compose up --build"
+alias dkcuf="docker compose up --build --remove-orphans --force-recreate"
 
 # NPM --------------------------------------------------------------------
 alias n="npm"
