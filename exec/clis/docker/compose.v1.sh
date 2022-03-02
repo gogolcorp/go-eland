@@ -9,10 +9,16 @@ exec_b=(sudo chmod +x /usr/local/bin/docker-compose)
 
 ui_start
 
-ui_info "Download Docker Compose"
-ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
+if [ "$(which docker-compose)" != 0 ]; then
+  ui_info "Download Docker Compose"
+  ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
 
-ui_info "Set permissions"
-ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
+  ui_info "Set permissions"
+  ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
+else
+  ui_info "\"docker-compose\" command already exist"
+fi
+
+ui_done
 
 ui_done
