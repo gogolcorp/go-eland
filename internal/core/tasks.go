@@ -35,28 +35,28 @@ var Tasks = []Task{
 		},
 	},
 	{
-		Name:        "apt packages",
-		Description: "manages apt packages, install and update them",
+		Name:        "apt+brew packages",
+		Description: "install, update and manage Apt and Brew packages",
 		ActionsLabels: []string{
-			"install",
-			"update",
+			"apt",
+			"brew",
 		},
 		Actions: []Action{
 			{
-				Name:        "install",
+				Name:        "apt",
 				Description: "install all apt packages from config/cfg.sh",
-				Exec:        "apt/install",
+				Exec:        "packages/apt",
 			},
 			{
-				Name:        "update",
-				Description: "update all apt packages from config/cfg.sh",
-				Exec:        "apt/update",
+				Name:        "brew",
+				Description: "install Brew exec, then install packages from config/cfg.sh",
+				Exec:        "packages/brew",
 			},
 		},
 	},
 	{
-		Name:        "zsh-related stuff",
-		Description: "install Oh-My-Zsh, zsh plugins and spaceship prompt",
+		Name:        "zsh setup",
+		Description: "install Oh-My-Zsh, Zsh plugins and spaceship prompt",
 		ActionsLabels: []string{
 			"omz",
 			"plugins",
@@ -65,12 +65,12 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "oh-my-zsh",
-				Description: "install Oh-My-Zsh famework",
+				Description: "install Oh-My-Zsh framework",
 				Exec:        "zsh/omz",
 			},
 			{
 				Name:        "plugins",
-				Description: "install zsh plugins from config/cfg.sh",
+				Description: "install Zsh plugins from config/cfg.sh",
 				Exec:        "zsh/plugins",
 			},
 			{
@@ -82,7 +82,7 @@ var Tasks = []Task{
 	},
 	{
 		Name:        "bash dotfiles",
-		Description: "manages bash dotfiles, synchronizes them and update rc files",
+		Description: "manages, synchronizes and update Bash dotfiles and .rc files",
 		ActionsLabels: []string{
 			"sync",
 			"rc",
@@ -90,7 +90,7 @@ var Tasks = []Task{
 		Actions: []Action{
 			{
 				Name:        "sync",
-				Description: "sync all bash dotfiles from config/cfg.sh",
+				Description: "sync all Bash dotfiles from config/cfg.sh",
 				Exec:        "dotfiles/sync",
 			},
 			{
@@ -103,10 +103,10 @@ var Tasks = []Task{
 
 	{
 		Name:        "developer CLIs",
-		Description: "install Docker, Docker Compose, Kubectl and Helm",
+		Description: "install docker and kubernetes related CLIs",
 		ActionsLabels: []string{
 			"docker",
-			"kubernetes",
+			"k8s",
 		},
 		Actions: []Action{
 			{
@@ -116,7 +116,7 @@ var Tasks = []Task{
 			},
 			{
 				Name:        "kubernetes",
-				Description: "install Kubectl and Helm",
+				Description: "install Kubectl, Kubectx, Kubens, Kubeseal and Helm",
 				Exec:        "clis/k8s",
 			},
 		},

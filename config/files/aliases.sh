@@ -4,6 +4,7 @@
 source "$HOME/.functions"
 
 # MISC
+alias b="brew"
 alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
@@ -41,7 +42,7 @@ alias ghst="git log --graph --oneline --decorate --all"
 alias grh="git reset --hard" 
 alias gsst="git status -s -b"
 
-# KUBECTL ----------------------------------------------------------------
+# KUBE --- ---------------------------------------------------------------
 alias k="kubectl"
 alias wkg="watch kubectl get"
 
@@ -50,6 +51,11 @@ alias kd="kubectl describe"
 alias ke="kubectl edit"
 alias kg="kubectl get"
 alias kl="kubectl logs"
+
+alias h="helm"
+alias kx="kubectx"
+alias kb="kubens"
+alias ks="kubeseal"
 
 # TERRAFORM --------------------------------------------------------------
 alias tf="terraform"
