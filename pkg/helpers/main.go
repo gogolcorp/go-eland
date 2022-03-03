@@ -24,7 +24,6 @@ func ClosePrompt(err error) {
 		fmt.Print(chalk.Magenta, "🦩 | See you soon !")
 		os.Exit(0)
 	}
-	fmt.Print("----------------------\n")
 }
 
 type BellSkipper struct{}
