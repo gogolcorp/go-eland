@@ -7,6 +7,9 @@ setup-env: ## Copy sample files
 run: ## Up the docker-compose without cache or orphans
 	go run cmd/flamin-go/main.go
 
+build: ## Up the docker-compose without cache or orphans
+	go build cmd/flamin-go/main.go
+
 stop: ## Down the docker-compose 
 	docker-compose down
 
