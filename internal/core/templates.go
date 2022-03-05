@@ -3,7 +3,7 @@ package core
 import "github.com/manifoldco/promptui"
 
 var ModeTpl = &promptui.SelectTemplates{
-	Label:    `⚙️  | {{ . | red | bold	| underline }}`,
+	Label: `⚙️  | {{ . | red | bold	| underline }}`,
 	Selected: "🔴 {{ .Name | bgRed | black | bold }}",
 	Active:   "🔴 {{ .Name | bgRed | black  }}",
 	Inactive: "   {{ .Name | white }}",
@@ -11,7 +11,6 @@ var ModeTpl = &promptui.SelectTemplates{
 💡 | {{ .Name | bgCyan | black }}
     {{ "Goal" | underline }}: {{ .Description | italic | faint }}`,
 }
-
 
 var TaskTpl = &promptui.SelectTemplates{
 	Help:     "{{ \"Toggle search: / key\" | faint }}",
