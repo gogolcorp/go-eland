@@ -37,12 +37,13 @@ func searcher() func(input string, index int) bool {
 	return searcher
 }
 
-func runConfirmPrompt(task core.Task, action core.Action) {
-	choice := chalk.Green.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
+func runConfirmPrompt(mode core.Mode, task core.Task, action core.Action) {
+	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
 	helpers.ClearPrompt()
-	fmt.Print("Task: ", chalk.Red, task.Name, chalk.Reset, "\n")
-	fmt.Print("Action: ", chalk.Yellow, chalk.Bold, action.Name, chalk.Reset, "\n")
+	fmt.Print("Mode: ", chalk.Red, mode.Name, chalk.Reset, "\n")
+	fmt.Print("Task: ", chalk.Yellow, task.Name, chalk.Reset, "\n")
+	fmt.Print("Action: ", chalk.Green, chalk.Bold, action.Name, chalk.Reset, "\n")
 	fmt.Print("You're about to: ", choice, "\n")
 
 	confirmPrompt := promptui.Prompt{
@@ -60,10 +61,24 @@ func runConfirmPrompt(task core.Task, action core.Action) {
 }
 
 func run() {
+
 	helpers.ClearPrompt()
 
+	modesPrompt := promptui.Select{
+		HideHelp:  true,
+		Label:     "[choose]: setup mode",
+		Items:     core.Modes,
+		Templates: core.ModeTpl,
+		Size:      2,
+		Stdout:    &helpers.BellSkipper{},
+	}
+	h, _, err := modesPrompt.Run()
+	helpers.ClosePrompt(err)
+
+	mode := core.Modes[h]
+
 	taskPrompt := promptui.Select{
-		Label:     "Hi, Flamin-go speaking. Choose a task:",
+		Label:     "[choose]: task category",
 		Items:     core.Tasks,
 		Templates: core.TaskTpl,
 		Size:      10,
@@ -76,7 +91,7 @@ func run() {
 	task := core.Tasks[i]
 	actionPrompt := promptui.Select{
 		HideHelp:  true,
-		Label:     "Now, choose an action:",
+		Label:     "[choose]: action to run",
 		Items:     task.Actions,
 		Templates: core.ActionTpl,
 		Size:      10,
@@ -86,7 +101,7 @@ func run() {
 	helpers.ClosePrompt(err)
 
 	action := task.Actions[j]
-	runConfirmPrompt(task, action)
+	runConfirmPrompt(mode, task, action)
 }
 
 func auth() {

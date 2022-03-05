@@ -28,5 +28,3 @@ ui_start
 ui; echo; apt
 
 ui_done
-
-sleep 5

@@ -4,6 +4,7 @@
 source "$HOME/.functions"
 
 # MISC
+alias b="brew"
 alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
@@ -41,9 +42,14 @@ alias ghst="git log --graph --oneline --decorate --all"
 alias grh="git reset --hard" 
 alias gsst="git status -s -b"
 
-# KUBECTL ----------------------------------------------------------------
+# KUBE --- ---------------------------------------------------------------
 alias k="kubectl"
 alias wkg="watch kubectl get"
+
+alias h="helm"
+alias kx="kubectx"
+alias kb="kubens"
+alias ks="kubeseal"
 
 alias kk="kubectl delete"
 alias kd="kubectl describe"
