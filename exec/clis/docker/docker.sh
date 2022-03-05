@@ -28,7 +28,7 @@ if [ "$(which docker)" != 0 ]; then
   ui_info "Add your username to the docker group"
   ui_cmd "${exec_e[@]}" ; "${exec_e[@]}"
 else
-  ui_info "\"docker\" command already exist"
+  ui_info "\"docker\" command already exist. Exiting.."
 fi
 
 ui_done

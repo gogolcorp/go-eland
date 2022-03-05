@@ -46,16 +46,16 @@ alias gsst="git status -s -b"
 alias k="kubectl"
 alias wkg="watch kubectl get"
 
+alias h="helm"
+alias kx="kubectx"
+alias kb="kubens"
+alias ks="kubeseal"
+
 alias kk="kubectl delete"
 alias kd="kubectl describe"
 alias ke="kubectl edit"
 alias kg="kubectl get"
 alias kl="kubectl logs"
-
-alias h="helm"
-alias kx="kubectx"
-alias kb="kubens"
-alias ks="kubeseal"
 
 # TERRAFORM --------------------------------------------------------------
 alias tf="terraform"

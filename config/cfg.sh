@@ -31,6 +31,8 @@ export _dotfiles_=(
 )
 
 export _omz_plugins_=(
-  "zsh-syntax-highlighting"
   "zsh-autosuggestions"
+  "zsh-completions"
+  "zsh-history-substring-search"
+  "zsh-syntax-highlighting"
 )
