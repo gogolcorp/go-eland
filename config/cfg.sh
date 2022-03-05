@@ -5,6 +5,7 @@ export _apt_packages_=(
   "build-essential"
   "ca-certificates"
   "software-properties-common"
+  "zsh"
 )
 
 export _brew_packages_=(
@@ -15,7 +16,6 @@ export _brew_packages_=(
   "make"
   "tree"
   "xclip"
-  "zsh"
 )
 
 export _brew_k8s_packages_=(
