@@ -4,7 +4,7 @@
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
 
-exec_a=(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+exec_a="/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 exec_b=(brew update)
 exec_c=(brew upgrade)
 exec_d=(brew cleanup)
@@ -15,7 +15,7 @@ ui_start
 
 if [ "$(which brew)" != 0 ]; then
   ui_info "installing brew executable"
-  ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
+  ui_cmd "$exec_a" ; $exec_a
   sourcing="eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   if [ -f "$HOME"/.zshrc ]; then
     ui_info "$HOME/.zshrc detected"
@@ -36,7 +36,7 @@ fi
 
 for i in "${_brew_packages_[@]}"
 do
-  exec=(brew install $i -y)
+  exec=(brew install "$i" -y)
 
   ui_info "installing $i package"
   ui_cmd "${exec[@]}" ; "${exec[@]}"
