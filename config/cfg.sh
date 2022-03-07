@@ -12,7 +12,7 @@ export _apt_packages_=(
   "zsh"
 )
 
-export _brew_packages_=(
+export _brew_formulaes_=(
   "gcc"
   "htop"
   "make"
@@ -20,7 +20,11 @@ export _brew_packages_=(
   "xclip"
 )
 
-export _brew_k8s_packages_=(
+export _brew_casks_=(
+  "visual-studio-code"
+)
+
+export _brew_k8s_=(
   "kubectl"
   "kubectx"
   "kubeseal"
