@@ -4,14 +4,14 @@ export _apt_packages_=(
   "apt-transport-https"
   "build-essential"
   "ca-certificates"
+  "curl"
+  "git"
   "software-properties-common"
   "zsh"
 )
 
 export _brew_packages_=(
-  "curl"
   "gcc"
-  "git"
   "htop"
   "make"
   "tree"
