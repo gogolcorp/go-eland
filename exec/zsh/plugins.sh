@@ -12,7 +12,7 @@ sed -i.old "s/^plugins=(git).*/plugins=(\n  git\n)$i/g" "$HOME"/.zshrc
 
 for i in "${_omz_plugins_[@]}"
 do
-  if [ -d ~/.oh-my-zsh/custom/plugins/"$i" ]; then
+  if [ -d "$HOME"/.oh-my-zsh/custom/plugins/"$i" ]; then
     ui_info "$i folder exists; skipping plugin"
   else
     exec_a=(git clone https://github.com/zsh-users/"$i".git "$HOME"/.oh-my-zsh/custom/plugins/"$i")
@@ -23,7 +23,7 @@ do
     ui_info "installing $i plugin"
     ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
 
-    ui_info "write new plugin in ~/.zshrc"
+    ui_info "write new plugin in $HOME/.zshrc"
     ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
   fi
 done

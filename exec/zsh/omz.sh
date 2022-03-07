@@ -8,6 +8,10 @@ exec=(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/mast
 
 ui_start
 
-ui_cmd "${exec[@]}" ; "${exec[@]}"
+if [ -d "$HOME"/.oh-my-zsh/ ]; then
+  ui_info "$HOME/.oh-my-zsh/ folder exists; skipping.."
+else
+  ui_cmd "${exec[@]}" ; "${exec[@]}"
+fi
 
 ui_done

@@ -4,9 +4,9 @@
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
 
-exec_a=(mkdir -p ~/.docker/cli-plugins/)
-exec_b=(curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose)
-exec_c=(chmod +x ~/.docker/cli-plugins/docker-compose)
+exec_a=(mkdir -p "$HOME"/.docker/cli-plugins/)
+exec_b=(curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o "$HOME"/.docker/cli-plugins/docker-compose)
+exec_c=(chmod +x "$HOME"/.docker/cli-plugins/docker-compose)
 exec_d=(sudo chown "$USER" /var/run/docker.sock)
 
 ui_start
