@@ -18,11 +18,11 @@ function _brew_secure_install_from_array_ () {
 function _apt_secure_install_from_array_ () {
   ARRAY=$@
   for i in $ARRAY; do
-    if ! command -v "$i" &> /dev/null; then
+    # if ! command -v "$i" &> /dev/null; then
       exec=(sudo apt install "$i")
-    else
-      ui_info "\"$i\" command already exist. Skipping.."
-    fi
+    # else
+    #   ui_info "\"$i\" command already exist. Skipping.."
+    # fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
