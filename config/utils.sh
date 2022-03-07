@@ -17,7 +17,7 @@ function _brew_secure_install_from_array_ () {
 
 function _apt_secure_install_from_array_ () {
   ARRAY=$1
-  for i in "${ARRAY[@]}"; do
+  for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
       exec=(sudo apt install "$i")
     else

@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-_apt_secure_install_from_array_ "$_apt_packages_"
+_apt_secure_install_from_array_ "${_apt_packages_[@]}"
 
 ui_done
