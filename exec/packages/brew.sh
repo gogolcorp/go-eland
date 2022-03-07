@@ -40,7 +40,7 @@ fi
 
 for i in "${_brew_packages_[@]}"
 do
-  exec=(brew install "$i" -y)
+  exec=(brew install "$i")
 
   ui_info "installing $i package"
   ui_cmd "${exec[@]}" ; "${exec[@]}"
