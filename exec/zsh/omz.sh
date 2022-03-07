@@ -3,6 +3,7 @@
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
+source "$PWD"/config/utils.sh
 
 exec=(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended)
 

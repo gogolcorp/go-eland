@@ -14,9 +14,7 @@ exec_c=(brew doctor)
 
 ui_start
 
-if [ "$(which brew)" == 0 ]; then
-  ui_info "\"brew\" command already exist. Exiting.."
-else
+if [ "$(which brew)" != 0 ]; then
   ui_info "installing brew executable"
   ui_cmd "${exec_install[@]}" ; NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [ ! -f "$HOME"/.zshrc ]; then
@@ -30,6 +28,8 @@ else
       ui_cmd "${exec_env[*]} >> $HOME/.zshrc" ; printf "\n\n%s\n$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> "$HOME"/.zshrc
     fi
   fi
+else
+  ui_info "\"brew\" command already exist. Exiting.."
 fi
 
 ui_info "setting env vars"
