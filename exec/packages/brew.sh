@@ -4,7 +4,6 @@
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
 
-exec_a=(NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
 exec_b=(brew update)
 exec_c=(brew upgrade)
 exec_d=(brew cleanup)
@@ -14,7 +13,8 @@ ui_start
 
 if [ "$(which brew)" != 0 ]; then
   ui_info "installing brew executable"
-  ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
+  ui_cmd "insall brew" 
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [ -f "$HOME"/.zshrc ]; then
     ui_info "$HOME/.zshrc detected"
     if ! grep -q "eval $(/home/"$USER"/.linuxbrew/bin/brew shellenv)" < "$HOME"/.zshrc ; then
