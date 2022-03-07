@@ -12,7 +12,7 @@ do
     exec=(brew install "$i")
   else
     ui_info "\"$\" command already exist. Updating.."
-    exec=(brew install "$i" -y)
+    exec=(brew update "$i")
   fi
 
   ui_cmd "${exec[@]}" ; "${exec[@]}"
