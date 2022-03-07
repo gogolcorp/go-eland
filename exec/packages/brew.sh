@@ -8,25 +8,20 @@ exec_b=(brew update)
 exec_c=(brew upgrade)
 exec_d=(brew cleanup)
 exec_e=(brew doctor)
-exec_f="eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ui_start
 
 if [ "$(which brew)" != 0 ]; then
-  git clone https://github.com/Homebrew/brew.git "$HOME"/.brew/brew
-  git clone https://github.com/Homebrew/homebrew-core.git "$HOME"/.brew/homebrew-core
 
-  export HOMEBREW_BREW_GIT_REMOTE="$HOME/.brew/brew" # put your Git mirror of Homebrew/brew here
-  export HOMEBREW_CORE_GIT_REMOTE="$HOME/.brew/homebrew-core"
   ui_info "installing brew executable"
   ui_cmd "NONINTERACTIVE=1 /bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [ -f "$HOME"/.zshrc ]; then
     ui_info "$HOME/.zshrc detected"
-    if ! grep -q "$exec_f" < "$HOME"/.zshrc ; then
+    if ! grep -q "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" < "$HOME"/.zshrc ; then
       ui_info "dotfile sourcing not found"
-      ui_cmd "$exec_f >> $HOME/.zshrc"
-      printf "\n%s\n" "$exec_f" >> "$HOME"/.zshrc
+      ui_cmd "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) >> $HOME/.zshrc"
+      printf "\n%s\n" "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> "$HOME"/.zshrc
     else
       ui_info "sourcing already found, terminating" 
     fi
@@ -46,10 +41,11 @@ do
   ui_cmd "${exec[@]}" ; "${exec[@]}"
 done
 
+ui_cmd "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
 ui_cmd "${exec_c[@]}" ; "${exec_c[@]}"
 ui_cmd "${exec_d[@]}" ; "${exec_d[@]}"
 ui_cmd "${exec_e[@]}" ; "${exec_e[@]}"
-ui_cmd "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" ; "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ui_done
