@@ -13,6 +13,11 @@ exec_f="eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ui_start
 
 if [ "$(which brew)" != 0 ]; then
+  git clone https://github.com/Homebrew/brew.git "$HOME"/.brew/brew
+  git clone https://github.com/Homebrew/homebrew-core.git "$HOME"/.brew/homebrew-core
+
+  export HOMEBREW_BREW_GIT_REMOTE="$HOME/.brew/brew" # put your Git mirror of Homebrew/brew here
+  export HOMEBREW_CORE_GIT_REMOTE="$HOME/.brew/homebrew-core"
   ui_info "installing brew executable"
   ui_cmd "NONINTERACTIVE=1 /bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
