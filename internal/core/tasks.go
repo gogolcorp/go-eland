@@ -14,51 +14,32 @@ type Action struct {
 }
 
 var Tasks = []Task{
+
 	{
-		Name:        "test",
-		Description: "test",
+		Name:        "apt packages",
+		Description: "install, update and manage Apt packages",
 		ActionsLabels: []string{
-			"test",
-			"finish-setup",
+			"update",
+			"install",
 		},
 		Actions: []Action{
 			{
-				Name:        "test",
-				Description: "test",
-				Exec:        "test",
+				Name:        "update",
+				Description: "update all Apt packages",
+				Exec:        "apt/update",
 			},
 			{
-				Name:        "finish setup",
-				Description: "Finish the installation setup",
-				Exec:        "setup",
-			},
-		},
-	},
-	{
-		Name:        "apt+brew packages",
-		Description: "install, update and manage Apt and Brew packages",
-		ActionsLabels: []string{
-			"apt",
-			"brew",
-		},
-		Actions: []Action{
-			{
-				Name:        "apt",
-				Description: "install all apt packages from config/cfg.sh",
-				Exec:        "packages/apt",
-			},
-			{
-				Name:        "brew",
-				Description: "install Brew exec, then install packages from config/cfg.sh",
-				Exec:        "packages/brew",
+				Name:        "install",
+				Description: "install all Apt packages from config/cfg.sh",
+				Exec:        "apt/install",
 			},
 		},
 	},
 	{
 		Name:        "zsh setup",
-		Description: "install Oh-My-Zsh, Zsh plugins and spaceship prompt",
+		Description: "install Oh-My-Zsh, Zsh plugins and Spaceship prompt",
 		ActionsLabels: []string{
-			"omz",
+			"oh-my-zsh",
 			"plugins",
 			"prompt",
 		},
@@ -81,11 +62,37 @@ var Tasks = []Task{
 		},
 	},
 	{
+		Name:        "brew casks + formulaes",
+		Description: "install, update and manage Brew casks and formulaes",
+		ActionsLabels: []string{
+			"brew",
+			"formulaes",
+			"casks",
+		},
+		Actions: []Action{
+			{
+				Name:        "brew",
+				Description: "install brew executable, with rc file configuration",
+				Exec:        "brew/install",
+			},
+			{
+				Name:        "formulaes",
+				Description: "install Brew formulaes from config/cfg.sh",
+				Exec:        "brew/formulaes",
+			},
+			{
+				Name:        "casks",
+				Description: "install Brew casks from config/cfg.sh",
+				Exec:        "brew/casks",
+			},
+		},
+	},
+	{
 		Name:        "bash dotfiles",
 		Description: "manages, synchronizes and update Bash dotfiles and .rc files",
 		ActionsLabels: []string{
 			"sync",
-			"rc",
+			"write-rcfile",
 		},
 		Actions: []Action{
 			{
@@ -94,7 +101,7 @@ var Tasks = []Task{
 				Exec:        "dotfiles/sync",
 			},
 			{
-				Name:        "rc",
+				Name:        "write-rcfile",
 				Description: "update the .bashrc or .zshrc file",
 				Exec:        "dotfiles/rc",
 			},
@@ -103,10 +110,10 @@ var Tasks = []Task{
 
 	{
 		Name:        "developer CLIs",
-		Description: "install docker and kubernetes related CLIs",
+		Description: "install Docker and Kubernetes related CLIs",
 		ActionsLabels: []string{
 			"docker",
-			"k8s",
+			"kubernetes",
 		},
 		Actions: []Action{
 			{
@@ -144,26 +151,6 @@ var Tasks = []Task{
 				Name:        "settings",
 				Description: "sync settings to VSCode from config/cfg.sh",
 				Exec:        "apt/update",
-			},
-		},
-	},
-	{
-		Name:        "snap packages",
-		Description: "manages snap packages, install and refresh them",
-		ActionsLabels: []string{
-			"install",
-			"update",
-		},
-		Actions: []Action{
-			{
-				Name:        "install",
-				Description: "install all snap packages from config/cfg.sh",
-				Exec:        "snap/update",
-			},
-			{
-				Name:        "refresh",
-				Description: "refresh all snap packages from config/cfg.sh",
-				Exec:        "snap/update",
 			},
 		},
 	},
