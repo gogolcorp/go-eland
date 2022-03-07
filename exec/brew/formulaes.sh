@@ -9,6 +9,6 @@ ui_start
 
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-_brew_secure_install_from_array_ "$_brew_formulaes_"
+_brew_secure_install_from_array_ "${_brew_formulaes_[@]}"
 
 ui_done
