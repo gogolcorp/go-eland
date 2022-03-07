@@ -3,7 +3,8 @@
 function _brew_secure_install_from_array_ () {
   ARRAY=$@
   CASK=$2
-  for i in "${ARRAY[@]}"; do
+  echo $ARRAY
+  for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
     temp=" $i"
       exec=(brew install"$CASK""$temp")
@@ -18,7 +19,6 @@ function _brew_secure_install_from_array_ () {
 
 function _apt_secure_install_from_array_ () {
   ARRAY=$@
-  echo $ARRAY
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
       exec=(sudo apt install "$i" -y)
