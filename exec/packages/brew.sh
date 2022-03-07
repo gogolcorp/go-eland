@@ -9,20 +9,19 @@ exec_b=(brew update)
 exec_c=(brew upgrade)
 exec_d=(brew cleanup)
 exec_e=(brew doctor)
-exec_f=(eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)")
+exec_f="eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ui_start
 
 if [ "$(which brew)" != 0 ]; then
   ui_info "installing brew executable"
   ui_cmd "$exec_a" ; $exec_a
-  sourcing="eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   if [ -f "$HOME"/.zshrc ]; then
     ui_info "$HOME/.zshrc detected"
-    if ! grep -q "$sourcing" < "$HOME"/.zshrc ; then
+    if ! grep -q "$exec_f" < "$HOME"/.zshrc ; then
       ui_info "dotfile sourcing not found"
-      ui_cmd "$sourcing >> $HOME/.zshrc"
-      printf "\n%s\n" "$sourcing" >> "$HOME"/.zshrc
+      ui_cmd "$exec_f >> $HOME/.zshrc"
+      printf "\n%s\n" "$exec_f" >> "$HOME"/.zshrc
     else
       ui_info "sourcing already found, terminating" 
     fi
