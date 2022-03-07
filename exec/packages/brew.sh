@@ -18,10 +18,10 @@ if [ "$(which brew)" != 0 ]; then
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [ -f "$HOME"/.zshrc ]; then
     ui_info "$HOME/.zshrc detected"
-    if ! grep -q "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" < "$HOME"/.zshrc ; then
+    if ! grep -q $(eval /home/linuxbrew/.linuxbrew/bin/brew shellenv) < "$HOME"/.zshrc ; then
       ui_info "dotfile sourcing not found"
-      ui_cmd "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) >> $HOME/.zshrc"
-      printf "\n%s\n" "$eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> "$HOME"/.zshrc
+      ui_cmd "$(eval /home/linuxbrew/.linuxbrew/bin/brew shellenv) >> $HOME/.zshrc"
+      printf "\n%s\n" $(eval /home/linuxbrew/.linuxbrew/bin/brew shellenv) >> "$HOME"/.zshrc
     else
       ui_info "sourcing already found, terminating" 
     fi
@@ -41,8 +41,9 @@ do
   ui_cmd "${exec[@]}" ; "${exec[@]}"
 done
 
-ui_cmd "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+ui_cmd "$(eval /home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(eval /home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
 ui_cmd "${exec_c[@]}" ; "${exec_c[@]}"
 ui_cmd "${exec_d[@]}" ; "${exec_d[@]}"
