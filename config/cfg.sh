@@ -5,7 +5,9 @@ export _apt_packages_=(
   "build-essential"
   "ca-certificates"
   "curl"
+  "file"
   "git"
+  "procps"
   "software-properties-common"
   "zsh"
 )
