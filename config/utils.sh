@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function _brew_secure_install_from_array_ () {
-  ARRAY=$*
+  ARRAY=$@
   CASK=$2
   for i in "${ARRAY[@]}"; do
     if ! command -v "$i" &> /dev/null; then
@@ -16,7 +16,7 @@ function _brew_secure_install_from_array_ () {
 
 
 function _apt_secure_install_from_array_ () {
-  ARRAY=$*
+  ARRAY=$@
   echo $ARRAY
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
