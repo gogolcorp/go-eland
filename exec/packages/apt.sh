@@ -14,10 +14,12 @@ ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
 
 for i in "${_apt_packages_[@]}"
 do
-  exec=(sudo apt install $i -y)
+  exec=(sudo apt install "$i" -y)
 
   ui_info "installing $i package"
   ui_cmd "${exec[@]}" ; "${exec[@]}"
 done
+
+
 
 ui_done

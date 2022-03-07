@@ -4,18 +4,20 @@ export _apt_packages_=(
   "apt-transport-https"
   "build-essential"
   "ca-certificates"
+  "curl"
+  "file"
+  "git"
+  "procps"
   "software-properties-common"
+  "zsh"
 )
 
 export _brew_packages_=(
-  "curl"
   "gcc"
-  "git"
   "htop"
   "make"
   "tree"
   "xclip"
-  "zsh"
 )
 
 export _brew_k8s_packages_=(

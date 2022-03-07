@@ -60,6 +60,37 @@ func runConfirmPrompt(mode core.Mode, task core.Task, action core.Action) {
 	}
 }
 
+func runAuto(mode core.Mode) {
+	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(mode.Description)
+
+	helpers.ClearPrompt()
+	fmt.Print("Mode: ", chalk.Red, mode.Name, chalk.Reset, "\n")
+	fmt.Print("You're about to: ", choice, "\n")
+
+	confirmPrompt := promptui.Prompt{
+		Label:     "Continue",
+		Default:   "y",
+		IsConfirm: true,
+	}
+
+	result, err := confirmPrompt.Run()
+	helpers.ExitOnError("confirmPrompt failed:", err)
+	if result == "" || result == "Y" || result == "y" {
+		execAction("packages/apt")
+		execAction("packages/brew")
+
+		execAction("zsh/omz")
+		execAction("zsh/plugins")
+		execAction("zsh/prompt")
+
+		execAction("dotfiles/sync")
+		execAction("dotfiles/rc")
+
+		execAction("clis/docker")
+		execAction("clis/k8s")
+	}
+}
+
 func run() {
 
 	helpers.ClearPrompt()
@@ -74,34 +105,38 @@ func run() {
 	}
 	h, _, err := modesPrompt.Run()
 	helpers.ClosePrompt(err)
-
 	mode := core.Modes[h]
+	if h == 0 {
 
-	taskPrompt := promptui.Select{
-		Label:     "[choose]: task category",
-		Items:     core.Tasks,
-		Templates: core.TaskTpl,
-		Size:      10,
-		Searcher:  searcher(),
-		Stdout:    &helpers.BellSkipper{},
+		taskPrompt := promptui.Select{
+			Label:     "[choose]: task category",
+			Items:     core.Tasks,
+			Templates: core.TaskTpl,
+			Size:      10,
+			Searcher:  searcher(),
+			Stdout:    &helpers.BellSkipper{},
+		}
+		i, _, err := taskPrompt.Run()
+		helpers.ClosePrompt(err)
+
+		task := core.Tasks[i]
+		actionPrompt := promptui.Select{
+			HideHelp:  true,
+			Label:     "[choose]: action to run",
+			Items:     task.Actions,
+			Templates: core.ActionTpl,
+			Size:      10,
+			Stdout:    &helpers.BellSkipper{},
+		}
+		j, _, err := actionPrompt.Run()
+		helpers.ClosePrompt(err)
+
+		action := task.Actions[j]
+		runConfirmPrompt(mode, task, action)
+	} else {
+		runAuto(mode)
+		helpers.ClosePrompt(err)
 	}
-	i, _, err := taskPrompt.Run()
-	helpers.ClosePrompt(err)
-
-	task := core.Tasks[i]
-	actionPrompt := promptui.Select{
-		HideHelp:  true,
-		Label:     "[choose]: action to run",
-		Items:     task.Actions,
-		Templates: core.ActionTpl,
-		Size:      10,
-		Stdout:    &helpers.BellSkipper{},
-	}
-	j, _, err := actionPrompt.Run()
-	helpers.ClosePrompt(err)
-
-	action := task.Actions[j]
-	runConfirmPrompt(mode, task, action)
 }
 
 func auth() {
