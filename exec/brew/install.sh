@@ -14,19 +14,19 @@ exec_c=(brew doctor)
 
 ui_start
 
-if [ "$(which brew)" != 0 ]; then
+if ! command -v brew &> /dev/null; then
   ui_info "installing brew executable"
   ui_cmd "${exec_install[@]}" ; NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if [ ! -f "$HOME"/.zshrc ]; then
-    ui_error "$HOME/.zshrc not found"
-  else
-    ui_info "$HOME/.zshrc detected"
-    if grep -q "${exec_env[@]}" < "$HOME"/.zshrc ; then
-      ui_info "sourcing already found, terminating" 
-    else
+  if [ -f "$HOME"/.zshrc ]; then
+  ui_info "$HOME/.zshrc detected"
+    if ! grep -q "${exec_env[@]}" < "$HOME"/.zshrc ; then
       ui_info "dotfile sourcing not found"
       ui_cmd "${exec_env[*]} >> $HOME/.zshrc" ; printf "\n\n%s\n$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> "$HOME"/.zshrc
+    else
+      ui_info "sourcing already found, terminating" 
     fi
+  else
+    ui_error "$HOME/.zshrc not found"
   fi
 else
   ui_info "\"brew\" command already exist. Exiting.."

@@ -9,10 +9,10 @@ exec=(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/mast
 
 ui_start
 
-if [ -d "$HOME"/.oh-my-zsh/ ]; then
-  ui_info "$HOME/.oh-my-zsh/ folder exists; skipping.."
-else
+if [ ! -d "$HOME"/.oh-my-zsh/ ]; then
   ui_cmd "${exec[@]}" ; "${exec[@]}"
+else
+  ui_info "$HOME/.oh-my-zsh/ folder exists; skipping.."
 fi
 
 ui_done

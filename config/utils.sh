@@ -4,7 +4,7 @@ function _brew_secure_install_from_array_ () {
   ARRAY=$1
   CASK=$2
   for i in "${ARRAY[@]}"; do
-    if [ "$(which "$i")" != 0 ]; then
+    if ! command -v "$i" &> /dev/null; then
       exec=(brew install"$CASK" "$i")
     else
       ui_info "\"$i\" command already exist. Updating.."
@@ -18,7 +18,7 @@ function _brew_secure_install_from_array_ () {
 function _apt_secure_install_from_array_ () {
   ARRAY=$1
   for i in "${ARRAY[@]}"; do
-    if [ "$(which "$i")" != 0 ]; then
+    if ! command -v "$i" &> /dev/null; then
       exec=(sudo apt install "$i")
     else
       ui_info "\"$i\" command already exist. Skipping.."

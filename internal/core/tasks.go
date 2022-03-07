@@ -127,31 +127,31 @@ var Tasks = []Task{
 				Exec:        "clis/k8s",
 			},
 		},
-	},
-	{
-		Name:        "vscode",
-		Description: "install VSCode extensions, theme and sync settings",
-		ActionsLabels: []string{
-			"extensions",
-			"theme",
-			"settings",
-		},
-		Actions: []Action{
-			{
-				Name:        "extensions",
-				Description: "install all VSCode extensions from config/cfg.sh",
-				Exec:        "apt/update",
-			},
-			{
-				Name:        "theme",
-				Description: "install VSCode theme from config/cfg.sh",
-				Exec:        "apt/update",
-			},
-			{
-				Name:        "settings",
-				Description: "sync settings to VSCode from config/cfg.sh",
-				Exec:        "apt/update",
-			},
-		},
+	// },
+	// {
+	// 	Name:        "vscode",
+	// 	Description: "install VSCode extensions, theme and sync settings",
+	// 	ActionsLabels: []string{
+	// 		"extensions",
+	// 		"theme",
+	// 		"settings",
+	// 	},
+	// 	Actions: []Action{
+	// 		{
+	// 			Name:        "extensions",
+	// 			Description: "install all VSCode extensions from config/cfg.sh",
+	// 			Exec:        "apt/update",
+	// 		},
+	// 		{
+	// 			Name:        "theme",
+	// 			Description: "install VSCode theme from config/cfg.sh",
+	// 			Exec:        "apt/update",
+	// 		},
+	// 		{
+	// 			Name:        "settings",
+	// 			Description: "sync settings to VSCode from config/cfg.sh",
+	// 			Exec:        "apt/update",
+	// 		},
+	// 	},
 	},
 }

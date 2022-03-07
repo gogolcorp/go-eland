@@ -11,9 +11,7 @@ exec_c=(sed -i.old "s/^ZSH_THEME=\".*/ZSH_THEME=\"spaceship\"/g" "$HOME"/.zshrc)
 
 ui_start
 
-if [ -d "$HOME"/.oh-my-zsh/oh-my-zsh/custom/themes/spaceship-prompt ]; then
-  ui_info "folder exists; skipping.."
-else
+if [ ! -d "$HOME"/.oh-my-zsh/oh-my-zsh/custom/themes/spaceship-prompt ]; then
   ui_info "installing 'spaceship-prompt' theme"
   ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
 
@@ -22,6 +20,8 @@ else
 
   ui_info "update .zshrc with current prompt"
   ui_cmd "${exec_c[@]}" ; "${exec_c[@]}"
+else
+  ui_info "folder exists; skipping.."
 fi
 
 
