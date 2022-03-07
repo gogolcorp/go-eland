@@ -3,19 +3,10 @@
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
+source "$PWD"/config/utils.sh
 
 ui_start
 
-for i in "${_brew_k8s_packages_[@]}"
-do
-  if [ "$(which "$i")" != 0 ]; then
-    exec=(brew install "$i")
-  else
-    ui_info "\"$\" command already exist. Updating.."
-    exec=(brew update "$i")
-  fi
-
-  ui_cmd "${exec[@]}" ; "${exec[@]}"
-done
+_brew_secure_install_from_array_ "$_brew_k8s_packages_"
 
 ui_done

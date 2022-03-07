@@ -20,5 +20,3 @@ else
 fi
 
 ui_done
-
-ui_done
