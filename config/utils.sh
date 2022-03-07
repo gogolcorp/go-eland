@@ -7,10 +7,10 @@ function _brew_secure_install_from_array_ () {
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
     temp=" $i"
-      exec=(brew install"$CASK""$temp")
+      exec=(brew install"$CASK" "$i")
     else
       ui_info "\"$i\" command already exist. Updating.."
-      exec=(brew upgrade"$CASK""$temp")
+      exec=(brew upgrade"$CASK" "$i")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
