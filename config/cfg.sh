@@ -17,6 +17,10 @@ export _apt_packages_=(
   "zsh"
 )
 
+export _snap_packages_=(
+  "thefuck"
+)
+
 export _brew_formulaes_=(
   "thefuck"
 )
