@@ -40,3 +40,13 @@ function _snap_secure_install_from_array_ () {
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
+
+function _vscode_secure_install_from_array_ () {
+  ARRAY=$@
+  for i in $ARRAY; do
+    if ! command -v "$i" &> /dev/null; then
+      exec=(code --install-extension "$i")
+    fi
+    ui_cmd "${exec[@]}" ; "${exec[@]}"
+  done
+}
