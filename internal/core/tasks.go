@@ -79,6 +79,7 @@ var Tasks = []Task{
 				Name:        "formulaes",
 				Description: "install Brew formulaes from config/cfg.sh",
 				Exec:        "brew/formulaes",
+			},
 		},
 	},
 	{
@@ -101,7 +102,6 @@ var Tasks = []Task{
 			},
 		},
 	},
-
 	{
 		Name:        "developer CLIs",
 		Description: "install Docker and Kubernetes related CLIs",
@@ -121,7 +121,7 @@ var Tasks = []Task{
 				Exec:        "clis/k8s",
 			},
 		},
-	// },
+	},
 	// {
 	// 	Name:        "vscode",
 	// 	Description: "install VSCode extensions, theme and sync settings",
@@ -147,6 +147,7 @@ var Tasks = []Task{
 	// 			Exec:        "apt/update",
 	// 		},
 	// 	},
+	// },
 	// {
 	// 	Name:        "snap packages",
 	// 	Description: "manages snap packages, install and refresh them",
