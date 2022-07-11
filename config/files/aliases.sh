@@ -9,6 +9,7 @@ alias c="clear"
 alias cdc="cd ; clear"
 alias del="rm -rf"
 alias e="exit"
+alias m="make"
 alias rf='source $HOME/.zshrc'
 alias sn="snap"
 alias t="touch"
