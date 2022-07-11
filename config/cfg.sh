@@ -6,22 +6,19 @@ export _apt_packages_=(
   "ca-certificates"
   "curl"
   "file"
+  "gcc"
   "git"
+  "htop"
+  "make"
   "procps"
   "software-properties-common"
+  "tree"
+  "xclip"
   "zsh"
 )
 
 export _brew_formulaes_=(
-  "gcc"
-  "htop"
-  "make"
-  "tree"
-  "xclip"
-)
-
-export _brew_casks_=(
-  "visual-studio-code"
+  "thefuck"
 )
 
 export _brew_k8s_=(
