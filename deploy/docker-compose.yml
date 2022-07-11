@@ -1,10 +1,10 @@
 version: "3.8"
 
 services:
-  flamin-go:
-    container_name: flamin-go
+  go-eland:
+    container_name: go-eland
     build:
       context: .
-      dockerfile: build/package/flamin-go/Dockerfile
+      dockerfile: build/package/go-eland/Dockerfile
     volumes:
-      - ./:/go/src/github.com/blyndusk/flamin-go/
+      - ./:/go/src/github.com/blyndusk/go-eland/

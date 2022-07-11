@@ -5,10 +5,10 @@ setup-env: ## Copy sample files
 	bash scripts/setup.sh
 
 run: ## Up the docker-compose without cache or orphans
-	go run cmd/flamin-go/main.go
+	go run cmd/go-eland/main.go
 
 build: ## Up the docker-compose without cache or orphans
-	go build cmd/flamin-go/main.go
+	go build cmd/go-eland/main.go
 
 stop: ## Down the docker-compose 
 	docker-compose down

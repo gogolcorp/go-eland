@@ -8,8 +8,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/blyndusk/flamin-go/internal/core"
-	"github.com/blyndusk/flamin-go/pkg/helpers"
+	"github.com/blyndusk/go-eland/internal/core"
+	"github.com/blyndusk/go-eland/pkg/helpers"
 	"github.com/manifoldco/promptui"
 	"github.com/ttacon/chalk"
 )
