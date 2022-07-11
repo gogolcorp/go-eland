@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+source "$PWD"/config/cfg.sh
+
 function _brew_secure_install_from_array_ () {
   ARRAY=$@
   for i in $ARRAY; do
@@ -27,14 +30,12 @@ function _apt_secure_install_from_array_ () {
 }
 
 function _snap_secure_install_from_array_ () {
-  ARRAY=$@
-  for i in $ARRAY; do
-    if ! command -v "$i" &> /dev/null; then
-      exec=(sudo snap install "$i")
+  for ((i = 0; i < ${#_snap_packages_[@]}; i++)) ; do
+    if ! command -v "${_snap_packages_[$i]}" &> /dev/null; then
+      exec=(sudo snap install "${_snap_packages_[$i]}")
     else
-      ui_info "\"$i\" command already exist. Refreshing.."
-      exec=(sudo snap refresh "$i")
-
+      ui_info "\"${_snap_packages_[$i]}\" command already exist. Refreshing.."
+      exec=(sudo snap refresh "${_snap_packages_[$i]}")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
