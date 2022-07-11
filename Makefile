@@ -7,7 +7,7 @@ setup-env: ## Copy sample files
 run: ## Up the docker-compose without cache or orphans
 	go run cmd/go-eland/main.go
 
-build: ## Up the docker-compose without cache or orphans
+buildg: ## Up the docker-compose without cache or orphans
 	go build cmd/go-eland/main.go
 
 stop: ## Down the docker-compose 
