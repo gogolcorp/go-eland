@@ -148,24 +148,24 @@ var Tasks = []Task{
 	// 		},
 	// 	},
 	// },
-	// {
-	// 	Name:        "snap packages",
-	// 	Description: "manages snap packages, install and refresh them",
-	// 	ActionsLabels: []string{
-	// 		"install",
-	// 		"update",
-	// 	},
-	// 	Actions: []Action{
-	// 		{
-	// 			Name:        "install",
-	// 			Description: "install all snap packages from config/cfg.sh",
-	// 			Exec:        "snap/update",
-	// 		},
-	// 		{
-	// 			Name:        "refresh",
-	// 			Description: "refresh all snap packages from config/cfg.sh",
-	// 			Exec:        "snap/update",
-	// 		},
-	// 	},
-	// },
+	{
+		Name:        "snap packages",
+		Description: "manages snap packages, install and refresh them",
+		ActionsLabels: []string{
+			"install",
+			"update",
+		},
+		Actions: []Action{
+			{
+				Name:        "install",
+				Description: "install all snap packages from config/cfg.sh",
+				Exec:        "snap/install",
+			},
+			{
+				Name:        "refresh",
+				Description: "refresh all snap packages from config/cfg.sh",
+				Exec:        "snap/refresh",
+			},
+		},
+	},
 }
