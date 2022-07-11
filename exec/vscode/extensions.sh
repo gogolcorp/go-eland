@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-_apt_secure_install_from_array_ "${_vscode_extensions_[@]}"
+_vscode_secure_install_from_array_ "${_vscode_extensions_[@]}"
 
 ui_done
