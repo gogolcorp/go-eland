@@ -62,8 +62,8 @@ var Tasks = []Task{
 		},
 	},
 	{
-		Name:        "brew casks + formulaes",
-		Description: "install, update and manage Brew casks and formulaes",
+		Name:        "brew formulaes",
+		Description: "install, update and manage Brew formulaes",
 		ActionsLabels: []string{
 			"brew",
 			"formulaes",
@@ -79,12 +79,6 @@ var Tasks = []Task{
 				Name:        "formulaes",
 				Description: "install Brew formulaes from config/cfg.sh",
 				Exec:        "brew/formulaes",
-			},
-			{
-				Name:        "casks",
-				Description: "install Brew casks from config/cfg.sh",
-				Exec:        "brew/casks",
-			},
 		},
 	},
 	{
@@ -153,5 +147,24 @@ var Tasks = []Task{
 	// 			Exec:        "apt/update",
 	// 		},
 	// 	},
-	},
+	// {
+	// 	Name:        "snap packages",
+	// 	Description: "manages snap packages, install and refresh them",
+	// 	ActionsLabels: []string{
+	// 		"install",
+	// 		"update",
+	// 	},
+	// 	Actions: []Action{
+	// 		{
+	// 			Name:        "install",
+	// 			Description: "install all snap packages from config/cfg.sh",
+	// 			Exec:        "snap/update",
+	// 		},
+	// 		{
+	// 			Name:        "refresh",
+	// 			Description: "refresh all snap packages from config/cfg.sh",
+	// 			Exec:        "snap/update",
+	// 		},
+	// 	},
+	// },
 }
