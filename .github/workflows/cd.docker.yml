@@ -31,8 +31,8 @@ jobs:
         with:
           push: true
           context: .
-          file: build/package/flamin-go/Dockerfile
-          tags: ghcr.io/blyndusk/flamin-go:latest
+          file: build/package/go-eland/Dockerfile
+          tags: ghcr.io/blyndusk/go-eland:latest
 
         # output the logs
       - name: 4 - IMAGE DIGEST

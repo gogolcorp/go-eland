@@ -48,7 +48,7 @@ alias wkg="watch kubectl get"
 
 alias h="helm"
 alias kx="kubectx"
-alias kb="kubens"
+alias kns="kubens"
 alias ks="kubeseal"
 
 alias kk="kubectl delete"

@@ -1,4 +1,4 @@
-module github.com/blyndusk/flamin-go
+module github.com/blyndusk/go-eland
 
 go 1.13
 
