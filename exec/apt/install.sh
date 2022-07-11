@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-_brew_secure_install_from_array_ "${_brew_k8s_[@]}"
+_apt_secure_install_from_array_ "${_apt_packages_[@]}"
 
 ui_done

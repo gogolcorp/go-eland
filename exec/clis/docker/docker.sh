@@ -3,6 +3,7 @@
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
 source "$PWD"/config/cfg.sh
+source "$PWD"/config/utils.sh
 
 exec_a="curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
 exec_b=(sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable")
@@ -12,7 +13,7 @@ exec_e=(sudo usermod -aG docker "${USER}")
 
 ui_start
 
-if [ "$(which docker)" != 0 ]; then
+if ! command -v docker &> /dev/null; then
   ui_info "Add the GPG key for the official Docker repository"
   ui_cmd "$exec_a" ; curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 

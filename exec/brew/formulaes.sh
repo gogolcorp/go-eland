@@ -7,6 +7,8 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-_brew_secure_install_from_array_ "${_brew_k8s_[@]}"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+_brew_secure_install_from_array_ "${_brew_formulaes_[@]}"
 
 ui_done

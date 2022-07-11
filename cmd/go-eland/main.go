@@ -76,12 +76,16 @@ func runAuto(mode core.Mode) {
 	result, err := confirmPrompt.Run()
 	helpers.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
-		execAction("packages/apt")
-		execAction("packages/brew")
+		execAction("apt/update")
+		execAction("apt/install")
 
 		execAction("zsh/omz")
 		execAction("zsh/plugins")
 		execAction("zsh/prompt")
+
+		execAction("brew/install")
+		execAction("brew/formulaes")
+		execAction("brew/casks")
 
 		execAction("dotfiles/sync")
 		execAction("dotfiles/rc")
