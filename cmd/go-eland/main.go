@@ -41,9 +41,9 @@ func runConfirmPrompt(mode core.Mode, task core.Task, action core.Action) {
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
 	helpers.ClearPrompt()
-	fmt.Print("Mode: ", chalk.Red, mode.Name, chalk.Reset, "\n")
-	fmt.Print("Task: ", chalk.Yellow, task.Name, chalk.Reset, "\n")
-	fmt.Print("Action: ", chalk.Green, chalk.Bold, action.Name, chalk.Reset, "\n")
+	fmt.Print("Mode:   ", chalk.Red, mode.Name, chalk.Reset, "\n")
+	fmt.Print("Task:   ", chalk.Yellow, task.Name, chalk.Reset, "\n")
+	fmt.Print("Action:", chalk.Green, chalk.Bold, action.Name, chalk.Reset, "\n")
 	fmt.Print("You're about to: ", choice, "\n")
 
 	confirmPrompt := promptui.Prompt{
@@ -96,24 +96,61 @@ func runAuto(mode core.Mode) {
 }
 
 func run() {
-
 	helpers.ClearPrompt()
+
+	bd := chalk.Yellow.NewStyle().
+		WithBackground(chalk.ResetColor).
+		Style
+
+	ul := chalk.ResetColor.NewStyle().
+		WithBackground(chalk.ResetColor).
+		WithTextStyle(chalk.Underline).
+		Style
+
+	fc := chalk.Yellow.NewStyle().
+		WithBackground(chalk.ResetColor).
+		Style
+
+	rd := chalk.Red.NewStyle().
+		WithBackground(chalk.ResetColor).
+		WithTextStyle(chalk.Underline).
+		Style
+	gl := chalk.Blue.NewStyle().
+		WithBackground(chalk.ResetColor).
+		WithTextStyle(chalk.Bold).
+		Style
+
+	fmt.Print(`̀`,
+		bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
+		bd("┃ "), "Hi! I'm ", gl("Goéland"), ", your ", ul("Ubuntu fresh setup assistant"), ".", bd(" ┃"), "\n",
+		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
+		bd("┃ "), gl("Goéland"), " will help you to install many ", fc("applications,"), bd(" ┃"), "\n",
+		bd("┃ "), fc("packages, formulaes"), " - ", ul("from Apt, Brew, Snap"), ",        ", bd(" ┃"), "\n",
+		bd("┃ "), "alongside with ", fc("CLIs,"), " like ", ul("Docker, Kubernetes"), " tools.", bd(" ┃"), "\n",
+		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
+		bd("┃ "), "But also ", ul("Zsh"), fc(" framework, plugins"), ", ", ul("VSCode"), fc(" extensions"), ",", bd(" ┃"), "\n",
+		bd("┃ "), "with synchronised ", fc("settings"), " across your devices,    ", bd(" ┃"), "\n",
+		bd("┃ "), "all your ", ul("Bash"), fc(" aliases, functions, exports"), ".         ", bd(" ┃"), "\n",
+		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
+		bd("┃ "), "All you have to do is to choose a ", rd("setup mode:"), "      ", bd(" ┃"), "\n",
+		bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
 
 	modesPrompt := promptui.Select{
 		HideHelp:  true,
-		Label:     "[choose]: setup mode",
+		Label:     "Select a setup mode:",
 		Items:     core.Modes,
 		Templates: core.ModeTpl,
 		Size:      2,
 		Stdout:    &helpers.BellSkipper{},
 	}
+
 	h, _, err := modesPrompt.Run()
 	helpers.ClosePrompt(err)
 	mode := core.Modes[h]
 	if h == 0 {
 
 		taskPrompt := promptui.Select{
-			Label:     "[choose]: task category",
+			Label:     "Select a task category:",
 			Items:     core.Tasks,
 			Templates: core.TaskTpl,
 			Size:      10,
@@ -126,7 +163,7 @@ func run() {
 		task := core.Tasks[i]
 		actionPrompt := promptui.Select{
 			HideHelp:  true,
-			Label:     "[choose]: action to run",
+			Label:     "Select an action to run",
 			Items:     task.Actions,
 			Templates: core.ActionTpl,
 			Size:      10,

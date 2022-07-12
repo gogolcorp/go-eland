@@ -64,7 +64,7 @@ var Tasks = []Task{
 
 	{
 		Name:        "[3] bash dotfiles",
-		Description: "manage, synchronize and update Bash dotfiles and .rc files", 
+		Description: "manage, synchronize and update Bash dotfiles and .rc files",
 		ActionsLabels: []string{
 			"sync-dotfiles",
 			"sync-rcfiles",
@@ -122,7 +122,6 @@ var Tasks = []Task{
 			},
 		},
 	},
-	
 	{
 		Name:        "[6] brew bin and formulaes",
 		Description: "install Brew binary | install and update Brew formulaes",
@@ -163,5 +162,4 @@ var Tasks = []Task{
 			},
 		},
 	},
-
 }

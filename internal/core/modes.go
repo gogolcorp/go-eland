@@ -7,9 +7,9 @@ type Mode struct {
 
 var Modes = []Mode{
 	{
-		Name:        "step-by-step",
-		Description: "Setup by category",
+		Name:        "[*] step-by-step",
+		Description: "Let you pick and choose the actions to run",
 	}, {
-		Name:        "!automatic",
-		Description: "Setup with all steps included automatically",
+		Name:        "[!] automatic",
+		Description: "Run all actions in a row in logical order",
 	}}
