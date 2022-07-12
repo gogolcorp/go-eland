@@ -2,7 +2,7 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 
 sudo apt update -y
 

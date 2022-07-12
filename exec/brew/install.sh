@@ -2,7 +2,7 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
 exec_install=(NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
