@@ -23,9 +23,9 @@ jobs:
     - name: 2 - SETUP GO
       uses:  actions/setup-go@v3
       with:
-        go-version-file: go.mod
+        go-version-file: '/go.mod'
         cache: true
-        cache-dependency-path: go.sum
+        cache-dependency-path: '/go.sum'
 
       # Cache go modules to make the build faster
     - name: 3 - CACHE GO MODULES
