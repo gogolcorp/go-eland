@@ -98,6 +98,7 @@ jobs:
             ghcr.io/blyndusk/go-eland:${{ env.BRANCH }}-${{ env.SHA }}-${{ env.DATE }}
             ghcr.io/blyndusk/go-eland:${{ env.BRANCH }}-${{ env.SHA }}
             ghcr.io/blyndusk/go-eland:${{ github.event.inputs.tag }}
+            ghcr.io/blyndusk/go-eland:latest
 
         # Output the logs
       - name: 5 - IMAGE DIGEST
