@@ -1,8 +1,8 @@
-package core
+package internal
 
 import "github.com/manifoldco/promptui"
 
-var ModeTpl = &promptui.SelectTemplates{
+var ModeTemplate = &promptui.SelectTemplates{
 	Label: ` [!] {{ . | red | bold	| underline }}`,
 	Selected: "🔴 {{ .Name | bgRed | black | bold }}",
 	Active:   "🔴 {{ .Name | bgRed | black  }}",
@@ -12,7 +12,7 @@ var ModeTpl = &promptui.SelectTemplates{
      {{ "Goal" | underline }}: {{ .Description | italic | faint }}`,
 }
 
-var TaskTpl = &promptui.SelectTemplates{
+var TaskTemplate = &promptui.SelectTemplates{
 	Help:     "{{ \"Toggle search: / key\" | faint }}",
 	Label:    ` [!] {{ . | yellow | bold | underline }}`,
 	Selected: "🟠 {{ .Name | bgYellow | black | bold }}",
@@ -23,7 +23,7 @@ var TaskTpl = &promptui.SelectTemplates{
      {{ "Goal" | underline }}: {{ .Description | italic | faint }}`,
 }
 
-var ActionTpl = &promptui.SelectTemplates{
+var ActionTemplate = &promptui.SelectTemplates{
 	Help:     "{{ \"Toggle search: / key\" | faint }}",
 	Label:    ` [!] {{ . | green | bold | underline }}`,
 	Selected: "🟢 {{ .Name | bgGreen | black| bold }}",

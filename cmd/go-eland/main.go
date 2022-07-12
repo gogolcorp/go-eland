@@ -8,8 +8,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/blyndusk/go-eland/internal/core"
-	"github.com/blyndusk/go-eland/pkg/helpers"
+	"github.com/blyndusk/go-eland/internal"
+	"github.com/blyndusk/go-eland/pkg"
 	"github.com/manifoldco/promptui"
 	"github.com/ttacon/chalk"
 )
@@ -24,12 +24,12 @@ func execAction(file string) {
 	cmd.Stderr = io.MultiWriter(os.Stderr, &stderrBuf)
 
 	err := cmd.Run()
-	helpers.ExitOnError("cmd.Run() failed with", err)
+	pkg.ExitOnError("cmd.Run() failed with", err)
 }
 
 func searcher() func(input string, index int) bool {
 	searcher := func(input string, index int) bool {
-		task := core.Tasks[index]
+		task := internal.Tasks[index]
 		name := strings.Replace(strings.ToLower(task.Name), " ", "", -1)
 		input = strings.Replace(strings.ToLower(input), " ", "", -1)
 		return strings.Contains(name, input)
@@ -37,10 +37,10 @@ func searcher() func(input string, index int) bool {
 	return searcher
 }
 
-func runConfirmPrompt(mode core.Mode, task core.Task, action core.Action) {
+func runConfirmPrompt(mode internal.Mode, task internal.Task, action internal.Action) {
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
-	helpers.ClearPrompt()
+	pkg.ClearPrompt()
 	fmt.Print("Mode:   ", chalk.Red, mode.Name, chalk.Reset, "\n")
 	fmt.Print("Task:   ", chalk.Yellow, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action:", chalk.Green, chalk.Bold, action.Name, chalk.Reset, "\n")
@@ -53,17 +53,17 @@ func runConfirmPrompt(mode core.Mode, task core.Task, action core.Action) {
 	}
 
 	result, err := confirmPrompt.Run()
-	helpers.ExitOnError("confirmPrompt failed:", err)
+	pkg.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
 		execAction(action.Exec)
 		run()
 	}
 }
 
-func runAuto(mode core.Mode) {
+func runAuto(mode internal.Mode) {
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(mode.Description)
 
-	helpers.ClearPrompt()
+	pkg.ClearPrompt()
 	fmt.Print("Mode: ", chalk.Red, mode.Name, chalk.Reset, "\n")
 	fmt.Print("You're about to: ", choice, "\n")
 
@@ -74,7 +74,7 @@ func runAuto(mode core.Mode) {
 	}
 
 	result, err := confirmPrompt.Run()
-	helpers.ExitOnError("confirmPrompt failed:", err)
+	pkg.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
 		execAction("apt/update")
 		execAction("apt/install")
@@ -96,94 +96,74 @@ func runAuto(mode core.Mode) {
 }
 
 func run() {
-	helpers.ClearPrompt()
+	pkg.ClearPrompt()
 
-	bd := chalk.Yellow.NewStyle().
-		WithBackground(chalk.ResetColor).
-		Style
-
-	ul := chalk.ResetColor.NewStyle().
-		WithBackground(chalk.ResetColor).
-		WithTextStyle(chalk.Underline).
-		Style
-
-	fc := chalk.Yellow.NewStyle().
-		WithBackground(chalk.ResetColor).
-		Style
-
-	rd := chalk.Red.NewStyle().
-		WithBackground(chalk.ResetColor).
-		WithTextStyle(chalk.Underline).
-		Style
-	gl := chalk.Blue.NewStyle().
-		WithBackground(chalk.ResetColor).
-		WithTextStyle(chalk.Bold).
-		Style
+	
 
 	fmt.Print(`̀`,
-		bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
-		bd("┃ "), "Hi! I'm ", gl("Goéland"), ", your ", ul("Ubuntu fresh setup assistant"), ".", bd(" ┃"), "\n",
-		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
-		bd("┃ "), gl("Goéland"), " will help you to install many ", fc("applications,"), bd(" ┃"), "\n",
-		bd("┃ "), fc("packages, formulaes"), " - ", ul("from Apt, Brew, Snap"), ",        ", bd(" ┃"), "\n",
-		bd("┃ "), "alongside with ", fc("CLIs,"), " like ", ul("Docker, Kubernetes"), " tools.", bd(" ┃"), "\n",
-		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
-		bd("┃ "), "But also ", ul("Zsh"), fc(" framework, plugins"), ", ", ul("VSCode"), fc(" extensions"), ",", bd(" ┃"), "\n",
-		bd("┃ "), "with synchronised ", fc("settings"), " across your devices,    ", bd(" ┃"), "\n",
-		bd("┃ "), "all your ", ul("Bash"), fc(" aliases, functions, exports"), ".         ", bd(" ┃"), "\n",
-		bd("┃ "), "                                                   ", bd(" ┃"), "\n",
-		bd("┃ "), "All you have to do is to choose a ", rd("setup mode:"), "      ", bd(" ┃"), "\n",
-		bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
+		pkg.Ui_bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
+		pkg.Ui_bd("┃ "), "Hi! I'm ", pkg.Ui_gl("Goéland"), ", your ", pkg.Ui_ul("Ubuntu fresh setup assistant"), ".", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), pkg.Ui_gl("Goéland"), " will help you to install many ", pkg.Ui_fc("applications,"), pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), pkg.Ui_fc("packages, formulaes"), " - ", pkg.Ui_ul("from Apt, Brew, Snap"), ",        ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "alongside with ", pkg.Ui_fc("CLIs,"), " like ", pkg.Ui_ul("Docker, Kubernetes"), " tools.", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "But also ", pkg.Ui_ul("Zsh"), pkg.Ui_fc(" framework, plugins"), ", ", pkg.Ui_ul("VSCode"), pkg.Ui_fc(" extensions"), ",", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "with synchronised ", pkg.Ui_fc("settings"), " across your devices,    ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "all your ", pkg.Ui_ul("Bash"), pkg.Ui_fc(" aliases, functions, exports"), ".         ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┃ "), "All you have to do is to choose a ", pkg.Ui_rd("setup mode:"), "      ", pkg.Ui_bd(" ┃"), "\n",
+		pkg.Ui_bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
 
 	modesPrompt := promptui.Select{
 		HideHelp:  true,
 		Label:     "Select a setup mode:",
-		Items:     core.Modes,
-		Templates: core.ModeTpl,
+		Items:     internal.Modes,
+		Templates: internal.ModeTemplate,
 		Size:      2,
-		Stdout:    &helpers.BellSkipper{},
+		Stdout:    &pkg.BellSkipper{},
 	}
 
 	h, _, err := modesPrompt.Run()
-	helpers.ClosePrompt(err)
-	mode := core.Modes[h]
+	pkg.ClosePrompt(err)
+	mode := internal.Modes[h]
 	if h == 0 {
 
 		taskPrompt := promptui.Select{
 			Label:     "Select a task category:",
-			Items:     core.Tasks,
-			Templates: core.TaskTpl,
+			Items:     internal.Tasks,
+			Templates: internal.TaskTemplate,
 			Size:      10,
 			Searcher:  searcher(),
-			Stdout:    &helpers.BellSkipper{},
+			Stdout:    &pkg.BellSkipper{},
 		}
 		i, _, err := taskPrompt.Run()
-		helpers.ClosePrompt(err)
+		pkg.ClosePrompt(err)
 
-		task := core.Tasks[i]
+		task := internal.Tasks[i]
 		actionPrompt := promptui.Select{
 			HideHelp:  true,
 			Label:     "Select an action to run",
 			Items:     task.Actions,
-			Templates: core.ActionTpl,
+			Templates: internal.ActionTemplate,
 			Size:      10,
-			Stdout:    &helpers.BellSkipper{},
+			Stdout:    &pkg.BellSkipper{},
 		}
 		j, _, err := actionPrompt.Run()
-		helpers.ClosePrompt(err)
+		pkg.ClosePrompt(err)
 
 		action := task.Actions[j]
 		runConfirmPrompt(mode, task, action)
 	} else {
 		runAuto(mode)
-		helpers.ClosePrompt(err)
+		pkg.ClosePrompt(err)
 	}
 }
 
 func auth() {
 	cmd := exec.Command("sudo", "uptime")
 	err := cmd.Run()
-	helpers.ExitOnError("cmd.Run() failed with", err)
+	pkg.ExitOnError("cmd.Run() failed with", err)
 }
 
 func main() {
