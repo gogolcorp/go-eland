@@ -45,7 +45,7 @@ alias gsst="git status -s -b"
 
 # KUBE --- ---------------------------------------------------------------
 alias k="kubectl"
-alias wkg="watch kubectl get"
+alias wk="watch kubectl"
 
 alias h="helm"
 alias kx="kubectx"
