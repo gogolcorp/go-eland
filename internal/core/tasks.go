@@ -16,94 +16,135 @@ type Action struct {
 var Tasks = []Task{
 
 	{
-		Name:        "apt packages",
-		Description: "install, update and manage Apt packages",
+		Name:        "[1] apt packages",
+		Description: "install & update Apt packages",
 		ActionsLabels: []string{
-			"update",
-			"install",
+			"update-packages",
+			"install-packages",
 		},
 		Actions: []Action{
 			{
-				Name:        "update",
+				Name:        "[1.a] update-packages",
 				Description: "update all Apt packages",
 				Exec:        "apt/update",
 			},
 			{
-				Name:        "install",
-				Description: "install all Apt packages from config/cfg.sh",
+				Name:        "[1.b] install-packages",
+				Description: "install all Apt packages from config.sh",
 				Exec:        "apt/install",
 			},
 		},
 	},
 	{
-		Name:        "zsh setup",
-		Description: "install Oh-My-Zsh, Zsh plugins and Spaceship prompt",
+		Name:        "[2] zsh setup",
+		Description: "install Oh-My-Zsh framework and Zsh plugins",
 		ActionsLabels: []string{
-			"oh-my-zsh",
-			"plugins",
-			"prompt",
+			"install-framework",
+			"install-plugins",
+			// "prompt",
 		},
 		Actions: []Action{
 			{
-				Name:        "oh-my-zsh",
+				Name:        "[2.a] install-framework",
 				Description: "install Oh-My-Zsh framework",
-				Exec:        "zsh/omz",
+				Exec:        "zsh/framework",
 			},
 			{
-				Name:        "plugins",
-				Description: "install Zsh plugins from config/cfg.sh",
+				Name:        "[2.b] install-plugins",
+				Description: "install all Zsh plugins from config.sh",
 				Exec:        "zsh/plugins",
 			},
+			// {
+			// 	Name:        "prompt",
+			// 	Description: "install custom prompt for Zsh",
+			// 	Exec:        "zsh/prompt",
+			// },
+		},
+	},
+
+	{
+		Name:        "[3] bash dotfiles",
+		Description: "manage, synchronize and update Bash dotfiles and .rc files", 
+		ActionsLabels: []string{
+			"sync-dotfiles",
+			"sync-rcfiles",
+		},
+		Actions: []Action{
 			{
-				Name:        "prompt",
-				Description: "install custom prompt for Zsh",
-				Exec:        "zsh/prompt",
+				Name:        "[3.a] sync-dotfiles",
+				Description: "sync all Bash dotfiles from config.sh",
+				Exec:        "dotfiles/dotfiles",
+			},
+			{
+				Name:        "[3.b] sync-rcfile",
+				Description: "update the .zshrc file",
+				Exec:        "dotfiles/rcfiles",
 			},
 		},
 	},
 	{
-		Name:        "brew formulaes",
-		Description: "install, update and manage Brew formulaes",
+		Name:        "[4] snap packages",
+		Description: "install and refresh snap packages",
 		ActionsLabels: []string{
-			"brew",
-			"formulaes",
-			"casks",
+			"install-packages",
+			"update-packages",
 		},
 		Actions: []Action{
 			{
-				Name:        "brew",
-				Description: "install brew executable, with rc file configuration",
-				Exec:        "brew/install",
+				Name:        "[4.a] install-packages",
+				Description: "install all Snap packages from config.sh",
+				Exec:        "snap/install",
 			},
 			{
-				Name:        "formulaes",
-				Description: "install Brew formulaes from config/cfg.sh",
+				Name:        "[4.b] update-packages",
+				Description: "refresh all Snap packages",
+				Exec:        "snap/refresh",
+			},
+		},
+	},
+	{
+		Name:        "[5] vscode",
+		Description: "install VS Code extensions and sync settings",
+		ActionsLabels: []string{
+			"install-extensions",
+			"sync-settings",
+		},
+		Actions: []Action{
+			{
+				Name:        "[5.b] install-extensions",
+				Description: "install all VSCode extensions from config/config.sh",
+				Exec:        "vscode/extensions",
+			},
+			{
+				Name:        "[5.b] sync-settings",
+				Description: "sync settings to VSCode from config/config.sh",
+				Exec:        "vscode/settings",
+			},
+		},
+	},
+	
+	{
+		Name:        "[6] brew bin and formulaes",
+		Description: "install Brew binary | install and update Brew formulaes",
+		ActionsLabels: []string{
+			"install-binary",
+			"install-formulaes",
+		},
+		Actions: []Action{
+			{
+				Name:        "[6.a] install-binary",
+				Description: "install Brew binary with .rc file configuration",
+				Exec:        "brew/binary",
+			},
+			{
+				Name:        "[6.b] install-formulaes",
+				Description: "install all Brew formulaes from config.sh",
 				Exec:        "brew/formulaes",
 			},
 		},
 	},
 	{
-		Name:        "bash dotfiles",
-		Description: "manages, synchronizes and update Bash dotfiles and .rc files",
-		ActionsLabels: []string{
-			"sync",
-			"write-rcfile",
-		},
-		Actions: []Action{
-			{
-				Name:        "sync",
-				Description: "sync all Bash dotfiles from config/cfg.sh",
-				Exec:        "dotfiles/sync",
-			},
-			{
-				Name:        "write-rcfile",
-				Description: "update the .bashrc or .zshrc file",
-				Exec:        "dotfiles/rc",
-			},
-		},
-	},
-	{
-		Name:        "developer CLIs",
+		Name:        "[7] developer CLIs",
 		Description: "install Docker and Kubernetes related CLIs",
 		ActionsLabels: []string{
 			"docker",
@@ -111,56 +152,16 @@ var Tasks = []Task{
 		},
 		Actions: []Action{
 			{
-				Name:        "docker",
+				Name:        "[7.a] docker",
 				Description: "install Docker and Docker Compose",
 				Exec:        "clis/docker",
 			},
 			{
-				Name:        "kubernetes",
+				Name:        "[7.b] kubernetes",
 				Description: "install Kubectl, Kubectx, Kubens, Kubeseal and Helm",
 				Exec:        "clis/k8s",
 			},
 		},
 	},
-	{
-		Name:        "vscode",
-		Description: "install VSCode extensions, theme and sync settings",
-		ActionsLabels: []string{
-			"extensions",
-			"theme",
-			"settings",
-		},
-		Actions: []Action{
-			{
-				Name:        "extensions",
-				Description: "install all VSCode extensions from config/cfg.sh",
-				Exec:        "vscode/extensions",
-			},
-			{
-				Name:        "settings",
-				Description: "sync settings to VSCode from config/cfg.sh",
-				Exec:        "vscode/settings",
-			},
-		},
-	},
-	{
-		Name:        "snap packages",
-		Description: "manages snap packages, install and refresh them",
-		ActionsLabels: []string{
-			"install",
-			"update",
-		},
-		Actions: []Action{
-			{
-				Name:        "install",
-				Description: "install all snap packages from config/cfg.sh",
-				Exec:        "snap/install",
-			},
-			{
-				Name:        "refresh",
-				Description: "refresh all snap packages from config/cfg.sh",
-				Exec:        "snap/refresh",
-			},
-		},
-	},
+
 }
