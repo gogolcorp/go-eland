@@ -1,4 +1,4 @@
-name: "[CI] LABELER"
+name: "LABELER"
 
 on: 
   - pull_request_target
