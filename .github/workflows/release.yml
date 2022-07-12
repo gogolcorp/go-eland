@@ -24,9 +24,47 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: exit 1
 
-  BUILD:
-    name: BUILD
-    needs: [SETUP-ENV]
+  CI:
+    name: CI
+    needs: [SETUP]
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout to current workspace
+    - name: 1 - CHECKOUT
+      uses: actions/checkout@v3
+
+      # Install golang with specific version
+    - name: 2 - SETUP GO
+      uses:  actions/setup-go@v3
+      with:
+        go-version-file: 'go.mod'
+        cache: true
+        cache-dependency-path: 'go.sum'
+
+      # Cache go modules to make the build faster
+    - name: 3 - CACHE GO MODULES
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+      # Lint files before build using gofmt
+    - name: 4 - LINT
+      run: |
+        gofmt -e -l -s -w .
+    
+      # Build the project 
+    - name: 5 - BUILD
+      run: |
+        go build -v ./...
+
+  CD:
+    name: CD
+    needs: [CI]
     runs-on: ubuntu-latest
     steps:
         # Checkout to current workspace
@@ -67,16 +105,16 @@ jobs:
 
   RELEASE:
     name: RELEASE
-    needs: [BUILD]
+    needs: [CD]
     runs-on: ubuntu-latest
     steps:
-      # checkout to current workspace
+      # Checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v3
         with:
           fetch-depth: 50
 
-        # generate changelogs from the closed issues
+        # Generate changelogs from the closed issues
       - name: 2 - CHANGELOG
         uses: heinrichreimer/github-changelog-generator-action@v2.2
         id: changelog_id
@@ -91,7 +129,7 @@ jobs:
           stripGeneratorNotice: true
           verbose: true
 
-      # create release according to tag input
+      # Create release according to tag input
       - name: 3 - CREATE RELEASE
         uses: actions/create-release@v1
         env:

@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - '**'
-    # paths:
-    #   - '**/*.go'
-    #   - '**/go.*'
+    paths:
+      - '**/*.go'
+      - '**/go.*'
 
 
 jobs:
@@ -14,7 +14,6 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     steps:
-
       # Checkout to current workspace
     - name: 1 - CHECKOUT
       uses: actions/checkout@v3
