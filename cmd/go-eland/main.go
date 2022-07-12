@@ -79,16 +79,21 @@ func runAuto(mode internal.Mode) {
 		execAction("apt/update")
 		execAction("apt/install")
 
-		execAction("zsh/omz")
+		execAction("zsh/framework")
 		execAction("zsh/plugins")
-		execAction("zsh/prompt")
+		// execAction("zsh/prompt")
 
-		execAction("brew/install")
+		execAction("dotfiles/dotfiles")
+		execAction("dotfiles/rcfiles")
+
+		execAction("snap/install")
+		execAction("snap/refresh")
+
+		execAction("vscode/extensions")
+		execAction("vscode/settings")
+
+		execAction("brew/binary")
 		execAction("brew/formulaes")
-		execAction("brew/casks")
-
-		execAction("dotfiles/sync")
-		execAction("dotfiles/rc")
 
 		execAction("clis/docker")
 		execAction("clis/k8s")
@@ -98,23 +103,20 @@ func runAuto(mode internal.Mode) {
 func run() {
 	pkg.ClearPrompt()
 
-	
-
-	fmt.Print(`̀`,
-		pkg.Ui_bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
-		pkg.Ui_bd("┃ "), "Hi! I'm ", pkg.Ui_gl("Goéland"), ", your ", pkg.Ui_ul("Ubuntu fresh setup assistant"), ".", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), pkg.Ui_gl("Goéland"), " will help you to install many ", pkg.Ui_fc("applications,"), pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), pkg.Ui_fc("packages, formulaes"), " - ", pkg.Ui_ul("from Apt, Brew, Snap"), ",        ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "alongside with ", pkg.Ui_fc("CLIs,"), " like ", pkg.Ui_ul("Docker, Kubernetes"), " tools.", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "But also ", pkg.Ui_ul("Zsh"), pkg.Ui_fc(" framework, plugins"), ", ", pkg.Ui_ul("VSCode"), pkg.Ui_fc(" extensions"), ",", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "with synchronised ", pkg.Ui_fc("settings"), " across your devices,    ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "all your ", pkg.Ui_ul("Bash"), pkg.Ui_fc(" aliases, functions, exports"), ".         ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┃ "), "All you have to do is to choose a ", pkg.Ui_rd("setup mode:"), "      ", pkg.Ui_bd(" ┃"), "\n",
-		pkg.Ui_bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
-
+	fmt.Print(`̀`,pkg.Ui_bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
+	pkg.Ui_bd("┃ "), "Hi! I'm ", pkg.Ui_gl("Goéland"), ", your ", pkg.Ui_ul("Ubuntu fresh setup assistant"), ".", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), pkg.Ui_gl("Goéland"), " will help you to install many ", pkg.Ui_fc("applications,"), pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), pkg.Ui_fc("packages, formulaes"), " - ", pkg.Ui_ul("from Apt, Brew, Snap"), ",        ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "alongside with ", pkg.Ui_fc("CLIs,"), " like ", pkg.Ui_ul("Docker, Kubernetes"), " tools.", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "But also ", pkg.Ui_ul("Zsh"), pkg.Ui_fc(" framework, plugins"), ", ", pkg.Ui_ul("VSCode"), pkg.Ui_fc(" extensions"), ",", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "with synchronised ", pkg.Ui_fc("settings"), " across your devices,    ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "all your ", pkg.Ui_ul("Bash"), pkg.Ui_fc(" aliases, functions, exports"), ".         ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┃ "), "All you have to do is to choose a ", pkg.Ui_rd("setup mode:"), "      ", pkg.Ui_bd(" ┃"), "\n",
+	pkg.Ui_bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
+		
 	modesPrompt := promptui.Select{
 		HideHelp:  true,
 		Label:     "Select a setup mode:",
