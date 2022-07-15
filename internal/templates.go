@@ -4,8 +4,8 @@ import "github.com/manifoldco/promptui"
 
 var ModeTemplate = &promptui.SelectTemplates{
 	Label: ` [!] {{ . | red | bold	| underline }}`,
-	Selected: "🔴 {{ .Name | bgRed | black | bold }}",
-	Active:   "🔴 {{ .Name | bgRed | black  }}",
+	Selected: "=> {{ .Name | bgRed | black | bold }}",
+	Active:   "=> {{ .Name | bgRed | black  }}",
 	Inactive: "   {{ .Name | white }}",
 	Details: `
  [?] {{ .Name | bgCyan | black }}
@@ -13,10 +13,9 @@ var ModeTemplate = &promptui.SelectTemplates{
 }
 
 var TaskTemplate = &promptui.SelectTemplates{
-	Help:     "{{ \"Toggle search: / key\" | faint }}",
 	Label:    ` [!] {{ . | yellow | bold | underline }}`,
-	Selected: "🟠 {{ .Name | bgYellow | black | bold }}",
-	Active:   "🟠 {{ .Name | bgYellow | black  }} {{ .ActionsLabels | yellow }}",
+	Selected: "=> {{ .Name | bgYellow | black | bold }}",
+	Active:   "=> {{ .Name | bgYellow | black  }} {{ .ActionsLabels | yellow }}",
 	Inactive: "   {{ .Name | white }} {{ .ActionsLabels | faint }}",
 	Details: `
  [?] {{ .Name | bgCyan | black }} {{"task" | white }}
@@ -24,9 +23,8 @@ var TaskTemplate = &promptui.SelectTemplates{
 }
 
 var ActionTemplate = &promptui.SelectTemplates{
-	Help:     "{{ \"Toggle search: / key\" | faint }}",
 	Label:    ` [!] {{ . | green | bold | underline }}`,
-	Selected: "🟢 {{ .Name | bgGreen | black| bold }}",
-	Active:   "🟢 {{ .Name | bgGreen | black }} ({{ .Description | green }})",
+	Selected: "=> {{ .Name | bgGreen | black| bold }}",
+	Active:   "=> {{ .Name | bgGreen | black }} ({{ .Description | green }})",
 	Inactive: "   {{ .Name | white }} ({{ .Description | faint }})",
 }

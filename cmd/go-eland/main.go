@@ -41,6 +41,7 @@ func runConfirmPrompt(mode internal.Mode, task internal.Task, action internal.Ac
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
 	pkg.ClearPrompt()
+	pkg.PrintWelcomeMessage()
 	fmt.Print("Mode:   ", chalk.Red, mode.Name, chalk.Reset, "\n")
 	fmt.Print("Task:   ", chalk.Yellow, task.Name, chalk.Reset, "\n")
 	fmt.Print("Action:", chalk.Green, chalk.Bold, action.Name, chalk.Reset, "\n")
@@ -76,47 +77,16 @@ func runAuto(mode internal.Mode) {
 	result, err := confirmPrompt.Run()
 	pkg.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
-		execAction("apt/update")
-		execAction("apt/install")
-
-		execAction("zsh/framework")
-		execAction("zsh/plugins")
-		// execAction("zsh/prompt")
-
-		execAction("dotfiles/dotfiles")
-		execAction("dotfiles/rcfiles")
-
-		execAction("snap/install")
-		execAction("snap/refresh")
-
-		execAction("vscode/extensions")
-		execAction("vscode/settings")
-
-		execAction("brew/binary")
-		execAction("brew/formulaes")
-
-		execAction("clis/docker")
-		execAction("clis/k8s")
+		for _, script := range internal.AutoModeScripts {
+			execAction(script)
+		}
 	}
 }
 
 func run() {
 	pkg.ClearPrompt()
+	pkg.PrintWelcomeMessage()
 
-	fmt.Print(`̀`,pkg.Ui_bd("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"), "\n",
-	pkg.Ui_bd("┃ "), "Hi! I'm ", pkg.Ui_gl("Goéland"), ", your ", pkg.Ui_ul("Ubuntu fresh setup assistant"), ".", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), pkg.Ui_gl("Goéland"), " will help you to install many ", pkg.Ui_fc("applications,"), pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), pkg.Ui_fc("packages, formulaes"), " - ", pkg.Ui_ul("from Apt, Brew, Snap"), ",        ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "alongside with ", pkg.Ui_fc("CLIs,"), " like ", pkg.Ui_ul("Docker, Kubernetes"), " tools.", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "But also ", pkg.Ui_ul("Zsh"), pkg.Ui_fc(" framework, plugins"), ", ", pkg.Ui_ul("VSCode"), pkg.Ui_fc(" extensions"), ",", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "with synchronised ", pkg.Ui_fc("settings"), " across your devices,    ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "all your ", pkg.Ui_ul("Bash"), pkg.Ui_fc(" aliases, functions, exports"), ".         ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "                                                   ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┃ "), "All you have to do is to choose a ", pkg.Ui_rd("setup mode:"), "      ", pkg.Ui_bd(" ┃"), "\n",
-	pkg.Ui_bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
-		
 	modesPrompt := promptui.Select{
 		HideHelp:  true,
 		Label:     "Select a setup mode:",
@@ -132,6 +102,7 @@ func run() {
 	if h == 0 {
 
 		taskPrompt := promptui.Select{
+			HideHelp:  true,
 			Label:     "Select a task category:",
 			Items:     internal.Tasks,
 			Templates: internal.TaskTemplate,
