@@ -3,45 +3,50 @@
 # shellcheck source=/dev/null
 source "$PWD"/config/config.sh
 
-function _GOELAND_apt_packages_install () {
-  ARRAY=$@
+function GLD_apt_packages_install () {
+  ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
+      ui_info "installing \"$i\" binary"
       exec=(sudo apt install "$i" -y)
     else
-      ui_info "\"$i\" command already exist. Skipping.."
+      ui_info "upgrade \"$i\" binary because already exist"
+      exec=(sudo apt upgrade "$i" -y)
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
 
-function GOELAND_brew_formulaes_install () {
-  ARRAY=$@
+function GLD_brew_formulaes_install () {
+  ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
+      ui_info "installing \"$i\" binary"
       exec=(brew install "$i")
     else
-      ui_info "\"$i\" command already exist. Upgrading.."
+      ui_info "upgrade \"$i\" binary because already exist"
       exec=(brew upgrade "$i")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
 
-function GOELAND_snap_packages_install () {
-  for ((i = 0; i < ${#GOELAND_snap_packages[@]}; i++)) ; do
-    if ! command -v "${GOELAND_snap_packages[$i]}" &> /dev/null; then
-      exec=(sudo snap install "${GOELAND_snap_packages[$i]}")
+function GLD_snap_packages_install () {
+  
+  for ((i = 0; i < ${#GLD_snap_packages[@]}; i++)) ; do
+    if ! command -v "${GLD_snap_packages[$i]}" &> /dev/null; then
+      ui_info "installing \"${GLD_snap_packages[$i]}\" binary"
+      exec=(sudo snap install "${GLD_snap_packages[$i]}")
     else
-      ui_info "\"${GOELAND_snap_packages[$i]}\" command already exist. Refreshing.."
-      exec=(sudo snap refresh "${GOELAND_snap_packages[$i]}")
+      ui_info "upgrade \"${GLD_snap_packages[$i]}\" binary because already exist"
+      exec=(sudo snap refresh "${GLD_snap_packages[$i]}")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
 
-function GOELAND_vscode_extensions_install () {
-  ARRAY=$@
+function GLD_vscode_extensions_install () {
+  ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
       exec=(code --install-extension "$i")

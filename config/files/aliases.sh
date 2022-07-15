@@ -11,7 +11,7 @@ alias del="rm -rf"
 alias e="exit"
 alias m="make"
 alias rf='source $HOME/.zshrc'
-alias sn="snap"
+alias s="snap"
 alias t="touch"
 
 # FUNCTIONS BIND ---------------------------------------------------------

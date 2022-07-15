@@ -1,6 +1,11 @@
 #!/bin/bash
 
-export GOELAND_apt_packages=(
+export GLD_dotfiles=(
+  "aliases"
+  "functions"
+)
+
+export GLD_apt_packages=(
   "apt-transport-https"
   "build-essential"
   "ca-certificates"
@@ -11,6 +16,7 @@ export GOELAND_apt_packages=(
   "htop"
   "make"
   "procps"
+  "shellcheck"
   "software-properties-common"
   "tree"
   "virtualbox"
@@ -18,7 +24,7 @@ export GOELAND_apt_packages=(
   "zsh"
 )
 
-export GOELAND_snap_packages=(
+export GLD_snap_packages=(
   "code --classic"
   "discord"
   "gimp"
@@ -29,30 +35,25 @@ export GOELAND_snap_packages=(
   "vlc"
 )
 
-export GOELAND_brew_formulaes=(
+export GLD_brew_formulaes=(
   "thefuck"
 )
 
-export GOELAND_brew_k8s_formulaes=(
+export GLD_brew_k8s_formulaes=(
   "kubectl"
   "kubectx"
   "kubeseal"
   "helm"
 )
 
-export GOELAND_dotfiles=(
-  "aliases"
-  "functions"
-)
-
-export GOELAND_omz_plugins=(
+export GLD_omz_plugins=(
   "zsh-autosuggestions"
   "zsh-completions"
   "zsh-history-substring-search"
   "zsh-syntax-highlighting"
 )
 
-export GOELAND_vscode_extensions=(
+export GLD_vscode_extensions=(
   "ms-azuretools.vscode-docker"
   "dracula-theme.theme-dracula"
   "eamodio.gitlens"
