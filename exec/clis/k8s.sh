@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-GOELAND_brew_formulaes_install "${GOELAND_brew_k8s_formulaes[@]}"
+GLD_brew_formulaes_install "${GLD_brew_k8s_formulaes[@]}"
 
 ui_done

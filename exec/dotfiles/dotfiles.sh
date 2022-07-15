@@ -7,7 +7,7 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-for i in "${GOELAND_dotfiles[@]}"
+for i in "${GLD_dotfiles[@]}"
 do
   file="$HOME/.$i"
   exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)

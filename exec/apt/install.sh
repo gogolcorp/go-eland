@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-GOELAND_apt_packages_install "${GOELAND_apt_packages[@]}"
+GLD_apt_packages_install "${GLD_apt_packages[@]}"
 
 ui_done

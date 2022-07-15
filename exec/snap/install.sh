@@ -8,6 +8,6 @@ source "$PWD"/config/utils.sh
 ui_start
 
 
-GOELAND_snap_packages_install 
+GLD_snap_packages_install 
 
 ui_done
