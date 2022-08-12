@@ -1,48 +1,52 @@
 #!/bin/bash
 
 # shellcheck source=/dev/null
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 
-function _brew_secure_install_from_array_ () {
-  ARRAY=$@
+function GLD_apt_packages_install () {
+  ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
+      ui_info "installing \"$i\" binary"
+      exec=(sudo apt install "$i" -y)
+    else
+      ui_info "upgrade \"$i\" binary because already exist"
+      exec=(sudo apt upgrade "$i" -y)
+    fi
+    ui_cmd "${exec[@]}" ; "${exec[@]}"
+  done
+}
+
+function GLD_brew_formulaes_install () {
+  ARRAY=$*
+  for i in $ARRAY; do
+    if ! command -v "$i" &> /dev/null; then
+      ui_info "installing \"$i\" binary"
       exec=(brew install "$i")
     else
-      ui_info "\"$i\" command already exist. Updating.."
+      ui_info "upgrade \"$i\" binary because already exist"
       exec=(brew upgrade "$i")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
 
-
-function _apt_secure_install_from_array_ () {
-  ARRAY=$@
-  for i in $ARRAY; do
-    if ! command -v "$i" &> /dev/null; then
-      exec=(sudo apt install "$i" -y)
+function GLD_snap_packages_install () {
+  
+  for ((i = 0; i < ${#GLD_snap_packages[@]}; i++)) ; do
+    if ! command -v "${GLD_snap_packages[$i]}" &> /dev/null; then
+      ui_info "installing \"${GLD_snap_packages[$i]}\" binary"
+      exec=(sudo snap install "${GLD_snap_packages[$i]}")
     else
-      ui_info "\"$i\" command already exist. Skipping.."
+      ui_info "upgrade \"${GLD_snap_packages[$i]}\" binary because already exist"
+      exec=(sudo snap refresh "${GLD_snap_packages[$i]}")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
   done
 }
 
-function _snap_secure_install_from_array_ () {
-  for ((i = 0; i < ${#_snap_packages_[@]}; i++)) ; do
-    if ! command -v "${_snap_packages_[$i]}" &> /dev/null; then
-      exec=(sudo snap install "${_snap_packages_[$i]}")
-    else
-      ui_info "\"${_snap_packages_[$i]}\" command already exist. Refreshing.."
-      exec=(sudo snap refresh "${_snap_packages_[$i]}")
-    fi
-    ui_cmd "${exec[@]}" ; "${exec[@]}"
-  done
-}
-
-function _vscode_secure_install_from_array_ () {
-  ARRAY=$@
+function GLD_vscode_extensions_install () {
+  ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
       exec=(code --install-extension "$i")

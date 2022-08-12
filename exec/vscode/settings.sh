@@ -2,7 +2,7 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
 exec_a=(cp "$PWD"/config/files/vscode-settings.json "$HOME"/.config/Code/User/settings.json)

@@ -2,7 +2,7 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
 exec_a=(sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose)

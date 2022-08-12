@@ -11,7 +11,7 @@ alias del="rm -rf"
 alias e="exit"
 alias m="make"
 alias rf='source $HOME/.zshrc'
-alias sn="snap"
+alias s="snap"
 alias t="touch"
 
 # FUNCTIONS BIND ---------------------------------------------------------
@@ -45,7 +45,7 @@ alias gsst="git status -s -b"
 
 # KUBE --- ---------------------------------------------------------------
 alias k="kubectl"
-alias wkg="watch kubectl get"
+alias wk="watch kubectl"
 
 alias h="helm"
 alias kx="kubectx"

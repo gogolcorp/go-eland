@@ -1,6 +1,11 @@
 #!/bin/bash
 
-export _apt_packages_=(
+export GLD_dotfiles=(
+  "aliases"
+  "functions"
+)
+
+export GLD_apt_packages=(
   "apt-transport-https"
   "build-essential"
   "ca-certificates"
@@ -11,6 +16,7 @@ export _apt_packages_=(
   "htop"
   "make"
   "procps"
+  "shellcheck"
   "software-properties-common"
   "tree"
   "virtualbox"
@@ -18,7 +24,7 @@ export _apt_packages_=(
   "zsh"
 )
 
-export _snap_packages_=(
+export GLD_snap_packages=(
   "code --classic"
   "discord"
   "gimp"
@@ -29,30 +35,25 @@ export _snap_packages_=(
   "vlc"
 )
 
-export _brew_formulaes_=(
+export GLD_brew_formulaes=(
   "thefuck"
 )
 
-export _brew_k8s_=(
+export GLD_brew_k8s_formulaes=(
   "kubectl"
   "kubectx"
   "kubeseal"
   "helm"
 )
 
-export _dotfiles_=(
-  "aliases"
-  "functions"
-)
-
-export _omz_plugins_=(
+export GLD_omz_plugins=(
   "zsh-autosuggestions"
   "zsh-completions"
   "zsh-history-substring-search"
   "zsh-syntax-highlighting"
 )
 
-export _vscode_extensions_=(
+export GLD_vscode_extensions=(
   "ms-azuretools.vscode-docker"
   "dracula-theme.theme-dracula"
   "eamodio.gitlens"

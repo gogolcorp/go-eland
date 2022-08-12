@@ -2,12 +2,12 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
 ui_start
 
-for i in "${_dotfiles_[@]}"
+for i in "${GLD_dotfiles[@]}"
 do
   file="$HOME/.$i"
   exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)

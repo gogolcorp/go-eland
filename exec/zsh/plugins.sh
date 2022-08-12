@@ -2,14 +2,14 @@
 
 # shellcheck source=/dev/null
 source "$PWD"/config/ui.sh
-source "$PWD"/config/cfg.sh
+source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
 ui_start
 
 sed -i.old "s/^plugins=(git).*/plugins=(\n  git\n)$i/g" "$HOME"/.zshrc
 
-for i in "${_omz_plugins_[@]}"
+for i in "${GLD_omz_plugins[@]}"
 do
   if [ ! -d "$HOME"/.oh-my-zsh/custom/plugins/"$i" ]; then
     exec_a=(git clone https://github.com/zsh-users/"$i".git "$HOME"/.oh-my-zsh/custom/plugins/"$i")
