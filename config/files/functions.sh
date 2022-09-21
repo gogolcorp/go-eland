@@ -61,3 +61,13 @@ function _open_vscode_() {
   fi
   return
 }
+# de-sops template
+function _super_sops_() {
+  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
+}
+
+# run Goeland soft
+function _goeland_() {
+  cd "$(find ~/go/src/ -type d -name "go-eland" | head -n 1)" || exit
+  make run
+}

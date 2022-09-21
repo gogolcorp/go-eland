@@ -16,21 +16,16 @@ alias t="touch"
 
 # FUNCTIONS BIND ---------------------------------------------------------
 alias dkpg="_docker_purge_"
+alias gld="_goeland_"
 alias kp="_kill_process_"
 alias mkd="_mkdir_cd_"
 alias o="_open_fe_"
+alias ssops="_super_sops_"
 alias vs="_open_vscode_"
-
-# NAVIGATION
-alias ...= "cd ../.."
-alias ....= "cd ../../.."
-alias .....= "cd ../../../.."
-alias ......= "cd ../../../../.."
 
 # DIRECTORIES
 alias docs='cd $HOME/Documents'
 alias dll='cd $HOME/Downloads'
-alias desk='cd $HOME/Desktop'
 
 # APT --------------------------------------------------------------------
 alias upd="sudo apt update -y"
@@ -47,7 +42,6 @@ alias gsst="git status -s -b"
 alias k="kubectl"
 alias wk="watch kubectl"
 
-alias h="helm"
 alias kx="kubectx"
 alias kns="kubens"
 alias ks="kubeseal"
@@ -57,6 +51,21 @@ alias kd="kubectl describe"
 alias ke="kubectl edit"
 alias kg="kubectl get"
 alias kl="kubectl logs"
+
+# HELM -------------------------------------------------------------------
+alias h="helm"
+
+alias hu="helm upgrade --install -f values.yaml -n"
+
+alias hdpb="helm dependency build"
+alias hdpl="helm dependency list"
+alias hdpu="helm dependency update"
+
+alias hd="helm diff"
+alias hdu="helm diff upgrade --install -f values.yaml -n"
+
+alias ht="helm template"
+alias htu="helm template -f values.yaml --output-dir tmp -n"
 
 # TERRAFORM --------------------------------------------------------------
 alias tf="terraform"
