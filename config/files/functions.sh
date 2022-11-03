@@ -1,7 +1,28 @@
 #!/bin/bash
 
+# base64 encode with clipboard copy
+function ___base64_encode___() {
+  STR=$(echo "$*" | base64 -w0)
+  echo "$STR"
+  echo "$STR" | xclip -sel clip
+}
+
+# base64 decode with clipboard copy
+function ___base64_decode___() {
+  STR=$(echo "$*" | base64 -d -w0)
+  echo "$STR"
+  echo "$STR" | xclip -sel clip
+}
+
+# copy the command output
+function ___clipboard___ () {
+  STR=$("$*")
+  echo "$STR"
+  echo "$STR" | xclip -sel clip
+}
+
 # delete all Docker ressources
-function _docker_purge_() {
+function ___docker_purge___() {
   sleep 1; clear; echo -e "\e[33m[#] ANNIHILATION IN 3 [#]\e[0m"
   sleep 1; clear; echo -e "\e[33m[#] ANNIHILATION IN 2 [#]\e[0m"
   sleep 1; clear; echo -e "\e[31m[#] ANNIHILATION IN 1 [#]\e[0m"
@@ -20,30 +41,39 @@ function _docker_purge_() {
   return
 }
 
-# kill process by name
-function _kill_process_ () {
-  ps aux | grep "$1" > /dev/null
-  mypid=$(pidof "$1")
-  if [ "$mypid" != "" ]; then
-    kill -9 "$(pidof "$1")"
-    if [[ "$?" == "0" ]]; then
-      echo "[$1] (PID: $mypid) killed."
-    fi
+# find a specific string in zsh/bash history
+function ___find_in_history___ () {
+  history | grep "$*"
+}
+
+# config git profile for specific workspace
+function ___git_config___ () {
+  if [ "$1" = "pro" ] ; then
+    git config user.name "alexandre.delaloy"
+    git config user.email "alexandre.delaloy@alteia.com"
+    echo "git configured [alexandre.delaloy@alteia.com]"
   else
-    echo "None killed."
+    git config user.name "blyndusk"
+    git config user.email "alexandre.delaloy.pro@gmail.com"
+    echo "git configured [alexandre.delaloy.pro@gmail.com]"
   fi
-  return;
+}
+
+# run Goeland soft
+function ___goeland___() {
+  cd "$(find ~/go/src/ -type d -name "go-eland" | head -n 1)" || exit
+  make run
 }
 
 # make directory then change into it
-function _mkdir_cd_() { 
+function ___mkdir_cd___() { 
   mkdir -p "$@"
   cd "$_" || exit
   return
 }
 
 # open file explorer with given folder
-function _open_fe_() {
+function ___open_fe___() {
 	if [ $# -eq 0 ] ; then 
     xdg-open .
 	else 
@@ -53,7 +83,7 @@ function _open_fe_() {
 }
 
 # open VSCode with given folder
-function _open_vscode_() {
+function ___open_vscode___() {
 	if [ $# -eq 0 ] ; then 
     code .
 	else 
@@ -61,13 +91,8 @@ function _open_vscode_() {
   fi
   return
 }
-# de-sops template
-function _super_sops_() {
-  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
-}
 
-# run Goeland soft
-function _goeland_() {
-  cd "$(find ~/go/src/ -type d -name "go-eland" | head -n 1)" || exit
-  make run
+# de-sops template
+function ___super_sops___() {
+  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
 }

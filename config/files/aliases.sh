@@ -1,29 +1,40 @@
 #!/bin/bash
 
+# IMPORTS ----------------------------------------------------------------
+
 # shellcheck source=/dev/null
 source "$HOME/.functions"
 
-# MISC
+# SINGLE COMMAND ---------------------------------------------------------
+
 alias b="brew"
 alias c="clear"
-alias cdc="cd ; clear"
 alias del="rm -rf"
 alias e="exit"
 alias m="make"
-alias rf='source $HOME/.zshrc'
 alias s="snap"
 alias t="touch"
+alias x="killall"
+
+alias cdc="cd ; clear"
+alias lgh="sudo brightnessctl --device='tpacpi::kbd_backlight' set 2"
+alias rf='source $HOME/.zshrc'
 
 # FUNCTIONS BIND ---------------------------------------------------------
-alias dkpg="_docker_purge_"
-alias gld="_goeland_"
-alias kp="_kill_process_"
-alias mkd="_mkdir_cd_"
-alias o="_open_fe_"
-alias ssops="_super_sops_"
-alias vs="_open_vscode_"
+alias be="___base64_encode___"
+alias bd="___base64_decode___"
+alias cb="___clipboard___"
+alias dkpg="___docker_purge___"
+alias gld="___goeland___"
+alias gcfg="___git_config___"
+alias fih="___find_in_history___"
+alias mkd="___mkdir_cd___"
+alias o="___open_fe___"
+alias ssops="___super_sops___"
+alias vs="___open_vscode___"
 
-# DIRECTORIES
+# DIRECTORIES ------------------------------------------------------------
+alias alt='cd $HOME/__/ALTEIA/_INFRA'
 alias docs='cd $HOME/Documents'
 alias dll='cd $HOME/Downloads'
 
@@ -41,6 +52,7 @@ alias gsst="git status -s -b"
 # KUBE --- ---------------------------------------------------------------
 alias k="kubectl"
 alias wk="watch kubectl"
+alias wkg="watch kubectl get"
 
 alias kx="kubectx"
 alias kns="kubens"
