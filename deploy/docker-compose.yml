@@ -7,4 +7,4 @@ services:
       context: .
       dockerfile: build/package/go-eland/Dockerfile
     volumes:
-      - ./:/go/src/github.com/blyndusk/go-eland/
+      - ./:/go/src/github.com/gogolcorp/go-eland/

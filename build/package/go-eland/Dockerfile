@@ -1,6 +1,6 @@
 FROM golang:alpine
 
-LABEL org.opencontainers.image.source = "https://github.com/blyndusk/go-eland"
+LABEL org.opencontainers.image.source = "https://github.com/gogolcorp/go-eland"
 
 # ----- SETUP -----
 
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.source = "https://github.com/blyndusk/go-eland"
 ENV GO111MODULE=on
 
 # Set the current working with go absolute path
-WORKDIR /go/src/github.com/blyndusk/go-eland
+WORKDIR /go/src/github.com/gogolcorp/go-eland
 
 # ----- INSTALL -----
 
