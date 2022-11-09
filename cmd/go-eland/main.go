@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/blyndusk/go-eland/pkg"
+	"github.com/gogolcorp/go-eland/pkg"
 	"github.com/manifoldco/promptui"
 	"github.com/ttacon/chalk"
 )
