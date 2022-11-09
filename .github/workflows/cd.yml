@@ -2,7 +2,7 @@ name: "CD"
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
     branches:
       - main
@@ -15,7 +15,7 @@ jobs:
     name: CD
     runs-on: ubuntu-latest
     steps:
-        # Checkout to current workspace
+      # Checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v3
 
@@ -43,9 +43,9 @@ jobs:
           context: .
           file: build/package/go-eland/Dockerfile
           tags: |
-            ghcr.io/blyndusk/go-eland:${{ env.BRANCH }}-${{ env.SHA }}-${{ env.DATE }}
-            ghcr.io/blyndusk/go-eland:${{ env.BRANCH }}-${{ env.SHA }}
-            ghcr.io/blyndusk/go-eland:latest
+            ghcr.io/gogolcorp/go-eland:${{ env.BRANCH }}-${{ env.SHA }}-${{ env.DATE }}
+            ghcr.io/gogolcorp/go-eland:${{ env.BRANCH }}-${{ env.SHA }}
+            ghcr.io/gogolcorp/go-eland:latest
 
         # Output the logs
       - name: 5 - IMAGE DIGEST
