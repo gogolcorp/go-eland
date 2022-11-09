@@ -1,4 +1,4 @@
-package internal
+package pkg
 
 type Task struct {
 	Name          string

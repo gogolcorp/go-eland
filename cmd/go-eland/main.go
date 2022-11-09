@@ -8,7 +8,6 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/blyndusk/go-eland/internal"
 	"github.com/blyndusk/go-eland/pkg"
 	"github.com/manifoldco/promptui"
 	"github.com/ttacon/chalk"
@@ -29,7 +28,7 @@ func execAction(file string) {
 
 func searcher() func(input string, index int) bool {
 	searcher := func(input string, index int) bool {
-		task := internal.Tasks[index]
+		task := pkg.Tasks[index]
 		name := strings.Replace(strings.ToLower(task.Name), " ", "", -1)
 		input = strings.Replace(strings.ToLower(input), " ", "", -1)
 		return strings.Contains(name, input)
@@ -37,7 +36,7 @@ func searcher() func(input string, index int) bool {
 	return searcher
 }
 
-func runConfirmPrompt(mode internal.Mode, task internal.Task, action internal.Action) {
+func runConfirmPrompt(mode pkg.Mode, task pkg.Task, action pkg.Action) {
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(action.Description)
 
 	pkg.ClearPrompt()
@@ -61,7 +60,7 @@ func runConfirmPrompt(mode internal.Mode, task internal.Task, action internal.Ac
 	}
 }
 
-func runAuto(mode internal.Mode) {
+func runAuto(mode pkg.Mode) {
 	choice := chalk.Cyan.NewStyle().WithBackground(chalk.ResetColor).WithTextStyle(chalk.Bold).Style(mode.Description)
 
 	pkg.ClearPrompt()
@@ -77,7 +76,7 @@ func runAuto(mode internal.Mode) {
 	result, err := confirmPrompt.Run()
 	pkg.ExitOnError("confirmPrompt failed:", err)
 	if result == "" || result == "Y" || result == "y" {
-		for _, script := range internal.AutoModeScripts {
+		for _, script := range pkg.AutoModeScripts {
 			execAction(script)
 		}
 	}
@@ -90,22 +89,22 @@ func run() {
 	modesPrompt := promptui.Select{
 		HideHelp:  true,
 		Label:     "Select a setup mode:",
-		Items:     internal.Modes,
-		Templates: internal.ModeTemplate,
+		Items:     pkg.Modes,
+		Templates: pkg.ModeTemplate,
 		Size:      2,
 		Stdout:    &pkg.BellSkipper{},
 	}
 
 	h, _, err := modesPrompt.Run()
 	pkg.ClosePrompt(err)
-	mode := internal.Modes[h]
+	mode := pkg.Modes[h]
 	if h == 0 {
 
 		taskPrompt := promptui.Select{
 			HideHelp:  true,
 			Label:     "Select a task category:",
-			Items:     internal.Tasks,
-			Templates: internal.TaskTemplate,
+			Items:     pkg.Tasks,
+			Templates: pkg.TaskTemplate,
 			Size:      10,
 			Searcher:  searcher(),
 			Stdout:    &pkg.BellSkipper{},
@@ -113,12 +112,12 @@ func run() {
 		i, _, err := taskPrompt.Run()
 		pkg.ClosePrompt(err)
 
-		task := internal.Tasks[i]
+		task := pkg.Tasks[i]
 		actionPrompt := promptui.Select{
 			HideHelp:  true,
 			Label:     "Select an action to run",
 			Items:     task.Actions,
-			Templates: internal.ActionTemplate,
+			Templates: pkg.ActionTemplate,
 			Size:      10,
 			Stdout:    &pkg.BellSkipper{},
 		}
