@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "SHA=$(echo $GITHUB_SHA | head -c8)" >> $GITHUB_ENV
           echo "DATE=$(date +%Y%m%d%H%M)"           >> $GITHUB_ENV
-          echo "BRANCH=$GITHUB_REF_NAME"            >> $GITHUB_ENV
+          echo "BRANCH=$GITHUB_HEAD_REF"            >> $GITHUB_ENV
 
         # Build and push the app with given file and tag
       - name: 4 - BUILD + PUSH
