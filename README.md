@@ -23,28 +23,35 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/blyndusk/go-eland/actions/workflows/ci.go.yml">
-    <img src="https://github.com/blyndusk/go-eland/actions/workflows/ci.go.yml/badge.svg" />
+  <a href="https://github.com/gogolcorp/go-eland/actions/workflows/labeler.yml">
+    <img src="https://github.com/gogolcorp/go-eland/actions/workflows/labeler.yml/badge.svg" />
   </a>
-  <a href="https://github.com/blyndusk/go-eland/actions/workflows/cd.docker.yml">
-    <img src="https://github.com/blyndusk/go-eland/actions/workflows/cd.docker.yml/badge.svg" />
+  <a href="https://github.com/gogolcorp/go-eland/actions/workflows/ci.yml">
+    <img src="https://github.com/gogolcorp/go-eland/actions/workflows/ci.yml/badge.svg" />
   </a>
-  <a href="https://github.com/blyndusk/go-eland/actions/workflows/md.release.yml">
-    <img src="https://github.com/blyndusk/go-eland/actions/workflows/md.release.yml/badge.svg" />
+  <a href="https://github.com/gogolcorp/go-eland/actions/workflows/cd.yml">
+    <img src="https://github.com/gogolcorp/go-eland/actions/workflows/cd.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/gogolcorp/go-eland/actions/workflows/releaser.yml">
+    <img src="https://github.com/gogolcorp/go-eland/actions/workflows/releaser.yml/badge.svg" />
   </a>
 </p>
 
 ## I - Introduction
 
-Go-éland is my customizable  system configuration wizard made for Ubuntu.
+<!-- <img width="60%" align="left" alt="coffee" src="./assets/images/goeland.gif"/> -->
 
-Providing a CLI, it's written in Go for the UX/UI part, and in Bash for all executable content.
+![goeland](./assets/images/goeland.gif)
+
+**Go-éland** is my *customizable system configuration wizard* made for **Ubuntu**.
+
+Providing a **CLI**, it's written in `Golang` for the *UX/UI part*, and in `Bash` for all *executable content*.
 
 Its operation is as follows:
 
-Each task has several actions, each action calls a bash file that will be executed, and the logs will be sent to the Go CLI
+Each task has **several actions**, each action **calls a `bash` file** that will be executed, and the logs will be sent back to the `Golang CLI`
 
-There are many packages, applications and others that are optionally installable. all these resources are centralized in a [config.sh](config/config.sh) file.
+There are many *packages, applications and others* that are optionally installable. all these resources are **centralized** in a **[config.sh](config/config.sh)** file.
 
 ## II - Table of content
 
@@ -59,8 +66,7 @@ There are many packages, applications and others that are optionally installable
 - [V - CI/CD, release and container registry](#v---cicd-release-and-container-registry)
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
-  - [C - Release](#c---release)
-  - [D - Labeler](#d---labeler)
+  - [C - Labeler](#c---labeler)
 - [VI - Project setup](#vi---project-setup)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
@@ -118,9 +124,9 @@ There are many packages, applications and others that are optionally installable
 
 ### A - CI
 
-[![GO](https://github.com/blyndusk/go-eland/actions/workflows/ci.go.yml/badge.svg)](https://github.com/blyndusk/go-eland/actions/workflows/ci.go.yml)
+[![CI](https://github.com/gogolcorp/go-eland/actions/workflows/ci.yml/badge.svg)](https://github.com/gogolcorp/go-eland/actions/workflows/ci.yml)
 
-The **CI** workflow is located at [.github/workflows/ci.go.yml](.github/workflows/ci.go.yml). It's triggered a **each push** on **all branches**.
+The **CI** workflow is located at [.github/workflows/ci.yml](.github/workflows/ci.yml). It's triggered a **each push** on **all branches**, scoping `Golang files`.
 
 It consist of:
 
@@ -131,9 +137,9 @@ It consist of:
 
 ### B - CD
 
-[![DOCKER](https://github.com/blyndusk/go-eland/actions/workflows/cd.docker.yml/badge.svg)](https://github.com/blyndusk/go-eland/actions/workflows/cd.docker.yml)
+[![CD](https://github.com/gogolcorp/go-eland/actions/workflows/cd.yml/badge.svg)](https://github.com/gogolcorp/go-eland/actions/workflows/cd.yml)
 
-The **CD** workflow is located at [.github/workflows/cd.docker.yml](.github/workflows/cd.docker.yml). It's triggered a **each push** on **`main` branch**.
+The **CD** workflow is located at [.github/workflows/cd.docker.yml](.github/workflows/cd.docker.yml). It's triggered a **each push** on **`main` branch**, scoping `Golang files`.
 
 It consist of:
 
@@ -148,25 +154,9 @@ After that, you can check the **pushed container** at: `https://github.com/<user
 LABEL org.opencontainers.image.source = "https://github.com/<username>/<repository-name>"
 ```
 
-### C - Release
+### C - Labeler
 
-[![RELEASE](https://github.com/blyndusk/go-eland/actions/workflows/md.release.yml/badge.svg)](https://github.com/blyndusk/go-eland/actions/workflows/md.release.yml)
-
-The **release** workflow is located at [.github/workflows/md.release.yml](.github/workflows/md.release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/go-eland/actions/workflows/md.release.yml).
-
-> IMPORTANT: you need to set the **image tag** in the action input, for the action to be able to push the docker image and create a release **with a specific version**. The image tag is a [SemVer](https://en.wikipedia.org/wiki/Software_versioning) tag, e.g. `1.0.2`.
-
-It consist of:
-
-- check if the **environment match the branch**
-- do the CD (docker) action again, but **with a specific image tag**
-- create a release **with the same tag**, filled with the **generated changelog as closed issues since the last release**
-
-After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
-
-### D - Labeler
-
-[![LABELER](https://github.com/blyndusk/go-eland/actions/workflows/ci.labeler.yml/badge.svg)](https://github.com/blyndusk/go-eland/actions/workflows/ci.labeler.yml)
+[![LABELER](https://github.com/gogolcorp/go-eland/actions/workflows/labeler.yml/badge.svg)](https://github.com/gogolcorp/go-eland/actions/workflows/labeler.yml)
 
 The **labeler** workflow consists in **assigning specific labels** on **pull requests** according to the files that have been modified in the **commits attached to this pull request**.
 
