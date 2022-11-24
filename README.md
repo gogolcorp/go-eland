@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.png" width="500">
+  <img src="./assets/logo.png" width="300">
   <br />
   <br />
   <a href="https://goreportcard.com/report/github.com/blyndusk/go-eland">
@@ -36,27 +36,26 @@
 
 ## I - Introduction
 
-The purpose of this repository is to provide a **solid**, **complete** and **adaptable** base of a [Golang](https://golang.org/)-oriented product in a **project-managed** repository, in order to start a new project with a **maximum time saving**.
+Go-éland is my customizable  system configuration wizard made for Ubuntu.
 
-This repository provides **commit writting** and **branch naming conventions**, **issues** and **pull request templates**, and a **custom issues labels preset**.
+Providing a CLI, it's written in Go for the UX/UI part, and in Bash for all executable content.
 
-But also **CI/CD** and **release** using [GitHub Actions](https://github.com/features/actions), [GitHub Container Registry](https://github.com/features/packages) and [Docker](https://www.docker.com/).
+Its operation is as follows:
 
-And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Postgres](https://www.postgresql.org/) and [Adminer](https://www.adminer.org/), build with [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/), using a [Makefile](<https://en.wikipedia.org/wiki/Make_(software)>).
+Each task has several actions, each action calls a bash file that will be executed, and the logs will be sent to the Go CLI
 
-> This repository gathers all the good practices that I have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.
+There are many packages, applications and others that are optionally installable. all these resources are centralized in a [config.sh](config/config.sh) file.
 
 ## II - Table of content
 
 - [I - Introduction](#i---introduction)
 - [II - Table of content](#ii---table-of-content)
-- [III - Folder structure](#iii---folder-structure)
-- [IV - Conventions, templates and labels](#iv---conventions-templates-and-labels)
-  - [A - Commit conventions](#a---commit-conventions)
-  - [B - Branch naming convention](#b---branch-naming-convention)
-  - [C - Issue template](#c---issue-template)
-  - [D - Pull request template](#d---pull-request-template)
-  - [E - Custom issues labels preset](#e---custom-issues-labels-preset)
+- [II - Features](#ii---features)
+  - [A - Apt packages](#a---apt-packages)
+  - [B - Bash dotfiles](#b---bash-dotfiles)
+  - [C - Zsh overlay](#c---zsh-overlay)
+  - [D - Snap packages](#d---snap-packages)
+  - [E - CLIs](#e---clis)
 - [V - CI/CD, release and container registry](#v---cicd-release-and-container-registry)
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
@@ -68,50 +67,52 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
 - [VII - Contributing](#vii---contributing)
 - [VIII - License](#viii---license)
 
-## III - Folder structure
+## II - Features
 
-The structure of this project follows [these conventions](https://github.com/golang-standards/project-layout).
+### A - Apt packages
 
-- `/.github`: Conventions, template, labels, ci, cd, settings
-- `/cmd`: main files
-- `/build`: Dockerfiles
-- `/config`: Environment files
-- `/deploy`: Docker Compose files
-- `/internal`: "private" code
-- `/pkg`: "public" code
-- `/scripts`: Makefile bash scripts for setup/install/start
+#### Install packages <!-- omit in toc -->
 
-## IV - Conventions, templates and labels
+- install `apt` packages from [config.sh](config/config.sh)
 
-### A - Commit conventions
+#### Update packages <!-- omit in toc -->
 
-```
-tag(scope): #issue_id - message
-```
+- update and upgrade `apt` packages
 
-See [COMMIT_CONVENTIONS.md](assets/docs/COMMIT_CONVENTIONS.md) for more informations.
+### B - Bash dotfiles
 
-### B - Branch naming convention
+#### Synchronize files <!-- omit in toc -->
 
-```
-type_scope-of-the-work
-```
+- copy [aliases](config/files/aliases.sh) and [functions](config/files/functions.sh) from this repo to the Ubuntu
 
-See [BRANCH_NAMING_CONVENTIONS.md](assets/docs/BRANCH_NAMING_CONVENTIONS.md) for more informations.
+#### Write imports <!-- omit in toc -->
 
-### C - Issue template
+- write the files importation in the `.zshrc` or `.bashrc` file
 
-See [user-story.md](.github/ISSUE_TEMPLATE/user-story.md) for more informations.
+### C - Zsh overlay
 
-### D - Pull request template
+#### Oh My Zsh <!-- omit in toc -->
 
-See [pull_request_template.md](.github/pull_request_template.md) for more informations.
+- install [`oh-my-zsh`](<https://github.com/configurationwith> ohmyzsh/ohmyzsh/) framework
+- install [`oh-my-zsh`](https://github.com/ohmyzsh/ohmyzsh/) plugins from [config.sh](config/config.sh)
 
-### E - Custom issues labels preset
+#### Prompt <!-- omit in toc -->
 
-The labels preset is located at [.github/settings.yml](.github/settings.yml).
+- install [Starship](https://github.com/starship/starship) prompt
+- synchronize [custom configuration](config/files/starship.toml)
 
-You can **add, edit or remove** them. To automatically update these labels, you need to **install** the ["Settings" GitHub app](https://github.com/apps/settings), which will **syncs repository settings defined in the file above to your repository**.
+### D - Snap packages
+
+- install `snap` packages from [config.sh](config/config.sh)
+- refresh existing `snap` packages
+
+### E - CLIs
+
+- install `CLIs`  from [config.sh](config/config.sh) as `Docker`,  `Kubectl`,  `Terraform`,
+
+#### Update packages <!-- omit in toc -->
+
+- update and upgrade `apt` packages
 
 ## V - CI/CD, release and container registry
 
