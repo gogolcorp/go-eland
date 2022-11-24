@@ -43,5 +43,4 @@ func PrintWelcomeMessage() {
 		ui_bd("┃ "), "                                                   ", ui_bd(" ┃"), "\n",
 		ui_bd("┃ "), "All you have to do is to choose a ", ui_rd("setup mode:"), "      ", ui_bd(" ┃"), "\n",
 		ui_bd("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"), "\n")
-
 }
