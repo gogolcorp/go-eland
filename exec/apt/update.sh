@@ -10,7 +10,12 @@ exec_b=(sudo apt upgrade -y)
 
 ui_start
 
-ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
-ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
+ui_cmd "${exec_a[@]}"; "${exec_a[@]}"
+exit_code=$?
+log_cmd $exit_code "${exec_a[*]}"
+
+ui_cmd "${exec_b[@]}"; "${exec_b[@]}"
+exit_code=$?
+log_cmd $exit_code "${exec_b[*]}"
 
 ui_done

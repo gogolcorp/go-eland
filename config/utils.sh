@@ -3,6 +3,29 @@
 # shellcheck source=/dev/null
 source "$PWD"/config/config.sh
 
+function foo () {
+  echo "bar"
+}
+
+function log_cmd () {
+  if [[ ! -d "logs/" ]]; then
+    ui_info "/logs folder not found; creating"
+    mkdir "logs"
+  fi
+  date_format='+%Y-%m-%dT%H:%M:%S.%3NZ'
+  logfile="logs/GLD-$(date '+%Y-%m-%d').log"
+  exit_code=$1
+  cmd=$2
+  if [[ exit_code -ne 0 ]] ; then
+    message="$(date $date_format) - FAIL [$exit_code] \"$cmd\""
+  else
+    message="$(date $date_format) - INFO \"$cmd\""
+  fi
+  echo "$message" >> "$logfile"
+}
+
+
+
 function GLD_apt_packages_install () {
   ARRAY=$*
   for i in $ARRAY; do
@@ -14,6 +37,8 @@ function GLD_apt_packages_install () {
       exec=(sudo apt upgrade "$i" -y)
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
+    exit_code=$?
+    log_cmd $exit_code "${exec[*]}"
   done
 }
 
@@ -28,6 +53,8 @@ function GLD_brew_formulaes_install () {
       exec=(brew upgrade "$i")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
+    exit_code=$?
+    log_cmd $exit_code "${exec[*]}"
   done
 }
 
@@ -42,6 +69,8 @@ function GLD_snap_packages_install () {
       exec=(sudo snap refresh "${GLD_snap_packages[$i]}")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
+    exit_code=$?
+    log_cmd $exit_code "${exec[*]}"
   done
 }
 
@@ -52,5 +81,7 @@ function GLD_vscode_extensions_install () {
       exec=(code --install-extension "$i")
     fi
     ui_cmd "${exec[@]}" ; "${exec[@]}"
+    exit_code=$?
+    log_cmd $exit_code "${exec[*]}"
   done
 }
