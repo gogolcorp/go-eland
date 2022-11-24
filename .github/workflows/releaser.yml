@@ -1,4 +1,4 @@
-name: GO RELEASER
+name: RELEASER
 
 on:
   pull_request:
@@ -11,20 +11,21 @@ permissions:
   contents: write
 
 jobs:
-  goreleaser:
+  RELEASER:
     runs-on: ubuntu-latest
     steps:
-       # Checkout to current workspace
+        # Checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
         
+        # Fetch all tags
       - name: 2 - FETCH TAGS
         run: git fetch --force --tags
 
         # Install golang with specific version
-      - name: 2 - SETUP GO
+      - name: 3 - SETUP GO
         uses:  actions/setup-go@v3
         with:
           go-version: '>=1.19.3'
@@ -33,7 +34,7 @@ jobs:
           cache-dependency-path: 'go.sum'
         
         # Create release using 
-      - name: 3 - CREATE RELEASE
+      - name: 4 - CREATE RELEASE
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser

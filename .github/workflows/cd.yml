@@ -1,8 +1,6 @@
 name: "CD"
 
 on:
-  pull_request:
-    branches: [main]
   push:
     branches:
       - main
@@ -15,7 +13,7 @@ jobs:
     name: CD
     runs-on: ubuntu-latest
     steps:
-      # Checkout to current workspace
+        # Checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v3
 
@@ -32,7 +30,6 @@ jobs:
         run: |
           echo "SHA=$(echo $GITHUB_SHA | head -c8)" >> $GITHUB_ENV
           echo "DATE=$(date +%Y%m%d%H%M)"           >> $GITHUB_ENV
-          echo "BRANCH=$GITHUB_HEAD_REF"            >> $GITHUB_ENV
 
         # Build and push the app with given file and tag
       - name: 4 - BUILD + PUSH
@@ -43,8 +40,8 @@ jobs:
           context: .
           file: build/package/go-eland/Dockerfile
           tags: |
-            ghcr.io/gogolcorp/go-eland:${{ env.BRANCH }}-${{ env.SHA }}-${{ env.DATE }}
-            ghcr.io/gogolcorp/go-eland:${{ env.BRANCH }}-${{ env.SHA }}
+            ghcr.io/gogolcorp/go-eland:${{ env.SHA }}-${{ env.DATE }}
+            ghcr.io/gogolcorp/go-eland:${{ env.SHA }}
             ghcr.io/gogolcorp/go-eland:latest
 
         # Output the logs
