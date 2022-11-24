@@ -5,18 +5,18 @@ source "$PWD"/config/ui.sh
 source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
-ui_start
+core__ui_start
 
-for i in "${GLD_dotfiles[@]}"
+for i in "${core__dotfiles[@]}"
 do
   file="$HOME/.$i"
   exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)
   exec_b=(cp "$PWD"/config/files/"$i".sh "$HOME"/."$i")
   if [ -f "$file" ]; then
-    ui_info "$file already exists, creating old version"
-    ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
+    core__ui_info "$file already exists, creating old version"
+    core__ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
   fi
-  ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
+  core__ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
 done
 
-ui_done
+core__ui_done

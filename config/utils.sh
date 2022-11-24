@@ -7,9 +7,9 @@ function foo () {
   echo "bar"
 }
 
-function log_cmd () {
+function core__log_cmd () {
   if [[ ! -d "logs/" ]]; then
-    ui_info "/logs folder not found; creating"
+    core__ui_info "/logs folder not found; creating"
     mkdir "logs"
   fi
   date_format='+%Y-%m-%dT%H:%M:%S.%3NZ'
@@ -26,62 +26,62 @@ function log_cmd () {
 
 
 
-function GLD_apt_packages_install () {
+function core__install__apt_packages () {
   ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
-      ui_info "installing \"$i\" binary"
+      core__ui_info "installing \"$i\" binary"
       exec=(sudo apt install "$i" -y)
     else
-      ui_info "upgrade \"$i\" binary because already exist"
+      core__ui_info "upgrade \"$i\" binary because already exist"
       exec=(sudo apt upgrade "$i" -y)
     fi
-    ui_cmd "${exec[@]}" ; "${exec[@]}"
+    core__ui_cmd "${exec[@]}" ; "${exec[@]}"
     exit_code=$?
-    log_cmd $exit_code "${exec[*]}"
+    core__log_cmd $exit_code "${exec[*]}"
   done
 }
 
-function GLD_brew_formulaes_install () {
+function core__brew_formulaes_install () {
   ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
-      ui_info "installing \"$i\" binary"
+      core__ui_info "installing \"$i\" binary"
       exec=(brew install "$i")
     else
-      ui_info "upgrade \"$i\" binary because already exist"
+      core__ui_info "upgrade \"$i\" binary because already exist"
       exec=(brew upgrade "$i")
     fi
-    ui_cmd "${exec[@]}" ; "${exec[@]}"
+    core__ui_cmd "${exec[@]}" ; "${exec[@]}"
     exit_code=$?
-    log_cmd $exit_code "${exec[*]}"
+    core__log_cmd $exit_code "${exec[*]}"
   done
 }
 
-function GLD_snap_packages_install () {
+function core__snap_packages_install () {
   
-  for ((i = 0; i < ${#GLD_snap_packages[@]}; i++)) ; do
-    if ! command -v "${GLD_snap_packages[$i]}" &> /dev/null; then
-      ui_info "installing \"${GLD_snap_packages[$i]}\" binary"
-      exec=(sudo snap install "${GLD_snap_packages[$i]}")
+  for ((i = 0; i < ${#core__snap_packages[@]}; i++)) ; do
+    if ! command -v "${core__snap_packages[$i]}" &> /dev/null; then
+      core__ui_info "installing \"${core__snap_packages[$i]}\" binary"
+      exec=(sudo snap install "${core__snap_packages[$i]}")
     else
-      ui_info "upgrade \"${GLD_snap_packages[$i]}\" binary because already exist"
-      exec=(sudo snap refresh "${GLD_snap_packages[$i]}")
+      core__ui_info "upgrade \"${core__snap_packages[$i]}\" binary because already exist"
+      exec=(sudo snap refresh "${core__snap_packages[$i]}")
     fi
-    ui_cmd "${exec[@]}" ; "${exec[@]}"
+    core__ui_cmd "${exec[@]}" ; "${exec[@]}"
     exit_code=$?
-    log_cmd $exit_code "${exec[*]}"
+    core__log_cmd $exit_code "${exec[*]}"
   done
 }
 
-function GLD_vscode_extensions_install () {
+function core__vscode_extensions_install () {
   ARRAY=$*
   for i in $ARRAY; do
     if ! command -v "$i" &> /dev/null; then
       exec=(code --install-extension "$i")
     fi
-    ui_cmd "${exec[@]}" ; "${exec[@]}"
+    core__ui_cmd "${exec[@]}" ; "${exec[@]}"
     exit_code=$?
-    log_cmd $exit_code "${exec[*]}"
+    core__log_cmd $exit_code "${exec[*]}"
   done
 }

@@ -7,12 +7,12 @@ source "$PWD"/config/utils.sh
 
 exec=(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended)
 
-ui_start
+core__ui_start
 
 if [ ! -d "$HOME"/.oh-my-zsh/ ]; then
-  ui_cmd "${exec[@]}" ; "${exec[@]}"
+  core__ui_cmd "${exec[@]}" ; "${exec[@]}"
 else
-  ui_info "$HOME/.oh-my-zsh/ folder exists; skipping.."
+  core__ui_info "$HOME/.oh-my-zsh/ folder exists; skipping.."
 fi
 
-ui_done
+core__ui_done

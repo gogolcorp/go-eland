@@ -5,8 +5,8 @@ source "$PWD"/config/ui.sh
 source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
-ui_start
+core__ui_start
 
-GLD_apt_packages_install "${GLD_apt_packages[@]}"
+core__install__apt_packages "${core__apt_packages[@]}"
 
-ui_done
+core__ui_done

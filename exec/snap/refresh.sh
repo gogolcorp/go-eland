@@ -5,10 +5,17 @@ source "$PWD"/config/ui.sh
 source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
-exec=(sudo snap refresh)
+exec_a=(killall snap-store)
+exec_b=(sudo snap refresh)
 
-ui_start
+core__ui_start
 
-ui_cmd "${exec[@]}" ; "${exec[@]}"
+core__ui_cmd "${exec_a[@]}"; "${exec_a[@]}"
+exit_code=$?
+core__log_cmd $exit_code "${exec_a[*]}"
 
-ui_done
+core__ui_cmd "${exec_b[@]}"; "${exec_b[@]}"
+exit_code=$?
+core__log_cmd $exit_code "${exec_b[*]}"
+
+core__ui_done
