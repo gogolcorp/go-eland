@@ -46,6 +46,10 @@ function ___find_in_history___ () {
   history | grep "$*"
 }
 
+function ___find_in_env___ () {
+  env | grep "$*"
+}
+
 # config git profile for specific workspace
 function ___git_config___ () {
   if [ "$1" = "pro" ] ; then
@@ -94,5 +98,10 @@ function ___open_vscode___() {
 
 # de-sops template
 function ___super_sops___() {
+  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
+}
+
+
+function ___daily___() {
   sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
 }

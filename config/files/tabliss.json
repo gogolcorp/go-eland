@@ -1,0 +1,273 @@
+{
+  "widget/JGv0SL9icLrM": null,
+  "widget/default-greeting": null,
+  "widget/swbn48yrgd3l": null,
+  "widget/GeUJpYCXfj2U": null,
+  "widget/vqLrnyYEOkWX": null,
+  "widget/elWp3AaDBNSh": null,
+  "widget/TaphIcmevKPR": null,
+  "focus": false,
+  "locale": "en",
+  "timeZone": null,
+  "version": 3,
+  "background": {
+    "id": "cwD2gpsIWEWv",
+    "key": "background/unsplash",
+    "display": {
+      "blur": 0,
+      "luminosity": -0.5
+    }
+  },
+  "data/cwD2gpsIWEWv": {
+    "by": "search",
+    "collections": "",
+    "featured": true,
+    "paused": true,
+    "search": "neon city",
+    "topics": "M8jVbLbTRws",
+    "timeout": 180
+  },
+  "widget/default-time": {
+    "id": "default-time",
+    "key": "widget/time",
+    "order": 0,
+    "display": {
+      "position": "topCentre",
+      "fontWeight": 900,
+      "fontSize": 20,
+      "colour": "#ffffff"
+    }
+  },
+  "data/default-time": {
+    "mode": "digital",
+    "hour12": true,
+    "showDate": true,
+    "showMinutes": true,
+    "showSeconds": true,
+    "showDayPeriod": true,
+    "timeZone": null,
+    "name": ""
+  },
+  "widget/C4-agDSHnuON": {
+    "id": "C4-agDSHnuON",
+    "key": "widget/weather",
+    "order": 1,
+    "display": {
+      "position": "topRight",
+      "fontWeight": 900,
+      "fontSize": 40,
+      "colour": "#ffffff"
+    }
+  },
+  "data/C4-agDSHnuON": {
+    "showDetails": true,
+    "units": "si",
+    "latitude": 43.6043,
+    "longitude": 1.4437,
+    "name": "Toulouse"
+  },
+  "widget/93MDxATyDCfk": {
+    "id": "93MDxATyDCfk",
+    "key": "widget/links",
+    "order": 2,
+    "display": {
+      "position": "middleLeft",
+      "fontSize": 30,
+      "fontWeight": 900
+    }
+  },
+  "data/93MDxATyDCfk": {
+    "columns": 1,
+    "links": [
+      {
+        "url": "https://www.linkedin.com/in/alexandre-delaloy/",
+        "name": "LinkedIn",
+        "icon": "user"
+      },
+      {
+        "url": "https://myaccount.google.com/u/2/?hl=en_GB&utm_source=OGB&utm_medium=act&pli=1&pageId=none",
+        "name": "G-Suite",
+        "icon": "archive"
+      },
+      {
+        "url": "github.com",
+        "icon": "github",
+        "name": "GitHub"
+      },
+      {
+        "url": "https://gitlab.corporate.delair-stack.com/",
+        "icon": "gitlab",
+        "name": "GitLab"
+      },
+      {
+        "url": "https://alteia.atlassian.net/jira/software/c/projects/DAI/issues/?jql=project%20%3D%20%22DAI%22%20AND%20assignee%20IN%20%28currentUser%28%29%29%20ORDER%20BY%20created%20DESC",
+        "name": "Jira",
+        "icon": "trello"
+      },
+      {
+        "url": "https://alteia.awsapps.com/start#/",
+        "name": "AWS",
+        "icon": "server"
+      },
+      {
+        "url": "https://registry.admin-tool.delair-stack.com/harbor/projects",
+        "name": "Harbor",
+        "icon": "package"
+      },
+      {
+        "url": "https://www.scrumpoker-online.org/fr/room/504847/scrum-poker",
+        "name": "Scrum",
+        "icon": "compass"
+      },
+      {
+        "url": "https://meet.google.com/xtm-ujcx-det?pli=1&authuser=2",
+        "name": "Meet",
+        "icon": "video"
+      }
+    ],
+    "visible": true,
+    "linkOpenStyle": false
+  },
+  "widget/Xs565Qf8taGi": {
+    "id": "Xs565Qf8taGi",
+    "key": "widget/search",
+    "order": 3,
+    "display": {
+      "position": "middleCentre",
+      "fontSize": 40
+    }
+  },
+  "widget/XWjbIPZlqfhY": {
+    "id": "XWjbIPZlqfhY",
+    "key": "widget/links",
+    "order": 4,
+    "display": {
+      "position": "middleRight",
+      "fontSize": 30,
+      "fontWeight": 900
+    }
+  },
+  "data/XWjbIPZlqfhY": {
+    "columns": 1,
+    "links": [
+      {
+        "url": "https://web.telegram.org/z/",
+        "name": "Telegram",
+        "icon": "send"
+      },
+      {
+        "url": "https://myaccount.google.com/?hl=en_GB&utm_source=OGB&utm_medium=act&pli=1",
+        "name": "G-Suite",
+        "icon": "archive"
+      },
+      {
+        "url": "https://myaccount.google.com/u/1/?hl=en_GB&utm_source=OGB&utm_medium=act&pli=1&pageId=none",
+        "name": "G-Suite Pro",
+        "icon": "folder"
+      },
+      {
+        "url": "https://www.instagram.com/?hl=fr",
+        "name": "Instagram",
+        "icon": "instagram"
+      },
+      {
+        "url": "https://www.youtube.com/feed/subscriptions",
+        "name": "YouTube",
+        "icon": "youtube"
+      },
+      {
+        "url": "https://www.reddit.com/",
+        "name": "Reddit",
+        "icon": "zap"
+      },
+      {
+        "url": "https://twitter.com/?lang=fr",
+        "name": "Twitter",
+        "icon": "twitter"
+      },
+      {
+        "url": "https://clients.boursorama.com/",
+        "name": "Banque",
+        "icon": "credit-card"
+      },
+      {
+        "url": "https://steamcommunity.com/id/blyndusk",
+        "name": "Steam",
+        "icon": "power"
+      },
+      {
+        "url": "https://cstimer.net/#N4IgrgzgpgkgdhEAuAZgQwDbQDQghAJggGMAnZAF1LCl3wIAcALNaRJKm3Cgex60rVa4aAFkAlhgzjBXEMX49yScCFwKMAWgBGaYgGtkIAMQAGcxbXz+OnmlIATI2YvmrGnWAq84z0wA5zFBR3GwweAHMeZ2DXUK1pOEMVF1jTeM1wqN0DGOCAZjd1GxQeOAo84OCQAF8gA",
+        "name": "Cube",
+        "icon": "square"
+      }
+    ],
+    "visible": true,
+    "linkOpenStyle": false
+  },
+  "widget/WZ6BlHN4LtWG": {
+    "id": "WZ6BlHN4LtWG",
+    "key": "widget/github",
+    "order": 6,
+    "display": {
+      "position": "bottomCentre",
+      "fontSize": 50
+    }
+  },
+  "data/WZ6BlHN4LtWG": {
+    "username": "blyndusk",
+    "showSummary": false
+  },
+  "widget/CrqljeI2aW-j": {
+    "id": "CrqljeI2aW-j",
+    "key": "widget/quote",
+    "order": 5,
+    "display": {
+      "position": "bottomCentre",
+      "fontWeight": 900,
+      "fontSize": 20
+    }
+  },
+  "data/CrqljeI2aW-j": {
+    "category": "developerexcuses"
+  },
+  "widget/eG411nUOGTUJ": {
+    "id": "eG411nUOGTUJ",
+    "key": "widget/workHours",
+    "order": 7,
+    "display": {
+      "position": "bottomRight",
+      "fontWeight": 100,
+      "fontSize": 50,
+      "colour": "#ffffff"
+    }
+  },
+  "data/eG411nUOGTUJ": {
+    "startTime": "09:00",
+    "endTime": "18:00",
+    "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "widget/cBht8dy2u2bv": {
+    "id": "cBht8dy2u2bv",
+    "key": "widget/ipInfo",
+    "order": 8,
+    "display": {
+      "position": "bottomRight",
+      "fontWeight": 900,
+      "fontSize": 34
+    }
+  },
+  "data/cBht8dy2u2bv": {
+    "ip": "Fetching IP data...",
+    "city": "",
+    "country": "",
+    "displayCity": false,
+    "displayCountry": false,
+    "refreshInterval": 5
+  }
+}

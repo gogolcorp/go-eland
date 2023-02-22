@@ -1,129 +1,178 @@
-format = """
-$kubernetes\
-$helm\
-$terraform
-$username\
-$hostname\
-$localip\
-$shlvl\
-$singularity\
-$directory\
-$vcsh\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$hg_branch\
-$docker_context\
+format = '''
+┌─$battery─$kubernetes$aws─■
+├─$time─\[$directory\]─■
+└$git_branch$git_commit$git_state$git_metrics$git_status$status─$character'''
 
-$nix_shell\
-$conda\
-$memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$env_var\
-$crystal\
-$custom\
-$sudo\
-$line_break\
-$jobs\
-$shell\
-$character
-"""
+# $git_commit$git_state$git_metrics$git_status$hg_branch
+# format = """
+# $kubernetes\
+# $helm\
+# $aws\
+# $gcloud\
+# $openstack\
+# $azure\
+# $terraform
+# $username\
+# $hostname\
+# $localip\
+# $shlvl\
+# $singularity\
+# $directory\
+# $vcsh\
+# $git_branch\
+# $git_commit\
+# $git_state\
+# $git_metrics\
+# $git_status\
+# $hg_branch\
+# $docker_context\
+# $package\
+# $c\
+# $cmake\
+# $cobol\
+# $daml\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $golang\
+# $guix_shell\
+# $haskell\
+# $haxe\
+# $java\
+# $julia\
+# $kotlin\
+# $lua\
+# $nim\
+# $nodejs\
+# $ocaml\
+# $opa\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\$character
+# $python\
+# $raku\
+# $rlang\
+# $red\
+# $ruby\
+# $rust\
+# $scala\
+# $swift\
+# $vlang\
+# $vagrant\
+# $zig\
+# $buf\
+# $nix_shell\
+# $conda\
+# $meson\
+# $spack\
+# $memory_usage\
+# $env_var\
+# $crystal\
+# $custom\
+# $sudo\
+# $line_break\
+# $jobs\
+# $os\
+# $container\
+# $shell\
+# $character"""
 
-right_format = """
-$package\
-$cmake\
-$cobol\
-$container\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$java\
-$julia\
-$kotlin\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$swift\
-$vlang\
-$vagrant\
-$zig\
-$cmd_duration\
-$status\
-$time\
-$battery
-"""
 
-add_newline = false
 
-# Misc
-[[battery.display]]
-threshold = 100
-style = "green"
-[[battery.display]]
-threshold = 50
-style = "yellow"
-[[battery.display]]
-threshold = 25
-style = "orange"
-[[battery.display]]
-threshold = 10
-style = "red"
-
-[cmd_duration]
-min_time = 1
-[directory]
-style = "bold blue"
-[git_metrics]
+[kubernetes]
 disabled = false
+format = '[\[$context](bold red)|[$namespace\]](bold cyan)'
+
+[kubernetes.context_aliases]
+'Delair-admin' = 'ADMIN'
+'Alteia-dev' = 'DEV'
+'Alteia-staging' = 'STAGING'
+'Alteia-prod' = 'PROD'
+'GE-prod' = 'GEPROD'
+'GE-preprod' = 'GESTAGING'
+
+[helm]
+disabled = true
+format = '─\[[$version](bold white)\]'
+
+[aws]
+format = '─[\[$profile\]](bold yellow)'
+
+[aws.profile_aliases]
+sso-dev = 'DEV'
+sso-staging = 'STAGING'
+sso-prod = 'PROD'
+sso-infra = 'INFRA'
+sso-admin = 'ADMIN'
+
+[terraform]
+disabled = false
+format = '─\[[$profile](bold yellow)/[$region](bold grey)\]'
+
+# = = = = =
+
+[directory]
+truncate_to_repo = false
+repo_root_style = 'bold red'
+style = 'grey'
+format = '[$path]($style)[$read_only]($read_only_style)'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
+
+[git_branch]
+style = 'blue'
+format = '─[\[$branch(:$remote_branch)\]]($style)'
+
+[git_metrics]
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+style = 'yellow'
+
+[package]
+disabled = true
+
+[sudo]
+disabled = false
+
+
+
+
+
+
+[character]
+disabled = false
+success_symbol = '[■](bold green)'
+error_symbol = '[■](bold red)'
+
+[line_break]
+disabled = true
+
+
+
+
 [status]
 disabled = false
+format = '\[[$status]($style)\]'
+
 [time]
 disabled = false
+format = '[\[$time\]](yellow)'
+time_format = '%R'
 
+[battery]
+format = '[\[$percentage\]]($style)'
 
-# Ops tools
-[kubernetes]
-format = '\[[$context](cyan)[\($namespace\)](bold cyan)\]'
-disabled = false
-[helm]
-format = '\[[$symbol ($version)]($style)\]'
-[terraform]
-format = '\[[$symbol($version)]($style)\] '
-
-# Languages
-[golang]
-format = '\[[$symbol($version)]($style)\] '
-[nodejs]
-format = '\[[$symbol($version)]($style)\] '
-[package]
-format = '\[[$symbol($version)]($style)\] '
-disabled = true
-[php]
-format = '\[[$symbol($version)]($style)\] '
-[python]
-format = '\[[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)\] '
-
-# Providers
-[aws]
-disabled = true
-
+[[battery.display]]
+threshold = 100
+style = "bold green"
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+[[battery.display]]
+threshold = 25
+style = "bold red"
