@@ -1,8 +1,16 @@
 #!/bin/bash
 
-export GLD_dotfiles=(
-  "aliases"
-  "functions"
+export GLD_dotfiles_src=(
+  "aliases.sh"
+  "functions.sh"
+  "starship.toml"
+  "terminator.toml"
+)
+export GLD_dotfiles_dist=(
+  ".aliases"
+  ".functions"
+  ".config/starship.toml"
+  ".config/terminator/config"
 )
 
 export GLD_apt_packages=(

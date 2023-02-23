@@ -7,13 +7,15 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-for i in "${GLD_dotfiles[@]}"
+for i in "${!GLD_dotfiles_dist[@]}"
 do
-  file="$HOME/.$i"
-  exec_a=(mv "$HOME"/."$i" "$HOME"/."$i".old)
-  exec_b=(cp "$PWD"/config/files/"$i".sh "$HOME"/."$i")
-  if [ -f "$file" ]; then
-    ui_info "$file already exists, creating old version"
+
+  file_src="$PWD/config/files/${GLD_dotfiles_src[$i]}"
+  file_dist="$HOME/${GLD_dotfiles_dist[$i]}"
+  exec_a=(mv "$file_dist" "$file_dist".old)
+  exec_b=(cp "$file_src" "$file_dist")
+  if [ -f "$file_dist" ]; then
+    ui_info "$file_dist already exists, creating old version"
     ui_cmd "${exec_a[@]}" ; "${exec_a[@]}"
   fi
   ui_cmd "${exec_b[@]}" ; "${exec_b[@]}"
