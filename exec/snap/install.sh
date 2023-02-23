@@ -5,9 +5,8 @@ source "$PWD"/config/ui.sh
 source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
-ui_start
+core__ui_start
 
+core__snap_packages_install 
 
-GLD_snap_packages_install 
-
-ui_done
+core__ui_done

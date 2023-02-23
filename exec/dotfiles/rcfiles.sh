@@ -5,22 +5,25 @@ source "$PWD"/config/ui.sh
 source "$PWD"/config/config.sh
 source "$PWD"/config/utils.sh
 
-ui_start
+core__ui_start
 
-sourcing="source $HOME/.aliases; source $HOME/.functions"
+exec="printf source $HOME/.aliases; source $HOME/.functions >> $HOME/.zshrc "
 
 
 if [ -f "$HOME"/.zshrc ]; then
-  ui_info "$HOME/.zshrc detected"
-  if ! grep -q "$sourcing" < "$HOME"/.zshrc ; then
-    ui_info "dotfile sourcing not found"
-    ui_cmd "$sourcing >> $HOME/.zshrc"
-    printf "\n%s\n" "$sourcing" >> "$HOME"/.zshrc
+  core__ui_info "$HOME/.zshrc detected"
+  if ! grep -q "$exec" < "$HOME"/.zshrc ; then
+    core__ui_info "dotfile sourcing not found"
+    core__ui_cmd "printf \"$exec\" >> $HOME/.zshrc" ; printf "\n%s\n" "$exec" >> "$HOME"/.zshrc
+
+    exit_code=$?
+    core__log_cmd $exit_code "printf \"$exec\" >> $HOME/.zshrc"
+    # printf "\n%s\n" "$exec" >> "$HOME"/.zshrc
   else
-    ui_info "sourcing already found, terminating" 
+    core__ui_info "sourcing already found, terminating" 
   fi
 else
-  ui_error "$HOME/.zshrc not found"
+  core__ui_error "$HOME/.zshrc not found"
 fi
 
-ui_done
+core__ui_done
