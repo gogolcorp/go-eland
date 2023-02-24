@@ -1,32 +1,45 @@
 {
-    "[nginx]": {
-    "editor.defaultFormatter": "raynigon.nginx-formatter"
-    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+
+    "files.autoSave": "afterDelay",
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
     "editor.cursorBlinking": "smooth",
-    "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorStyle": "block",
-    "editor.fontFamily": "'FiraCode NF', 'monospace', monospace",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.fontFamily": "'FiraCode Nerd Font Mono', 'monospace'",
     "editor.fontLigatures": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.inlineSuggest.enabled": true,
     "editor.tabSize": 2,
     "editor.wordWrap": "on",
-    "explorer.confirmDelete": false,
-    "files.autoSave": "afterDelay",
-    "explorer.confirmDragAndDrop": false,
-    "material-icon-theme.activeIconPack": "",
-    "material-icon-theme.folders.color": "#90a4ae",
-    "material-icon-theme.folders.theme": "specific",
-    "material-icon-theme.opacity": 1,
-    "material-icon-theme.saturation": null,
-    "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontFamily": "monospace",
-    "window.newWindowDimensions": "maximized",
+
     "workbench.activityBar.iconClickBehavior": "focus",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.decorations.colors": true,
     "workbench.editor.wrapTabs": true,
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Ayu Dark Bordered",
     "workbench.preferredDarkColorTheme": "Material Theme Ocean High Contrast",
-    "workbench.colorTheme": "Dracula Soft"
+    
+    "material-icon-theme.activeIconPack": "vue",
+    "material-icon-theme.folders.color": "#fdd835",
+    "material-icon-theme.folders.theme": "specific",
+    "material-icon-theme.opacity": 1,
+    "material-icon-theme.saturation": null,
+ 
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', monospace",
+    "terminal.integrated.confirmOnKill": "never",
+    "terminal.integrated.cursorStyle": "underline",
+    
+    "window.newWindowDimensions": "maximized",
+  
+    "go.buildOnSave": "off",
+    "go.lintOnSave": "off",
+    "go.toolsManagement.autoUpdate": true,
+    "go.lintTool": "golangci-lint"
 }

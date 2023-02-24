@@ -41,13 +41,19 @@ function ___docker_purge___() {
   return
 }
 
+# find a specific string in environment variables
+function ___find_in_aliases___ () {
+  alias | grep "$*"
+}
+
+# find a specific string in environment variables
+function ___find_in_env___ () {
+  env | grep "$*"
+}
+
 # find a specific string in zsh/bash history
 function ___find_in_history___ () {
   history | grep "$*"
-}
-
-function ___find_in_env___ () {
-  env | grep "$*"
 }
 
 # config git profile for specific workspace
@@ -57,8 +63,7 @@ function ___git_config___ () {
     git config user.email "alexandre.delaloy@alteia.com"
     echo "git configured [alexandre.delaloy@alteia.com]"
   else
-    git config user.name "blyndusk"
-    git config user.email "alexandre.delaloy.pro@gmail.com"
+    git config --global user.name "blyndusk" &    git config --global user.email "alexandre.delaloy.pro@gmail.com"
     echo "git configured [alexandre.delaloy.pro@gmail.com]"
   fi
 }
