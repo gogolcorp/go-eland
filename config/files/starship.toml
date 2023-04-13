@@ -79,11 +79,11 @@
 format = '''
 ┌─$battery─$kubernetes$aws─■
 ├─$time─\[$directory\]─■
-└$git_branch$git_commit$git_state$git_metrics$git_status$status$sudo─$character'''
+└─$git_branch$git_commit$git_state$git_status$git_metrics$status$sudo─$character'''
 
 
 [battery]
-format = '[\[$percentage\]]($style)'
+format = '\[[$percentage]($style)\]'
 
 [[battery.display]]
 threshold = 100
@@ -97,7 +97,7 @@ style = "bold red"
 
 [kubernetes]
 disabled = false
-format = '[\[$context](bold red)|[$namespace\]](bold cyan)'
+format = '\[[$context](bold red)|[$namespace](bold cyan)\]'
 
 [kubernetes.context_aliases]
 'Delair-admin' = 'ADMIN'
@@ -108,7 +108,7 @@ format = '[\[$context](bold red)|[$namespace\]](bold cyan)'
 'GE-preprod' = 'GESTAGING'
 
 [aws]
-format = '─[\[$profile\]](bold yellow)'
+format = '─\[[$profile](bold yellow)\]'
 
 [aws.profile_aliases]
 sso-dev = 'DEV'
@@ -119,22 +119,23 @@ sso-admin = 'ADMIN'
 
 [time]
 disabled = false
-format = '[\[$time\]](yellow)'
+format = '\[[$time](yellow)\]'
 time_format = '%R'
 
 [directory]
 truncate_to_repo = false
-repo_root_style = 'bold red'
+repo_root_style = 'bold blue'
 style = 'grey'
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
 
 [git_branch]
-style = 'blue'
-format = '─[\[$branch(:$remote_branch)\]]($style)'
+style = 'red'
+format = '\[[$branch(:$remote_branch)]($style)\]'
 
 [git_metrics]
-format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+disabled = false
+format = '\[[+$added]($added_style)[-$deleted]($deleted_style)\]'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
@@ -146,8 +147,7 @@ format = '\[[$status]($style)\]'
 
 [sudo]
 disabled = false
-format = '─[\[$symbol\]](bold white)'
-symbol = '🚨'
+format = '─[\[*\]](bold red)'
 
 [character]
 disabled = false

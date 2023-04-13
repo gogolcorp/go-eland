@@ -7,6 +7,6 @@ source "$PWD"/config/utils.sh
 
 ui_start
 
-GLD_vscode_extensions_install "${GLD_vscode_extensions[@]}"
+core__vscode_extensions_install "${core__vscode_extensions[@]}"
 
 ui_done

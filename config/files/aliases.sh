@@ -6,7 +6,6 @@
 source "$HOME/.functions"
 
 # SINGLE COMMAND ---------------------------------------------------------
-
 alias b="brew"
 alias c="clear"
 alias del="rm -rf"
@@ -16,14 +15,16 @@ alias s="snap"
 alias t="touch"
 alias x="killall" 
 
+alias cb="xclip -sel clip"
 alias cdc="cd ; clear"
+alias cpwd="pwd | xclip -sel clip"
 alias lgh="sudo brightnessctl --device='tpacpi::kbd_backlight' set 2"
 alias rf='source $HOME/.zshrc'
+alias upkg='sudo dpkg -i'
 
 # FUNCTIONS BIND ---------------------------------------------------------
 alias be="___base64_encode___"
 alias bd="___base64_decode___"
-alias cb="___clipboard___"
 alias dkpg="___docker_purge___"
 alias gld="___goeland___"
 alias gcfg="___git_config___"
@@ -35,9 +36,9 @@ alias ssops="___super_sops___"
 alias vs="___open_vscode___"
 
 # DIRECTORIES ------------------------------------------------------------
-alias alt='cd $HOME/__/ALTEIA/_INFRA'
-alias docs='cd $HOME/Documents'
-alias dll='cd $HOME/Downloads'
+alias alt='clear; cd $HOME/go/src/gitlab.corporate.delair-stack.com/infra'
+alias docs='clear; cd $HOME/Documents'
+alias dll='clear; cd $HOME/Downloads'
 
 # APT --------------------------------------------------------------------
 alias upd="sudo apt update -y"
@@ -49,21 +50,26 @@ alias gmc="git commit -m"
 alias ghst="git log --graph --oneline --decorate --all"
 alias grh="git reset --hard" 
 alias gsst="git status -s -b"
+alias gsync="___git_sync___"
 
-# KUBE --- ---------------------------------------------------------------
+# KUBE -------------------------------------------------------------------
 alias k="kubectl"
-alias wk="watch kubectl"
+
+# kubectl plugins
+alias kcx="kubectl ctx"
+alias kfz="kubectl fuzzy"
+alias kkr="kubectl krew"
+alias kns="kubectl ns"
+alias kst="kubectl stern"
+alias kvs="kubectl view-secret"
+alias kpf="kubectl port-forward"
+
 alias wkg="watch kubectl get"
-
-alias kx="kubectx"
-alias kns="kubens"
-alias ks="kubeseal"
-
-alias kk="kubectl delete"
-alias kd="kubectl describe"
-alias ke="kubectl edit"
 alias kg="kubectl get"
-alias kl="kubectl logs"
+alias kd="kubectl fuzzy describe"
+alias kl="kubectl fuzzy logs"
+alias kk="kubectl delete"
+alias ke="kubectl edit"
 
 # HELM -------------------------------------------------------------------
 alias h="helm"

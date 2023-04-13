@@ -9,6 +9,6 @@ ui_start
 
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-GLD_brew_formulaes_install "${GLD_brew_formulaes[@]}"
+core__brew_formulaes_install "${core__brew_formulaes[@]}"
 
 ui_done

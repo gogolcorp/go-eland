@@ -3,55 +3,28 @@
   window_state = maximise
   borderless = True
   extra_styling = False
-  scroll_tabbar = True
+  tab_position = hidden
+  scroll_tabbar = False
   homogeneous_tabbar = False
-  title_hide_sizetext = True
-  title_transmit_fg_color = "#f9f06b"
-  title_transmit_bg_color = "#000000"
-  title_receive_fg_color = "#62a0ea"
-  title_receive_bg_color = "#000000"
-  title_inactive_fg_color = "#9a9996"
-  title_inactive_bg_color = "#000000"
   inactive_color_offset = 1.0
   suppress_multiple_term_dialog = True
-  title_use_system_font = False
-  title_font = FiraCode Nerd Font Mono weight=453 14
-  title_at_bottom = True
 [keybindings]
 [profiles]
   [[default]]
-    background_darkness = 0.9
+    background_darkness = 0.85
     background_type = transparent
     cursor_shape = underline
     cursor_fg_color = "#000000"
     cursor_bg_color = "#f9f06b"
     cursor_color_default = False
-    font = FiraCode Nerd Font Mono weight=453 14
+    font = FiraCode Nerd Font Mono weight=453 12
     foreground_color = "#ffffff"
     scrollbar_position = hidden
     scrollback_lines = 5000000
+    show_titlebar = False
     exit_action = hold
     use_system_font = False
 [layouts]
-  # [[default]]
-  #   [[[child0]]]
-  #     type = Window
-  #     parent = ""
-  #     order = 0
-  #     position = 0:0
-  #     maximised = True
-  #     fullscreen = False
-  #     size = 1920, 1080
-  #     title = alexandredelaloy@DLT-LP-53:~
-  #     last_active_term = 84c37112-db6d-43f0-8553-773c545fbb67
-  #     last_active_window = True
-  #   [[[terminal1]]]
-  #     type = Terminal
-  #     parent = child0
-  #     order = 0
-  #     profile = default
-  #     uuid = 84c37112-db6d-43f0-8553-773c545fbb67
-  #     command = ""
   [[default]]
     [[[child0]]]
       type = Window
@@ -60,41 +33,85 @@
       position = 0:0
       maximised = True
       fullscreen = False
-      size = 1920, 1080
+      size = 1920, 1053
       title = alexandredelaloy@DLT-LP-53:~/__/ALTEIA
-      last_active_term = 9bdf0f98-814b-4d4f-8a78-7a0fa37d0627
+      last_active_term = ba5bdaae-68c9-4de6-a8d7-6b55beac0d7b
       last_active_window = True
     [[[child1]]]
       type = HPaned
       parent = child0
       order = 0
-      position = 958
-      ratio = 0.5002610966057441
-    [[[terminal2]]]
-      type = Terminal
-      parent = child1
-      order = 0
-      profile = default
-      uuid = 9bdf0f98-814b-4d4f-8a78-7a0fa37d0627
-      directory = __/ALTEIA
-    [[[child3]]]
+      position = 1384
+      ratio = 0.7227154046997389
+    [[[child2]]]
       type = VPaned
       parent = child1
-      order = 1
-      position = 538
-      ratio = 0.5004651162790698
+      order = 0
+      position = 524
+      ratio = 0.5
+    [[[child3]]]
+      type = VPaned
+      parent = child2
+      order = 0
+      position = 260
+      ratio = 0.5009633911368016
     [[[terminal4]]]
       type = Terminal
       parent = child3
       order = 0
       profile = default
       uuid = ceeb2567-7813-417d-bd93-8909e9fbbdeb
-      command = htop
+      directory = /home/alexandredelaloy/go/src/gitlab.corporate.delair-stack.com/infra
     [[[terminal5]]]
       type = Terminal
       parent = child3
       order = 1
       profile = default
+      uuid = 5998072f-d1d3-4d34-8162-4babded28af0
+      directory = /home/alexandredelaloy/go/src/gitlab.corporate.delair-stack.com/services
+    [[[terminal6]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = default
+      uuid = ba5bdaae-68c9-4de6-a8d7-6b55beac0d7b
+      directory = /home/alexandredelaloy
+    [[[child7]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 524
+      ratio = 0.5
+    [[[terminal8]]]
+      type = Terminal
+      parent = child7
+      order = 0
+      profile = default
       uuid = 4c2e5ab2-9696-4ebc-9f76-49c7b96b14aa
-      directory = go/src/github.com/gogolcorp/go-eland
-[plugins]
+      directory = /home/alexandredelaloy/go/src/github.com/gogolcorp/go-eland
+    [[[terminal9]]]
+      type = Terminal
+      parent = child7
+      order = 1
+      profile = default
+      uuid = 3daf6590-8d6d-40ad-bf58-d41f9695b37d
+      directory = /home/alexandredelaloy/
+  [[simple]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:0
+      maximised = True
+      fullscreen = False
+      size = 1920, 1053
+      title = alexandredelaloy@DLT-LP-53:~/__/ALTEIA
+      last_active_term = 4c2e5ab2-9696-4ebc-9f76-49c7b96b14aa
+      last_active_window = True
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = 4c2e5ab2-9696-4ebc-9f76-49c7b96b14aa
+    

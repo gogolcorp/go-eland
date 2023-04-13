@@ -8,6 +8,6 @@ source "$PWD"/config/utils.sh
 ui_start
 
 
-GLD_snap_packages_install 
+core__snap_packages_install 
 
 ui_done

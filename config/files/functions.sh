@@ -2,14 +2,14 @@
 
 # base64 encode with clipboard copy
 function ___base64_encode___() {
-  STR=$(echo "$*" | base64 -w0)
+  STR=$(echo -n "$*" | base64 -w0)
   echo "$STR"
   echo "$STR" | xclip -sel clip
 }
 
 # base64 decode with clipboard copy
 function ___base64_decode___() {
-  STR=$(echo "$*" | base64 -d -w0)
+  STR=$(echo -n "$*" | base64 -d -w0)
   echo "$STR"
   echo "$STR" | xclip -sel clip
 }
@@ -67,6 +67,15 @@ function ___git_config___ () {
     echo "git configured [alexandre.delaloy.pro@gmail.com]"
   fi
 }
+function ___git_sync___ () {
+  git fetch origin
+  if git branch -l | grep -q "master"; then
+    git checkout master
+  else 
+    git checkout main
+  fi
+  git pull
+}
 
 # run Goeland soft
 function ___goeland___() {
@@ -103,10 +112,11 @@ function ___open_vscode___() {
 
 # de-sops template
 function ___super_sops___() {
-  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
+  sops -d $1.sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
 }
 
 
 function ___daily___() {
   sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
 }
+
