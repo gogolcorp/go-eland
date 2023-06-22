@@ -41,6 +41,7 @@ eval "$(starship init zsh)"
 
 # [language] golang 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/go/bin:$PATH
 
 # [software] thefuck 
 eval $(thefuck --alias)

@@ -115,8 +115,18 @@ function ___super_sops___() {
   sops -d $1.sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
 }
 
-
-function ___daily___() {
-  sops -d "$1".sops.yaml | gomplate -d "main-config=merge:platform|main" -d main=main-config.yaml -d platform=stdin:///platform.yaml -f ./values.yaml.tpl -o ./values.yaml
+function ___alteia_ctx___() {
+  if [ "$1" = "d" ]; then
+    kubectx Alteia-dev
+  elif [ "$1" = "s" ]; then
+    kubectx Alteia-staging
+  elif [ "$1" = "p" ]; then
+    kubectx Alteia-prod
+  elif [ "$1" = "ges" ]; then
+    kubectx GE-preprod
+  elif [ "$1" = "gep" ]; then
+    kubectx GE-prod
+  else
+    echo "Invalid flag."
+  fi
 }
-

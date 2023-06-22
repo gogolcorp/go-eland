@@ -57,6 +57,7 @@ alias k="kubectl"
 
 # kubectl plugins
 alias kcx="kubectl ctx"
+alias acx="___alteia_ctx___"
 alias kfz="kubectl fuzzy"
 alias kkr="kubectl krew"
 alias kns="kubectl ns"
